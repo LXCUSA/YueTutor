@@ -23,10 +23,10 @@ struct InputBar: View {
         HStack(spacing: 10) {
             Button(action: onMic) {
                 Image(systemName: isRecording ? "mic.fill" : "mic")
-                    .font(.system(size: 18))
+                    .font(.system(size: 21.6)) // 18 的 120%
                     .foregroundColor(isRecording ? .white : Theme.accent)
                     .frame(width: 40, height: 40)
-                    .background(isRecording ? Color.red : Theme.accent.opacity(0.12))
+                    .background(isRecording ? Theme.accent : Theme.accent.opacity(0.12))
                     .clipShape(Circle())
             }
             .accessibilityLabel(L10n.t(isRecording ? "input.mic_stop_hint" : "input.mic_hint"))
