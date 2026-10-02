@@ -138,11 +138,11 @@ struct ChatView: View {
                 DragGesture(minimumDistance: keyboardDismissDragThreshold)
                     .onChanged { _ in dismissKeyboard() }
             )
-            // 学习者发消息（count 增加）：滚到底部，即时反馈
+            // 学习者发消息（count 增加）：瞬间滚到底部，即时反馈。
+            // 注意不用 withAnimation：动画没跑完时若家教回复送达，
+            // 两处滚动会打架把视图停在半中间；全用瞬间定位，位置是确定的。
             .onChange(of: viewModel.messages.count) { _, _ in
-                withAnimation {
-                    proxy.scrollTo("bottomAnchor", anchor: .bottom)
-                }
+                proxy.scrollTo("bottomAnchor", anchor: .bottom)
             }
             // 家教回复送达（pending 原地替换为正式内容）：新消息从顶部开始显示。
             // 两点教训：① 必须等 LazyVStack 量好新内容高度后再定位，否则停半中间——
