@@ -9,6 +9,10 @@ struct ChatView: View {
     @StateObject private var viewModel = ChatViewModel()
     @StateObject private var recognizer = SpeechRecognizer()
     @State private var inputText = ""
+    /// 是否显示"跳到底部"悬浮按钮：底部锚点滚出可视区时显示
+    @State private var showJumpToBottom = false
+    /// 点悬浮按钮时 +1，消息列表内响应并瞬间滚到底部
+    @State private var jumpToBottomNonce = 0
 
     /// 顶部话题 chips：设置页勾了兴趣主题就只显示勾选的；没勾则显示全部。
     /// 当前主题始终显示（即使不在勾选的兴趣里），插到最前面。
@@ -138,14 +142,38 @@ struct ChatView: View {
                         messageRow(message)
                             .id(message.id)
                     }
-                    // 底部锚点：学习者发消息时滚到底部
+                    // 底部锚点：学习者发消息时滚到底部；
+                    // 用它的 appear/disappear 判断用户是否偏离底部，控制悬浮按钮显隐
                     Color.clear
                         .frame(height: 1)
                         .id("bottomAnchor")
+                        .onAppear { showJumpToBottom = false }
+                        .onDisappear { showJumpToBottom = true }
                 }
                 .padding()
             }
             .scrollDismissesKeyboard(.never)
+            .overlay(alignment: .bottomTrailing) {
+                if showJumpToBottom {
+                    Button {
+                        playHaptic(settings)
+                        jumpToBottomNonce += 1
+                    } label: {
+                        Image(systemName: "chevron.down")
+                            .font(.body.weight(.semibold))
+                            .foregroundColor(.white)
+                            .frame(width: 44, height: 44)
+                            .background(Theme.accent)
+                            .clipShape(Circle())
+                            .shadow(color: .black.opacity(0.3), radius: 6, x: 0, y: 3)
+                    }
+                    .padding(.trailing, 16)
+                    .padding(.bottom, 12)
+                    .transition(.scale.combined(with: .opacity))
+                    .accessibilityLabel("跳到底部")
+                }
+            }
+            .animation(.easeInOut(duration: 0.2), value: showJumpToBottom)
             .simultaneousGesture(
                 DragGesture(minimumDistance: keyboardDismissDragThreshold)
                     .onChanged { _ in dismissKeyboard() }
@@ -154,6 +182,10 @@ struct ChatView: View {
             // 注意不用 withAnimation：动画没跑完时若家教回复送达，
             // 两处滚动会打架把视图停在半中间；全用瞬间定位，位置是确定的。
             .onChange(of: viewModel.messages.count) { _, _ in
+                proxy.scrollTo("bottomAnchor", anchor: .bottom)
+            }
+            // 悬浮按钮点按：瞬间跳到底部（无动画，与消息定位逻辑一致，避免打架）
+            .onChange(of: jumpToBottomNonce) { _, _ in
                 proxy.scrollTo("bottomAnchor", anchor: .bottom)
             }
             // 家教回复送达（pending 原地替换为正式内容）：新消息从顶部开始显示。
