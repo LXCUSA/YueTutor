@@ -123,6 +123,17 @@ struct ChatView: View {
 
     // MARK: - 消息列表
 
+    /// 键盘收起灵敏度：手指在消息列表上拖动超过该距离（pt）即收键盘。
+    /// 0 ≈ .immediately（一碰就收）；越大越不灵敏。20 是中间值。
+    private let keyboardDismissDragThreshold: CGFloat = 20
+
+    private func dismissKeyboard() {
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder),
+            to: nil, from: nil, for: nil
+        )
+    }
+
     private var messageList: some View {
         ScrollViewReader { proxy in
             ScrollView {
@@ -137,7 +148,11 @@ struct ChatView: View {
                 }
                 .padding()
             }
-            .scrollDismissesKeyboard(.immediately)
+            .scrollDismissesKeyboard(.never)
+            .simultaneousGesture(
+                DragGesture(minimumDistance: keyboardDismissDragThreshold)
+                    .onChanged { _ in dismissKeyboard() }
+            )
             .onChange(of: viewModel.messages.count) { _, _ in
                 withAnimation {
                     proxy.scrollTo("bottomAnchor", anchor: .bottom)
