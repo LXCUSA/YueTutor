@@ -76,13 +76,6 @@
 "settings.voice_section" = "语音";
 "settings.speech_rate" = "语速";
 "settings.auto_speak" = "自动朗读家教回复";
-"settings.profile_section" = "个人信息";
-"settings.profile_name" = "我的名字";
-"settings.profile_level" = "粤语水平";
-"settings.profile_interests" = "兴趣（可多选）";
-"settings.profile_tutor" = "家教名字";
-"settings.profile_add" = "添加";
-"settings.profile_custom_placeholder" = "输入自定义兴趣";
 "settings.reset_profile" = "重新设置个人信息";
 "settings.reset_title" = "重新设置？";
 "settings.reset_message" = "将清除你的名字、水平和兴趣，回到欢迎页。";
