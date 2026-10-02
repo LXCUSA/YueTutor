@@ -12,6 +12,9 @@ enum Theme {
     /// 小圆角：chips、胶囊按钮、内嵌提示卡。
     static let smallRadius: CGFloat = 10
 
+    /// 朱红：悬浮按钮用，比主色更亮一档，在深色背景上更醒目。
+    static let vermilion = Color(red: 1.0, green: 0.30, blue: 0.0)
+
     /// 粤拼等宽字体（粤拼用等宽排版更易对照声调数字）。
     static func jyutpingFont(size: CGFloat) -> Font {
         .system(size: size, design: .monospaced)
