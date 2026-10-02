@@ -17,7 +17,6 @@ struct ChatView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            header
             topicChips
             Divider()
             messageList
@@ -46,33 +45,6 @@ struct ChatView: View {
                 inputText = transcript
             }
         }
-    }
-
-    // MARK: - 顶栏：家教名字 + 离线状态 + 停止朗读
-
-    private var header: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(profileStore.profile.tutorName)
-                    .font(.headline)
-                Text(L10n.t("chat.header_status"))
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-            Spacer()
-            if synthesizer.isSpeaking {
-                Button {
-                    viewModel.stopSpeaking()
-                } label: {
-                    Image(systemName: "stop.circle.fill")
-                        .font(.title2)
-                        .foregroundColor(Theme.accent)
-                }
-                .accessibilityLabel(L10n.t("chat.stop_speaking"))
-            }
-        }
-        .padding(.horizontal)
-        .padding(.vertical, 8)
     }
 
     // MARK: - 话题 chips
