@@ -481,7 +481,7 @@ deferredThemes.removeAll { $0 == theme.id }
 let count = (readAlongCount[theme.id] ?? 0) + 1
 if count >= Self.readAlongPassCount {
 readAlongCount[theme.id] = 0
-let next = nextPracticeTheme(after: theme.id)
+let next = nextPracticeTheme(after: theme.id, interests: profile.interests)
 currentThemeId = next.id
 pendingReadAlong = next.id
 return readAlongPassedLesson(passed: theme, next: next)
@@ -544,7 +544,7 @@ if fails >= Self.readAlongMaxFails {
 readAlongFails[pendingId] = 0
 pendingReadAlong = nil
 if !deferredThemes.contains(pendingId) { deferredThemes.append(pendingId) }
-let next = nextPracticeTheme(after: pendingId)
+let next = nextPracticeTheme(after: pendingId, interests: profile.interests)
 currentThemeId = next.id
 pendingReadAlong = next.id
 return readAlongSkippedLesson(skipped: pendingTheme, next: next)
