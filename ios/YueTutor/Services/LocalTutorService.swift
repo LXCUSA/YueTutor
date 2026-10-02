@@ -172,8 +172,10 @@ if text.isEmpty {
 return greetingLesson()
 }
 
-// 2. 跟读：输入恰好是某个主题的场景句汉字（先于主题关键词匹配，保证快捷按钮能进跟读）
-if let theme = Self.curriculum.first(where: { $0.sentence.cantonese == text}) {
+// 2. 跟读：输入与场景句去标点/空白后一致即算跟读（用户常省略标点），
+//    先于主题关键词匹配，保证快捷按钮和手动输入都能进跟读
+let plainInput = Self.plainText(text)
+if let theme = Self.curriculum.first(where: { Self.plainText($0.sentence.cantonese) == plainInput }) {
 currentThemeId = theme.id
 return readAlongLesson(theme)
 }
@@ -311,6 +313,11 @@ difficulty: "beginner"
 }
 
 // MARK: - 小工具
+
+/// 去标点去空白后的纯文本（只留字母与数字），用于跟读比对
+static func plainText(_ s: String) -> String {
+s.filter { $0.isLetter || $0.isNumber}
+}
 
 /// 两个入门词：你好、早晨
 private func introWords() -> [BreakdownItem] {
