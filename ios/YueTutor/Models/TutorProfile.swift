@@ -68,6 +68,35 @@ final class ProfileStore: ObservableObject {
         profile = TutorProfile(name: "", level: .beginner, interests: [], tutorName: "小粤", focus: nil)
     }
 
+    // MARK: - 设置页直接编辑（逐项可配，改动即存）
+
+    /// 更新名字：不接受空值，避免在设置页误删导致跳回欢迎页
+    func setName(_ name: String) {
+        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+        profile.name = trimmed
+        persist()
+    }
+
+    /// 更新粤语水平（单选）
+    func setLevel(_ level: LearnerLevel) {
+        profile.level = level
+        persist()
+    }
+
+    /// 更新兴趣（多选）
+    func setInterests(_ interests: [String]) {
+        profile.interests = interests
+        persist()
+    }
+
+    /// 更新家教名字：空值回退为默认"小粤"
+    func setTutorName(_ name: String) {
+        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        profile.tutorName = trimmed.isEmpty ? "小粤" : trimmed
+        persist()
+    }
+
     /// 把当前 profile 写进 UserDefaults
     private func persist() {
         if let data = try? JSONEncoder().encode(profile) {

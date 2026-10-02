@@ -76,6 +76,13 @@
 "settings.voice_section" = "Voice";
 "settings.speech_rate" = "Speech rate";
 "settings.auto_speak" = "Auto-read tutor replies";
+"settings.profile_section" = "Profile";
+"settings.profile_name" = "My name";
+"settings.profile_level" = "Cantonese level";
+"settings.profile_interests" = "Interests (multi-select)";
+"settings.profile_tutor" = "Tutor name";
+"settings.profile_add" = "Add";
+"settings.profile_custom_placeholder" = "Add a custom interest";
 "settings.reset_profile" = "Reset personal info";
 "settings.reset_title" = "Start over?";
 "settings.reset_message" = "This clears your name, level and interests, and returns to the welcome screen.";
