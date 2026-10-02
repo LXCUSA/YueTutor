@@ -145,8 +145,9 @@ struct ChatView: View {
                 LazyVStack(spacing: 12) {
                     ForEach(viewModel.messages) { message in
                         messageRow(message)
+                            .id(message.id)
                     }
-                    // 底部锚点：新消息进来时滚到底部
+                    // 底部锚点：学习者发消息时滚到底部
                     Color.clear
                         .frame(height: 1)
                         .id("bottomAnchor")
@@ -158,9 +159,21 @@ struct ChatView: View {
                 DragGesture(minimumDistance: keyboardDismissDragThreshold)
                     .onChanged { _ in dismissKeyboard() }
             )
+            // 学习者发消息（count 增加）：滚到底部，即时反馈
             .onChange(of: viewModel.messages.count) { _, _ in
                 withAnimation {
                     proxy.scrollTo("bottomAnchor", anchor: .bottom)
+                }
+            }
+            // 家教回复送达（pending 原地替换为正式内容）：滚到新消息的顶部，
+            // 从新主题的开头开始看。等一轮布局完成后再定位，否则 LazyVStack
+            // 还没量好新内容高度，会停在消息半中间或空白处。
+            .onChange(of: viewModel.tutorDeliveryNonce) { _, _ in
+                guard let id = viewModel.lastTutorMessageID else { return }
+                DispatchQueue.main.async {
+                    withAnimation {
+                        proxy.scrollTo(id, anchor: .top)
+                    }
                 }
             }
         }

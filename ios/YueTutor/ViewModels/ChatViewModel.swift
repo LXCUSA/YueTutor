@@ -12,6 +12,11 @@ final class ChatViewModel: ObservableObject {
     @Published var isSending = false
     /// 当前主题 id（用于高亮顶部话题 chip），每次收到家教回复后更新。
     @Published var currentTopicId: String?
+    /// 家教回复送达计数：pending 气泡是原地替换成正式内容的，`messages.count`
+    /// 不变，只靠 count 观察不到送达；ChatView 观察它做滚动定位。
+    @Published var tutorDeliveryNonce: Int = 0
+    /// 最近一次送达的家教消息 id（滚动目标：滚到这条消息的顶部开始看）。
+    private(set) var lastTutorMessageID: UUID?
 
     private var settings: AppSettings?
     private var profileStore: ProfileStore?
@@ -144,7 +149,11 @@ final class ChatViewModel: ObservableObject {
                 useWebSearch: false
             )
             if let index = messages.firstIndex(where: { $0.id == pendingID }) {
-                messages[index] = .tutor(lesson)
+                let delivered = ChatMessage.tutor(lesson)
+                messages[index] = delivered
+                // 触发"送达到位"滚动：定位到这条新消息的顶部
+                lastTutorMessageID = delivered.id
+                tutorDeliveryNonce += 1
             }
             currentTopicId = service.currentTopicId
             if settings.autoSpeak {
@@ -153,6 +162,8 @@ final class ChatViewModel: ObservableObject {
         } catch {
             if let index = messages.firstIndex(where: { $0.id == pendingID }) {
                 messages[index].errorText = L10n.t("error.chat_failed")
+                lastTutorMessageID = messages[index].id
+                tutorDeliveryNonce += 1
             }
         }
     }
