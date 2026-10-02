@@ -358,6 +358,8 @@ var pendingReadAlong: String?
 var readAlongFails: [String: Int] = [:]
 /// 暂时跳过的主题 id（多次读不对），绕完一圈后重新加入练习
 var deferredThemes: [String] = []
+/// 上一次测验是否从兴趣主题出题（"再考一个"沿用该范围）
+var lastQuizFromInterests = false
 /// 跟读连错几次后智能跳过
 static let readAlongMaxFails = 3
 /// 判定"用户在尝试跟读"的字符重合度阈值（0~1）
@@ -503,8 +505,21 @@ return themeLesson(next, switched: true)
 }
 
 // 3. 测验请求：出题（先不给答案）
+// 3a. 主题对话卡片里的"考考我（当前主题）"：只从当前主题出题
+if text.contains("考考我（当前主题）") || text.contains("考考我(当前主题)") {
+pendingReadAlong = nil
+lastQuizFromInterests = false
+return quizLesson()
+}
+// 3b. "再考一个"：沿用上一次测验的出题范围（兴趣 / 当前主题）
+if text.contains("再考一个") || text.contains("再考一個") {
+pendingReadAlong = nil
+return quizLesson(interests: lastQuizFromInterests ? profile.interests : [])
+}
+// 3c. 其他测验请求（头部"考考我" chip、手动输入）：从兴趣主题出题
 if isQuizRequest(text) {
 pendingReadAlong = nil
+lastQuizFromInterests = !profile.interests.isEmpty
 return quizLesson(interests: profile.interests)
 }
 
@@ -585,7 +600,7 @@ replyEnglish: "今天我们学「\(theme.titleZh)」。先来一句最实用的�
 breakdown: theme.words.map { BreakdownItem(cantonese: $0.cantonese, jyutping: $0.jyutping, english: $0.mandarin)},
 tip: theme.tip,
 suggestedReplies: [
-SuggestedReply(cantonese: "考考我", jyutping: "haau2 haau2 ngo5", english: "来个小测验"),
+SuggestedReply(cantonese: "考考我（当前主题）", jyutping: "haau2 haau2 ngo5 (dong1 cin4 zyu2 tai4)", english: "只考当前主题"),
 SuggestedReply(cantonese: theme.sentence.cantonese, jyutping: theme.sentence.jyutping, english: theme.sentence.mandarin),
 switchThemeReply(current: theme),
 ],
@@ -664,7 +679,7 @@ breakdown: sentenceKeywords(in: theme),
 tip: "跟读建议：先慢速跟准每个字嘅声调，再加速连成一句，一句读够 \(Self.readAlongPassCount) 遍就过关。",
 suggestedReplies: [
 SuggestedReply(cantonese: theme.sentence.cantonese, jyutping: theme.sentence.jyutping, english: theme.sentence.mandarin),
-SuggestedReply(cantonese: "考考我", jyutping: "haau2 haau2 ngo5", english: "来个小测验"),
+SuggestedReply(cantonese: "考考我（当前主题）", jyutping: "haau2 haau2 ngo5 (dong1 cin4 zyu2 tai4)", english: "只考当前主题"),
 switchThemeReply(current: theme),
 ],
 difficulty: "beginner"
@@ -697,7 +712,7 @@ breakdown: next.words.map { BreakdownItem(cantonese: $0.cantonese, jyutping: $0.
 tip: next.tip,
 suggestedReplies: [
 SuggestedReply(cantonese: next.sentence.cantonese, jyutping: next.sentence.jyutping, english: next.sentence.mandarin),
-SuggestedReply(cantonese: "考考我", jyutping: "haau2 haau2 ngo5", english: "来个小测验"),
+SuggestedReply(cantonese: "考考我（当前主题）", jyutping: "haau2 haau2 ngo5 (dong1 cin4 zyu2 tai4)", english: "只考当前主题"),
 switchThemeReply(current: next),
 ],
 difficulty: "beginner"
@@ -714,7 +729,7 @@ breakdown: next.words.map { BreakdownItem(cantonese: $0.cantonese, jyutping: $0.
 tip: next.tip,
 suggestedReplies: [
 SuggestedReply(cantonese: next.sentence.cantonese, jyutping: next.sentence.jyutping, english: next.sentence.mandarin),
-SuggestedReply(cantonese: "考考我", jyutping: "haau2 haau2 ngo5", english: "来个小测验"),
+SuggestedReply(cantonese: "考考我（当前主题）", jyutping: "haau2 haau2 ngo5 (dong1 cin4 zyu2 tai4)", english: "只考当前主题"),
 switchThemeReply(current: next),
 ],
 difficulty: "beginner"
