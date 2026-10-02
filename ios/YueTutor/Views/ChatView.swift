@@ -109,9 +109,13 @@ struct ChatView: View {
                             .fontWeight(.semibold)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 7)
-                            .background(Theme.accent)
-                            .foregroundColor(.white)
+                            .background(Theme.accent.opacity(0.10))
+                            .foregroundColor(Theme.accent)
                             .clipShape(Capsule())
+                            .overlay(
+                                Capsule()
+                                    .stroke(Theme.accent.opacity(0.35), lineWidth: 1)
+                            )
                     }
                     .buttonStyle(.plain)
                     .disabled(viewModel.isSending)
