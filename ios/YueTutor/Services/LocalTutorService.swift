@@ -372,7 +372,7 @@ Self.curriculum.first { $0.id == id}
 /// 下一个练习主题：兴趣优先——若用户在设置页勾了感兴趣的主题，
 /// 按课程顺序跳到下一个感兴趣的（跳过当前主题、跳过已暂存的难句）；
 /// 没选兴趣 / 感兴趣的都不可用时，回退到全量顺序轮换。
-private func nextPracticeTheme(after id: String, interests: [String]) -> CourseTheme {
+private func nextPracticeTheme(after id: String, interests: [String] = []) -> CourseTheme {
 let n = Self.curriculum.count
 guard let idx = Self.curriculum.firstIndex(where: { $0.id == id }) else { return Self.curriculum[0] }
 
@@ -505,7 +505,7 @@ return themeLesson(next, switched: true)
 // 3. 测验请求：出题（先不给答案）
 if isQuizRequest(text) {
 pendingReadAlong = nil
-return quizLesson()
+return quizLesson(interests: profile.interests)
 }
 
 // 4. 有未公布的测验：用户的下一轮输入即公布答案
@@ -593,11 +593,18 @@ difficulty: "beginner"
 )
 }
 
-/// 测验出题：从当前主题（无则随机）抽一个词，先不给答案，记到 pendingQuiz
-private func quizLesson() -> Lesson {
-let theme = currentThemeId.flatMap { self.theme(id: $0)}
+/// 测验出题：兴趣优先——勾了兴趣主题就从中随机抽一个主题出题；
+/// 没勾则沿用老逻辑（当前主题，无则随机）。先不给答案，记到 pendingQuiz
+private func quizLesson(interests: [String] = []) -> Lesson {
+let interested = Self.curriculum.filter { interests.contains($0.titleZh) }
+let theme: CourseTheme
+if let pick = interested.randomElement() {
+theme = pick
+} else {
+theme = currentThemeId.flatMap { self.theme(id: $0)}
 ?? Self.curriculum.randomElement()
 ?? Self.curriculum[0]
+}
 guard let word = theme.words.randomElement() else {
 return fallbackLesson()
 }
