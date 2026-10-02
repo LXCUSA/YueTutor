@@ -351,9 +351,15 @@ private func quizAnswerLesson(word: CourseWord, userText: String) -> Lesson {
 let quizTheme = Self.curriculum.first { $0.words.contains(word)}
 let hint = adjustmentHint(for: word)
 let correction: String
-if userText.contains(word.cantonese) {
+switch Self.judgeQuiz(userText: userText, word: word) {
+case .exactChar:
 correction = "写对了，「\(word.cantonese)」就系咁写！读嘅时候注意\(hint)，多读两遍就顺口啦。"
-} else {
+case .homophone:
+let said = userText.trimmingCharacters(in: .whitespacesAndNewlines)
+correction = "读音啱啦！你讲嘅「\(said)」同「\(word.cantonese)」同音（\(word.jyutping)），算你对！写就系咁写：「\(word.cantonese)」。读嘅时候注意\(hint)。"
+case .jyutping:
+correction = "粤拼打啱啦，「\(word.cantonese)」就系读「\(word.jyutping)」！注意\(hint)，跟住读多一次啦。"
+case .wrong:
 correction = "敢开口就系进步！「\(word.cantonese)」读「\(word.jyutping)」，注意\(hint)，跟住读多一次啦。"
 }
 return Lesson(
@@ -454,6 +460,54 @@ difficulty: "beginner"
 
 // MARK: - 小工具
 
+/// 测验同音字归一：单字测验用语音作答时，识别常输出同音异字
+///（如把 jau6 识别成"又"而非"右"）。测验考的是读音，同音即算对。
+/// key: 识别可能输出的同音字 → value: 课程目标字
+private static let homophoneCanonical: [Character: Character] = [
+    "前": "錢",
+    "蝕": "食",
+    "犯": "飯", "范": "飯",
+    "恒": "行", "衡": "行",
+    "答": "搭",
+    "咗": "左", "佐": "左",
+    "又": "右", "佑": "右", "祐": "右",
+    "評": "平", "瓶": "平",
+    "桂": "貴",
+    "底": "抵",
+    "番": "返",
+    "公": "工",
+]
+
+/// 测验答案归一化：plainText（繁简/语气词）+ 同音字→目标字
+private static func quizNormalized(_ s: String) -> String {
+    String(plainText(s).map { homophoneCanonical[$0] ?? $0 })
+}
+
+/// 测验判分结果
+private enum QuizVerdict {
+    case exactChar        // 字写对了（含繁简归一）
+    case homophone       // 同音异字，读音对了
+    case jyutping        // 粤拼打对了
+    case wrong
+}
+
+/// 测验判分：字（含繁简/同音归一）或粤拼对任一即算对
+private static func judgeQuiz(userText: String, word: CourseWord) -> QuizVerdict {
+    let normInput = plainText(userText)
+    let normTarget = plainText(word.cantonese)
+    // 1. 字对
+    if normInput.contains(normTarget) { return .exactChar }
+    // 2. 同音字对（如语音"又" vs 目标"右"）
+    if quizNormalized(userText).contains(quizNormalized(word.cantonese)) { return .homophone }
+    // 3. 粤拼对（去空格/横杠、小写，如 "m4 goi1" / "m4goi1"）
+    let normJyutping = word.jyutping.lowercased().replacingOccurrences(of: " ", with: "")
+    let inputJyutping = userText.lowercased()
+        .replacingOccurrences(of: " ", with: "")
+        .replacingOccurrences(of: "-", with: "")
+    if !inputJyutping.isEmpty, inputJyutping == normJyutping { return .jyutping }
+    return .wrong
+}
+
 /// 去标点去空白后的纯文本（只留字母与数字），用于跟读比对。
 /// 比对前做两层归一化：
 /// 1. 简→繁（ICU Hans-Hant）：语音识别（zh-HK）输出繁体如 點，课程多为简体如 点，实为同字；
@@ -482,7 +536,7 @@ Self.curriculum.map { SuggestedReply(cantonese: $0.titleZh, jyutping: "", englis
 
 /// 是否为测验请求：含"考考我/考我/测验"或 quiz 单词
 private func isQuizRequest(_ text: String) -> Bool {
-if text.contains("考考我") || text.contains("考我") || text.contains("测验") || text.contains("測驗") {
+if text.contains("考考我") || text.contains("考我") || text.contains("再考一个") || text.contains("再考一個") || text.contains("测验") || text.contains("測驗") {
 return true
 }
 let tokens = text.lowercased().split(whereSeparator: {!$0.isLetter}).map(String.init)
