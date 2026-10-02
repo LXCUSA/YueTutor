@@ -11,11 +11,17 @@ struct ChatView: View {
     @State private var inputText = ""
 
     /// 顶部话题 chips：设置页勾了兴趣主题就只显示勾选的；没勾则显示全部。
-    /// profileStore.profile.interests 变化时自动刷新。
+    /// 当前主题始终显示（即使不在勾选的兴趣里），插到最前面。
+    /// profileStore.profile.interests / viewModel.currentTopicId 变化时自动刷新。
     private var topics: [CourseTheme] {
         let interests = profileStore.profile.interests
         guard !interests.isEmpty else { return LocalTutorService.curriculum }
-        let filtered = LocalTutorService.curriculum.filter { interests.contains($0.titleZh) }
+        var filtered = LocalTutorService.curriculum.filter { interests.contains($0.titleZh) }
+        if let currentId = viewModel.currentTopicId,
+           !filtered.contains(where: { $0.id == currentId }),
+           let current = LocalTutorService.curriculum.first(where: { $0.id == currentId }) {
+            filtered.insert(current, at: 0)
+        }
         return filtered.isEmpty ? LocalTutorService.curriculum : filtered
     }
 
