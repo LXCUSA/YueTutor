@@ -122,11 +122,21 @@ tip: "返 faan1、飯 faan6 的 aa 拉长；瞓 fan3 先圆唇再收 -n 鼻音�
 var currentThemeId: String?
 /// 待公布答案的测验词
 var pendingQuiz: CourseWord?
+/// 跟读计数：themeId -> 该主题场景句已读对的遍数（过关后清零）
+var readAlongCount: [String: Int] = [:]
+/// 跟读过关所需的正确遍数
+static let readAlongPassCount = 2
 
 // MARK: - 主题查询
 /// 按主题 id 取主题
 func theme(id: String) -> CourseTheme? {
 Self.curriculum.first { $0.id == id}
+}
+
+/// 课程顺序中的下一个主题（到末尾后回到开头），用于跟读过关后自动推进
+static func nextTheme(after id: String) -> CourseTheme {
+guard let idx = curriculum.firstIndex(where: { $0.id == id }) else { return curriculum[0] }
+return curriculum[(idx + 1) % curriculum.count]
 }
 
 /// 按主题名/关键词匹配用户输入
@@ -173,11 +183,20 @@ return greetingLesson()
 }
 
 // 2. 跟读：输入与场景句去标点/空白后一致即算跟读（用户常省略标点），
-//    先于主题关键词匹配，保证快捷按钮和手动输入都能进跟读
+//    先于主题关键词匹配，保证快捷按钮和手动输入都能进跟读。
+//    每句读对 readAlongPassCount 遍即过关，自动进入下一主题的场景句，避免无限重复。
 let plainInput = Self.plainText(text)
 if let theme = Self.curriculum.first(where: { Self.plainText($0.sentence.cantonese) == plainInput }) {
 currentThemeId = theme.id
-return readAlongLesson(theme)
+let count = (readAlongCount[theme.id] ?? 0) + 1
+if count >= Self.readAlongPassCount {
+readAlongCount[theme.id] = 0
+let next = Self.nextTheme(after: theme.id)
+currentThemeId = next.id
+return readAlongPassedLesson(passed: theme, next: next)
+}
+readAlongCount[theme.id] = count
+return readAlongLesson(theme, round: count)
 }
 
 // 3. 测验请求：出题（先不给答案）
@@ -282,15 +301,33 @@ difficulty: "beginner"
 )
 }
 
-/// 跟读 Lesson：肯定跟读，breakdown 拆场景句中的 2-3 个关键词
-private func readAlongLesson(_ theme: CourseTheme) -> Lesson {
+/// 跟读 Lesson：第 round 遍读对，鼓励再跟读（附场景句快捷按钮，点一下就能再跟）
+private func readAlongLesson(_ theme: CourseTheme, round: Int) -> Lesson {
 Lesson(
-replyCantonese: "读得唔错！继续加油，跟住我一齐读多次：「\(theme.sentence.cantonese)」",
+replyCantonese: "读得唔错！呢句系第 \(round) 遍，跟住我一齐再读多次：「\(theme.sentence.cantonese)」",
 replyJyutping: theme.sentence.jyutping,
-replyEnglish: "跟读得很好！再跟着粤拼读一遍：「\(theme.sentence.mandarin)」",
+replyEnglish: "跟读得很好！这是第 \(round) 遍，再跟着粤拼读一遍：「\(theme.sentence.mandarin)」",
 breakdown: sentenceKeywords(in: theme),
-tip: "跟读建议：先慢速跟准每个字嘅声调，再加速连成一句，一句读够 3 遍。",
+tip: "跟读建议：先慢速跟准每个字嘅声调，再加速连成一句，一句读够 \(Self.readAlongPassCount) 遍就过关。",
 suggestedReplies: [
+SuggestedReply(cantonese: theme.sentence.cantonese, jyutping: theme.sentence.jyutping, english: theme.sentence.mandarin),
+SuggestedReply(cantonese: "考考我", jyutping: "haau2 haau2 ngo5", english: "来个小测验"),
+SuggestedReply(cantonese: "换个主题", jyutping: "wun6 go3 zyu2 tai4", english: "看看其他主题"),
+],
+difficulty: "beginner"
+)
+}
+
+/// 跟读过关 Lesson：肯定 + 自动进入下一主题的场景句
+private func readAlongPassedLesson(passed: CourseTheme, next: CourseTheme) -> Lesson {
+Lesson(
+replyCantonese: "两遍都读啱，好嘢！「\(passed.sentence.cantonese)」过关喇。下一句嚟啦，跟住读：「\(next.sentence.cantonese)」",
+replyJyutping: next.sentence.jyutping,
+replyEnglish: "两遍都读对了，太棒了！「\(passed.sentence.mandarin)」过关。下一句：「\(next.sentence.mandarin)」",
+breakdown: next.words.map { BreakdownItem(cantonese: $0.cantonese, jyutping: $0.jyutping, english: $0.mandarin) },
+tip: next.tip,
+suggestedReplies: [
+SuggestedReply(cantonese: next.sentence.cantonese, jyutping: next.sentence.jyutping, english: next.sentence.mandarin),
 SuggestedReply(cantonese: "考考我", jyutping: "haau2 haau2 ngo5", english: "来个小测验"),
 SuggestedReply(cantonese: "换个主题", jyutping: "wun6 go3 zyu2 tai4", english: "看看其他主题"),
 ],
