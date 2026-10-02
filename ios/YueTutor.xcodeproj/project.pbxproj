@@ -1,0 +1,173 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D97E84C9F6808F5E59FB751B = {isa = PBXBuildFile; fileRef = 05FB6DA774B1A534ED84F96E; };
+		29FA74607DEF12E5FA4FF81C = {isa = PBXBuildFile; fileRef = 3F33661F4A2BE6A20FF5F38D; };
+		F532320EFFEA49B8E52791CE = {isa = PBXBuildFile; fileRef = 2D1468BF8A7FCC6D556CE7C0; };
+		B17B9BA192B49D9EAC5BF88E = {isa = PBXBuildFile; fileRef = 9694EA358883C96544DB5719; };
+		E30E562C40F1611907C9AFB8 = {isa = PBXBuildFile; fileRef = FE987802D01F7A1AEE345457; };
+		1FFAE8124B9512BEC4C7DF33 = {isa = PBXBuildFile; fileRef = 073C78E69C717AB3EBCD421F; };
+		FFA7BD33B8DCD34AC22F64B0 = {isa = PBXBuildFile; fileRef = DEF74EB8813124A9ABC5DFF9; };
+		CFCB6CF4E1B8150E527C065C = {isa = PBXBuildFile; fileRef = F4C4C72CCD6BB28DC80FBBD7; };
+		2EBD6353E182B196FFFD2A77 = {isa = PBXBuildFile; fileRef = 893E88E526F496DD1C09D246; };
+		D20E733000282FD45BB51CA2 = {isa = PBXBuildFile; fileRef = 1E03C8D8AC46A36224084607; };
+		11A4023FC0B5D398D5D55696 = {isa = PBXBuildFile; fileRef = 9F6F6F301133C2C5434B6D8F; };
+		7E324A55789F2044B6A4C912 = {isa = PBXBuildFile; fileRef = FB2FA28C9EB679A8672AF880; };
+		8F25327AF016873A25E91BB7 = {isa = PBXBuildFile; fileRef = DBC9AF3CA6317754978204B0; };
+		88D71CBAE4637D0DA228B341 = {isa = PBXBuildFile; fileRef = 09669BCAB8AD3CBAAA9A2272; };
+		08F0B67333C99A8359A9BBDD = {isa = PBXBuildFile; fileRef = A52EC754BB03F16945343A31; };
+		52DAF72EA1EA9FDF248AAC13 = {isa = PBXBuildFile; fileRef = 711F3F158060345BA108358C; };
+		CE15079071E5075DA58A7F1B = {isa = PBXBuildFile; fileRef = FDFF3A3FFE55578A8711772F; };
+		6134549537DA6E773C622B5F = {isa = PBXBuildFile; fileRef = 14A58CB78D900683BE3D598E; };
+		1386A5BDCDF2FDAC2F6809B3 = {isa = PBXBuildFile; fileRef = E9F81D7E834D96F37B466606; };
+		EDF36B156EAD2C3BCD460178 = {isa = PBXBuildFile; fileRef = 9D2ABB9F77DEF01D2AE5B9EA; };
+		8F32637E0CC496F0E906FD89 = {isa = PBXBuildFile; fileRef = D3D68CE072E62574F23BB22B; };
+		CC7DDF4526FBB7BCF3926F49 = {isa = PBXBuildFile; fileRef = FEE4A7683FD2830C92982435; };
+		A0DC336B2A477E971BD48CEF = {isa = PBXBuildFile; fileRef = 6E1C4D0E8686AF7FC007F973; };
+		644FB4482896E83DD115B77A = {isa = PBXBuildFile; fileRef = 4012058F6B3BA43F4B2300AE; };
+		57FBBC66C53C1C595E277ACE = {isa = PBXBuildFile; fileRef = 5B8A41537EDFD00AF5606262; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		05FB6DA774B1A534ED84F96E = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		3F33661F4A2BE6A20FF5F38D = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		2D1468BF8A7FCC6D556CE7C0 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
+		9694EA358883C96544DB5719 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorProfile.swift; sourceTree = "<group>"; };
+		FE987802D01F7A1AEE345457 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		073C78E69C717AB3EBCD421F = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		DEF74EB8813124A9ABC5DFF9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curriculum.swift; sourceTree = "<group>"; };
+		F4C4C72CCD6BB28DC80FBBD7 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTutorService.swift; sourceTree = "<group>"; };
+		893E88E526F496DD1C09D246 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyTutorService.swift; sourceTree = "<group>"; };
+		1E03C8D8AC46A36224084607 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		9F6F6F301133C2C5434B6D8F = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
+		FB2FA28C9EB679A8672AF880 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorService.swift; sourceTree = "<group>"; };
+		DBC9AF3CA6317754978204B0 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		09669BCAB8AD3CBAAA9A2272 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		A52EC754BB03F16945343A31 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailView.swift; sourceTree = "<group>"; };
+		711F3F158060345BA108358C = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListView.swift; sourceTree = "<group>"; };
+		FDFF3A3FFE55578A8711772F = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBar.swift; sourceTree = "<group>"; };
+		14A58CB78D900683BE3D598E = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = L10n.swift; sourceTree = "<group>"; };
+		E9F81D7E834D96F37B466606 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleView.swift; sourceTree = "<group>"; };
+		9D2ABB9F77DEF01D2AE5B9EA = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		D3D68CE072E62574F23BB22B = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		FEE4A7683FD2830C92982435 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		6E1C4D0E8686AF7FC007F973 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YueTutorApp.swift; sourceTree = "<group>"; };
+		795066F9857C294BF6688713 = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CDADA72E0EFCD1971E1A8860 = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh-Hans; path = zh-Hans.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B8A41537EDFD00AF5606262 = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FA0E7B8362D1D1BEBE68DBAB = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YueTutor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6DDAA9C0EA5B0E693F0D1C16 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A2D64552D38D861D88C7D39 = {isa = PBXGroup; children = (A53D97A3CA7F1CF0EEC68855, 27376E0C7D98A85EF39644D5); sourceTree = "<group>"; };
+		27376E0C7D98A85EF39644D5 = {isa = PBXGroup; children = (FA0E7B8362D1D1BEBE68DBAB); name = Products; sourceTree = "<group>"; };
+		5A85EB0E06E9113CBDAF6908 = {isa = PBXGroup; children = (FE987802D01F7A1AEE345457, 6E1C4D0E8686AF7FC007F973, 5B8A41537EDFD00AF5606262, AC1E3F4D1CE024503062444B, D865CD992C636E5776512915, 7659D7B11E4D106D579DA815, 2C6EA2A41A75AA673AE3F3E3, A238B4818A5EE157B9042B6B); path = YueTutor; sourceTree = "<group>"; };
+		AC1E3F4D1CE024503062444B = {isa = PBXGroup; children = (05FB6DA774B1A534ED84F96E, 3F33661F4A2BE6A20FF5F38D, 2D1468BF8A7FCC6D556CE7C0, 9694EA358883C96544DB5719); name = Models; sourceTree = "<group>"; };
+		A238B4818A5EE157B9042B6B = {isa = PBXGroup; children = (4012058F6B3BA43F4B2300AE); name = Resources; sourceTree = "<group>"; };
+		D865CD992C636E5776512915 = {isa = PBXGroup; children = (073C78E69C717AB3EBCD421F, DEF74EB8813124A9ABC5DFF9, F4C4C72CCD6BB28DC80FBBD7, 893E88E526F496DD1C09D246, 1E03C8D8AC46A36224084607, 9F6F6F301133C2C5434B6D8F, FB2FA28C9EB679A8672AF880); name = Services; sourceTree = "<group>"; };
+		7659D7B11E4D106D579DA815 = {isa = PBXGroup; children = (DBC9AF3CA6317754978204B0); name = ViewModels; sourceTree = "<group>"; };
+		2C6EA2A41A75AA673AE3F3E3 = {isa = PBXGroup; children = (09669BCAB8AD3CBAAA9A2272, A52EC754BB03F16945343A31, 711F3F158060345BA108358C, FDFF3A3FFE55578A8711772F, 14A58CB78D900683BE3D598E, E9F81D7E834D96F37B466606, 9D2ABB9F77DEF01D2AE5B9EA, D3D68CE072E62574F23BB22B, FEE4A7683FD2830C92982435); name = Views; sourceTree = "<group>"; };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BBD0FFC50F3932EACD9BEB3A = {isa = PBXNativeTarget; buildConfigurationList = CF245C127FCA7DA2E8B4F35C; buildPhases = (618F1122C97F2A4F1196BFB7, 6DDAA9C0EA5B0E693F0D1C16, 7228B63E0150643C7AB55AED); buildRules = (); dependencies = (); name = YueTutor; productName = YueTutor; productReference = FA0E7B8362D1D1BEBE68DBAB; productType = "com.apple.product-type.application"; };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0942C2E83079E60A67DB6670 = {isa = PBXProject; buildConfigurationList = CE93DF80DE720348888B204C; compatibilityVersion = "Xcode 14.0"; developmentRegion = zh-Hans; hasScannedForEncodings = 0; knownRegions = (en, zh-Hans); mainGroup = 0A2D64552D38D861D88C7D39; productRefGroup = 27376E0C7D98A85EF39644D5; projectDirPath = ""; projectRoot = ""; targets = (BBD0FFC50F3932EACD9BEB3A); };
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7228B63E0150643C7AB55AED = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (57FBBC66C53C1C595E277ACE, 644FB4482896E83DD115B77A); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		618F1122C97F2A4F1196BFB7 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (D97E84C9F6808F5E59FB751B, 29FA74607DEF12E5FA4FF81C, F532320EFFEA49B8E52791CE, B17B9BA192B49D9EAC5BF88E, E30E562C40F1611907C9AFB8, 1FFAE8124B9512BEC4C7DF33, FFA7BD33B8DCD34AC22F64B0, CFCB6CF4E1B8150E527C065C, 2EBD6353E182B196FFFD2A77, D20E733000282FD45BB51CA2, 11A4023FC0B5D398D5D55696, 7E324A55789F2044B6A4C912, 8F25327AF016873A25E91BB7, 88D71CBAE4637D0DA228B341, 08F0B67333C99A8359A9BBDD, 52DAF72EA1EA9FDF248AAC13, CE15079071E5075DA58A7F1B, 6134549537DA6E773C622B5F, 1386A5BDCDF2FDAC2F6809B3, EDF36B156EAD2C3BCD460178, 8F32637E0CC496F0E906FD89, CC7DDF4526FBB7BCF3926F49, A0DC336B2A477E971BD48CEF); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4012058F6B3BA43F4B2300AE = {isa = PBXVariantGroup; children = (795066F9857C294BF6688713, CDADA72E0EFCD1971E1A8860); name = Localizable.strings; sourceTree = "<group>"; };
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		57816691092C27FAA4A786FA = {isa = XCBuildConfiguration; buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+			}; name = Debug; };
+		A07C661EEB33326BB01AF63A = {isa = XCBuildConfiguration; buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+			}; name = Release; };
+		17E41914A9E35E5FD2DDD17C = {isa = XCBuildConfiguration; buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "粤语陪练";
+				INFOPLIST_KEY_LSRequiresIPhoneOS = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "粤语陪练需要麦克风，让你可以说粤语跟家教练习。";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "粤语陪练使用语音识别来理解你说的粤语。";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = one.lxc.yuetutor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			}; name = Debug; };
+		1A83A7707066168C87238621 = {isa = XCBuildConfiguration; buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "粤语陪练";
+				INFOPLIST_KEY_LSRequiresIPhoneOS = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "粤语陪练需要麦克风，让你可以说粤语跟家教练习。";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "粤语陪练使用语音识别来理解你说的粤语。";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = one.lxc.yuetutor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			}; name = Release; };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CE93DF80DE720348888B204C = {isa = XCConfigurationList; buildConfigurations = (57816691092C27FAA4A786FA, A07C661EEB33326BB01AF63A); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		CF245C127FCA7DA2E8B4F35C = {isa = XCConfigurationList; buildConfigurations = (17E41914A9E35E5FD2DDD17C, 1A83A7707066168C87238621); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+	};
+	rootObject = 0942C2E83079E60A67DB6670;
+}

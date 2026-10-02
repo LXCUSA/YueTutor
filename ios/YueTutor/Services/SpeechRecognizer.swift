@@ -1,0 +1,136 @@
+import Foundation
+import Combine
+import AVFoundation
+import Speech
+
+// MARK: - 粤语语音识别
+/// SFSpeechRecognizer(locale: zh-HK) + AVAudioEngine 实时转写。
+/// 需要麦克风和语音识别双授权（requestAuthorization）。
+@MainActor
+final class SpeechRecognizer: ObservableObject {
+    @Published var transcript: String = ""
+    @Published var isRecording: Bool = false
+    @Published var isAvailable: Bool = false
+    @Published var errorMessage: String?
+
+    private let recognizer: SFSpeechRecognizer? = SFSpeechRecognizer(locale: Locale(identifier: "zh-HK"))
+    private let audioEngine = AVAudioEngine()
+    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    private var recognitionTask: SFSpeechRecognitionTask?
+
+    /// 请求麦克风 + 语音识别授权；全部通过且识别器可用才返回 true
+    func requestAuthorization() async -> Bool {
+        let micGranted = await AVAudioApplication.requestRecordPermission()
+        let speechStatus = await withCheckedContinuation { (continuation: CheckedContinuation<SFSpeechRecognizerAuthorizationStatus, Never>) in
+            SFSpeechRecognizer.requestAuthorization { status in
+                continuation.resume(returning: status)
+            }
+        }
+        let granted = micGranted && speechStatus == .authorized
+        let available = granted && recognizer != nil && (recognizer?.isAvailable ?? false)
+        isAvailable = available
+        if !granted {
+            errorMessage = "语音输入需要麦克风和语音识别权限，请到「设置」中开启后再试。"
+        } else if recognizer == nil {
+            errorMessage = "当前设备不支持粤语（zh-HK）语音识别。"
+        } else if !(recognizer?.isAvailable ?? false) {
+            errorMessage = "语音识别服务暂不可用，请检查网络后重试。"
+        } else {
+            errorMessage = nil
+        }
+        return available
+    }
+
+    /// 在开始 / 停止之间切换
+    func toggle() {
+        if isRecording {
+            stop()
+        } else {
+            start()
+        }
+    }
+
+    /// 开始实时转写（部分结果会实时更新 transcript）
+    func start() {
+        guard let recognizer = recognizer else {
+            errorMessage = "当前设备不支持粤语（zh-HK）语音识别。"
+            return
+        }
+        guard !isRecording else { return }
+
+        // 先清理上一轮的残留状态
+        recognitionTask?.cancel()
+        recognitionTask = nil
+        stopEngine()
+
+        do {
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            errorMessage = "无法启动麦克风：\(error.localizedDescription)"
+            return
+        }
+
+        let request = SFSpeechAudioBufferRecognitionRequest()
+        request.shouldReportPartialResults = true
+        recognitionRequest = request
+
+        let inputNode = audioEngine.inputNode
+        let format = inputNode.outputFormat(forBus: 0)
+        inputNode.removeTap(onBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) { [weak request] buffer, _ in
+            request?.append(buffer)
+        }
+
+        recognitionTask = recognizer.recognitionTask(with: request) { [weak self] result, error in
+            // 识别回调不在主线程，用 Task 跳回 @MainActor 再碰状态
+            Task { @MainActor [weak self] in
+                guard let self = self else { return }
+                if let result = result {
+                    self.transcript = result.bestTranscription.formattedString
+                    self.errorMessage = nil
+                }
+                if error != nil || (result?.isFinal ?? false) {
+                    if let nsError = error as NSError?,
+                       !(nsError.domain == "kAFAssistantErrorDomain" && nsError.code == 1110) {
+                        // 1110 是"长时间无语音输入"超时，视为正常结束，不报错
+                        self.errorMessage = "语音识别出错：\(nsError.localizedDescription)"
+                    }
+                    self.stopEngine()
+                    self.isRecording = false
+                    self.recognitionTask = nil
+                }
+            }
+        }
+
+        do {
+            audioEngine.prepare()
+            try audioEngine.start()
+            isRecording = true
+            errorMessage = nil
+        } catch {
+            stopEngine()
+            recognitionTask?.cancel()
+            recognitionTask = nil
+            recognitionRequest = nil
+            errorMessage = "无法启动麦克风：\(error.localizedDescription)"
+        }
+    }
+
+    /// 停止转写（保留已识别的文本）
+    func stop() {
+        recognitionRequest?.endAudio()
+        stopEngine()
+        isRecording = false
+        // recognitionTask 收到最终结果后会在回调里自行清理
+    }
+
+    /// 停引擎、拆掉 inputNode 的 tap（不碰 recognitionTask）
+    private func stopEngine() {
+        if audioEngine.isRunning {
+            audioEngine.stop()
+        }
+        audioEngine.inputNode.removeTap(onBus: 0)
+    }
+}

@@ -1,0 +1,88 @@
+name: Build YueTutor unsigned IPA
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: |
+          set -euo pipefail
+          # macOS runner 上 Xcode.app 的位置可能变化：存在则显式指向，不存在则沿用 runner 默认
+          if [ -d "/Applications/Xcode.app" ]; then
+            sudo xcode-select -s /Applications/Xcode.app || true
+          else
+            echo "未找到 /Applications/Xcode.app，使用 runner 默认 Xcode"
+          fi
+          xcodebuild -version
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        working-directory: ios
+        run: |
+          set -euo pipefail
+          test -f project.yml || { echo "project.yml 未找到"; exit 1; }
+          xcodegen generate
+          test -d YueTutor.xcodeproj || { echo "xcodegen 生成失败：YueTutor.xcodeproj 不存在"; exit 1; }
+          echo "工程生成成功"
+
+      - name: Archive (unsigned)
+        working-directory: ios
+        run: |
+          set -euo pipefail
+          xcodebuild archive \
+            -project YueTutor.xcodeproj \
+            -scheme YueTutor \
+            -configuration Release \
+            -archivePath build/YueTutor.xcarchive \
+            -destination 'generic/platform=iOS' \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY=""
+          test -d build/YueTutor.xcarchive || { echo "archive 失败：xcarchive 不存在"; exit 1; }
+          echo "archive 成功"
+
+      - name: Package unsigned IPA
+        working-directory: ios
+        run: |
+          set -euo pipefail
+          APP_PATH="build/YueTutor.xcarchive/Products/Applications/YueTutor.app"
+          [ -d "$APP_PATH" ] || { echo "在 xcarchive 中未找到 YueTutor.app"; exit 1; }
+          echo "App: $APP_PATH"
+
+          # 断言成品 Info.plist：权限文案、显示名、启动屏缺一不可
+          python3 - "$APP_PATH" <<'EOF'
+          import plistlib, sys
+          with open(f"{sys.argv[1]}/Info.plist", "rb") as f:
+              info = plistlib.load(f)
+          required = ("CFBundleDisplayName", "UILaunchScreen",
+                      "NSMicrophoneUsageDescription", "NSSpeechRecognitionUsageDescription")
+          missing = [k for k in required if k not in info]
+          if missing:
+              print("成品 Info.plist 缺少键:", missing)
+              sys.exit(1)
+          print("成品 Info.plist OK:", sorted(info.keys()))
+          EOF
+
+          rm -rf Payload YueTutor-unsigned.ipa
+          mkdir -p Payload
+          cp -R "$APP_PATH" Payload/
+          zip -qry YueTutor-unsigned.ipa Payload
+          test -f YueTutor-unsigned.ipa || { echo "打包失败：YueTutor-unsigned.ipa 未生成"; exit 1; }
+          echo "IPA 打包成功：$(du -h YueTutor-unsigned.ipa | cut -f1)"
+
+      - name: Upload unsigned IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: YueTutor-unsigned-ipa
+          path: ios/YueTutor-unsigned.ipa
+          if-no-files-found: error

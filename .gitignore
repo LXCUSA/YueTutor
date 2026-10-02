@@ -1,0 +1,16 @@
+# iOS / Xcode
+build/
+*.xcuserdata/
+*.xcworkspace/xcuserdata/
+DerivedData/
+*.ipa
+*.dSYM.zip
+.DS_Store
+
+# Node
+server/node_modules/
+server/*.log
+.env
+
+# XcodeGen cache
+*.xcodeproj/xcuserdata/

@@ -1,0 +1,1 @@
+{"dependencies":{"express":"^4.21.2"},"description":"Optional Node proxy backend for the Yuetutor Cantonese tutor iOS app (AI tutor mode, not used by v1 offline build).","license":"UNLICENSED","main":"index.js","name":"yuetutor-proxy","scripts":{"start":"node index.js"},"version":"1.0.0"}

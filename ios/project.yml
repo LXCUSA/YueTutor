@@ -1,0 +1,36 @@
+name: YueTutor
+options:
+  bundleIdPrefix: one.lxc
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+targets:
+  YueTutor:
+    type: application
+    platform: iOS
+    sources:
+      - YueTutor        # 源码目录（含 Models/Services/Views/ViewModels/Resources）
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: one.lxc.yuetutor
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        GENERATE_INFOPLIST_FILE: YES
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        INFOPLIST_KEY_CFBundleDisplayName: 粤语陪练
+        INFOPLIST_KEY_LSRequiresIPhoneOS: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_NSMicrophoneUsageDescription: "粤语陪练需要麦克风，让你可以说粤语跟家教练习。"
+        INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: "粤语陪练使用语音识别来理解你说的粤语。"
+    info:
+      properties:
+        CFBundleDisplayName: 粤语陪练
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        NSMicrophoneUsageDescription: "粤语陪练需要麦克风，让你可以说粤语跟家教练习。"
+        NSSpeechRecognitionUsageDescription: "粤语陪练使用语音识别来理解你说的粤语。"
+        UILaunchScreen:
+          UIColorName: AccentColor

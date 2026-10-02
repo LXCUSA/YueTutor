@@ -1,0 +1,87 @@
+/* YueTutor · English copy */
+
+// Tab
+"tab.chat" = "Chat";
+"tab.course" = "Lessons";
+"tab.settings" = "Settings";
+
+// Chat
+"chat.header_status" = "Local courses · offline";
+"chat.topics_title" = "Try a topic";
+"chat.quiz" = "Quiz me";
+"chat.stop_speaking" = "Stop speaking";
+"chat.error_retry" = "Tap to retry";
+
+// Tutor reply card
+"message.speak_hint" = "Read aloud";
+"message.breakdown_title" = "Word by word";
+"message.correction_title" = "A gentle note";
+"message.tip_title" = "Tip";
+"message.suggested_title" = "Try saying";
+
+// Input bar
+"input.placeholder" = "Type a message…";
+"input.mic_hint" = "Voice input";
+"input.mic_stop_hint" = "Stop recording";
+"input.send_hint" = "Send";
+
+// Onboarding
+"onboarding.title" = "YueTutor";
+"onboarding.subtitle" = "A Cantonese tutor made for Hakka speakers";
+"onboarding.step_of" = "Step %d of 3";
+"onboarding.name_title" = "What's your name?";
+"onboarding.name_placeholder" = "Your name";
+"onboarding.level_title" = "Your Cantonese level";
+"onboarding.level_beginner" = "Beginner";
+"onboarding.level_intermediate" = "Intermediate";
+"onboarding.level_advanced" = "Advanced";
+"onboarding.interests_title" = "What are you into?";
+"onboarding.interests_hint" = "Pick at least 1 so your tutor can choose topics";
+"onboarding.interest_food" = "Food";
+"onboarding.interest_travel" = "Travel";
+"onboarding.interest_shopping" = "Shopping";
+"onboarding.interest_tech" = "Tech";
+"onboarding.interest_music" = "Music";
+"onboarding.interest_movie" = "Movies";
+"onboarding.custom_placeholder" = "Custom interest…";
+"onboarding.add" = "Add";
+"onboarding.tutor_title" = "Name your tutor";
+"onboarding.tutor_placeholder" = "Tutor name";
+"onboarding.tutor_default" = "Ah Yan";
+"onboarding.next" = "Next";
+"onboarding.back" = "Back";
+"onboarding.start" = "Start learning";
+
+// Courses
+"course.title" = "Local courses";
+"course.subtitle" = "6 topics · fully offline, review anytime";
+"course.word_count" = "%d words";
+"course.words_section" = "Words";
+"course.sentence_section" = "Example sentence";
+"course.tip_section" = "Tip";
+"course.hakka_prefix" = "Hakka approx.: ";
+"course.speak_hint" = "Read aloud";
+
+// Settings
+"settings.title" = "Settings";
+"settings.language" = "App language";
+"settings.lang_chinese" = "中文";
+"settings.lang_english" = "English";
+"settings.tutor_section" = "Tutor mode";
+"settings.mode_local" = "Local courses (offline)";
+"settings.proxy_section" = "AI tutor";
+"settings.proxy_url" = "Proxy URL";
+"settings.proxy_secret" = "Secret";
+"settings.proxy_note" = "AI tutoring needs an Anthropic API key — coming later";
+"settings.voice_section" = "Voice";
+"settings.speech_rate" = "Speech rate";
+"settings.auto_speak" = "Auto-read tutor replies";
+"settings.reset_profile" = "Reset personal info";
+"settings.reset_title" = "Start over?";
+"settings.reset_message" = "This clears your name, level and interests, and returns to the welcome screen.";
+"settings.cancel" = "Cancel";
+"settings.confirm" = "Confirm";
+"settings.version" = "v1.0 offline";
+
+// Errors
+"error.chat_failed" = "Couldn't send — tap to retry";

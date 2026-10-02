@@ -1,0 +1,87 @@
+/* 粤语陪练 · 简体中文文案 */
+
+// Tab
+"tab.chat" = "聊天";
+"tab.course" = "课程";
+"tab.settings" = "设置";
+
+// 聊天页
+"chat.header_status" = "本地课程 · 离线";
+"chat.topics_title" = "换个话题";
+"chat.quiz" = "考考我";
+"chat.stop_speaking" = "停止朗读";
+"chat.error_retry" = "轻触重试";
+
+// 家教回复卡片
+"message.speak_hint" = "朗读粤语";
+"message.breakdown_title" = "逐词解析";
+"message.correction_title" = "小建议";
+"message.tip_title" = "小贴士";
+"message.suggested_title" = "试试这样说";
+
+// 输入条
+"input.placeholder" = "输入消息…";
+"input.mic_hint" = "语音输入";
+"input.mic_stop_hint" = "停止录音";
+"input.send_hint" = "发送";
+
+// 新手引导
+"onboarding.title" = "粤语陪练";
+"onboarding.subtitle" = "为客家话母语者定制的粤语家教";
+"onboarding.step_of" = "第 %d 步，共 3 步";
+"onboarding.name_title" = "你叫什么名字？";
+"onboarding.name_placeholder" = "输入你的名字";
+"onboarding.level_title" = "你的粤语水平";
+"onboarding.level_beginner" = "零基础";
+"onboarding.level_intermediate" = "会一点";
+"onboarding.level_advanced" = "比较熟";
+"onboarding.interests_title" = "你对什么感兴趣？";
+"onboarding.interests_hint" = "至少选 1 个，方便家教挑选话题";
+"onboarding.interest_food" = "美食";
+"onboarding.interest_travel" = "旅行";
+"onboarding.interest_shopping" = "购物";
+"onboarding.interest_tech" = "科技";
+"onboarding.interest_music" = "音乐";
+"onboarding.interest_movie" = "电影";
+"onboarding.custom_placeholder" = "自定义兴趣…";
+"onboarding.add" = "添加";
+"onboarding.tutor_title" = "给家教起个名字";
+"onboarding.tutor_placeholder" = "家教名字";
+"onboarding.tutor_default" = "阿欣";
+"onboarding.next" = "下一步";
+"onboarding.back" = "上一步";
+"onboarding.start" = "开始学习";
+
+// 课程
+"course.title" = "本地课程";
+"course.subtitle" = "6 大主题 · 纯离线，随时翻出来复习";
+"course.word_count" = "%d 个生词";
+"course.words_section" = "生词";
+"course.sentence_section" = "场景句";
+"course.tip_section" = "小贴士";
+"course.hakka_prefix" = "客家话近似：";
+"course.speak_hint" = "朗读";
+
+// 设置页
+"settings.title" = "设置";
+"settings.language" = "界面语言";
+"settings.lang_chinese" = "中文";
+"settings.lang_english" = "English";
+"settings.tutor_section" = "家教模式";
+"settings.mode_local" = "本地课程（离线）";
+"settings.proxy_section" = "AI 陪练";
+"settings.proxy_url" = "代理地址";
+"settings.proxy_secret" = "密钥";
+"settings.proxy_note" = "AI 陪练需要 Anthropic API key，以后启用";
+"settings.voice_section" = "语音";
+"settings.speech_rate" = "语速";
+"settings.auto_speak" = "自动朗读家教回复";
+"settings.reset_profile" = "重新设置个人信息";
+"settings.reset_title" = "重新设置？";
+"settings.reset_message" = "将清除你的名字、水平和兴趣，回到欢迎页。";
+"settings.cancel" = "取消";
+"settings.confirm" = "确定";
+"settings.version" = "v1.0 离线版";
+
+// 错误
+"error.chat_failed" = "发送失败，请轻触重试";
