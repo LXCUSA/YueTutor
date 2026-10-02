@@ -221,6 +221,7 @@ return greetingLesson()
 let plainInput = Self.plainText(text)
 if let theme = Self.curriculum.first(where: { Self.plainText($0.sentence.cantonese) == plainInput }) {
 currentThemeId = theme.id
+pendingQuiz = nil
 readAlongFails[theme.id] = 0
 deferredThemes.removeAll { $0 == theme.id }
 let count = (readAlongCount[theme.id] ?? 0) + 1
@@ -245,6 +246,7 @@ next = nextPracticeTheme(after: cur)
 next = Self.curriculum[0]
 }
 currentThemeId = next.id
+pendingQuiz = nil
 pendingReadAlong = next.id
 return themeLesson(next, switched: true)
 }
@@ -284,6 +286,7 @@ return readAlongRetryLesson(pendingTheme)
 // 6. 主题匹配：进入主题学习
 if let theme = theme(matching: text) {
 currentThemeId = theme.id
+pendingQuiz = nil
 pendingReadAlong = theme.id
 return themeLesson(theme)
 }
