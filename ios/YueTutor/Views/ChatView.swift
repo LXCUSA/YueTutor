@@ -215,16 +215,19 @@ struct ChatView: View {
                     .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius, style: .continuous))
             }
         case .tutor:
-            // 家教卡片占满整行宽度（去掉原来右侧 48pt 留白）：信息框接近全宽，
-            // 只留消息列表的边距；学习者气泡仍保持右侧 48pt 收敛。
-            if message.isPending {
-                pendingBubble(message)
-            } else if let lesson = message.lesson {
-                MessageBubbleView(
-                    lesson: lesson,
-                    onSpeak: { viewModel.speak($0) },
-                    onSuggestedReply: { viewModel.sendLearner($0) }
-                )
+            // 家教卡片：左侧顶格、右侧留 24pt——对话框的样子，不顶满全宽；
+            // 学习者气泡仍保持右侧 48pt 收敛。
+            HStack {
+                if message.isPending {
+                    pendingBubble(message)
+                } else if let lesson = message.lesson {
+                    MessageBubbleView(
+                        lesson: lesson,
+                        onSpeak: { viewModel.speak($0) },
+                        onSuggestedReply: { viewModel.sendLearner($0) }
+                    )
+                }
+                Spacer(minLength: 24)
             }
         }
     }
