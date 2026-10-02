@@ -11,6 +11,9 @@ struct InputBar: View {
     let onMic: () -> Void
     let onSend: () -> Void
 
+    /// 录音中呼吸光环的动画开关
+    @State private var ringPulse = false
+
     init(text: Binding<String>, isRecording: Bool, isSending: Bool, onMic: @escaping () -> Void, onSend: @escaping () -> Void) {
         self._text = text
         self.isRecording = isRecording
@@ -21,13 +24,33 @@ struct InputBar: View {
 
     var body: some View {
         HStack(spacing: 10) {
+            // 麦克风：最高频按钮，做成主按钮样式——52 大圆、实心底、白色图标；
+            // 录音中加呼吸光环提示"正在听"，红色与发送按钮同色（Theme.accent）。
             Button(action: onMic) {
-                Image(systemName: isRecording ? "mic.fill" : "mic")
-                    .font(.system(size: 21.6)) // 18 的 120%
-                    .foregroundColor(isRecording ? .white : Theme.accent)
-                    .frame(width: 40, height: 40)
-                    .background(isRecording ? Theme.accent : Theme.accent.opacity(0.12))
-                    .clipShape(Circle())
+                ZStack {
+                    Circle()
+                        .fill(Theme.accent)
+                        .frame(width: 52, height: 52)
+                    Image(systemName: isRecording ? "mic.fill" : "mic")
+                        .font(.system(size: 24, weight: .semibold))
+                        .foregroundColor(.white)
+                }
+                .shadow(color: Theme.accent.opacity(0.35), radius: 6, y: 2)
+                .overlay {
+                    if isRecording {
+                        Circle()
+                            .stroke(Theme.accent, lineWidth: 3)
+                            .frame(width: 52, height: 52)
+                            .scaleEffect(ringPulse ? 1.4 : 1.0)
+                            .opacity(ringPulse ? 0 : 0.7)
+                            .animation(
+                                .easeOut(duration: 1.1).repeatForever(autoreverses: false),
+                                value: ringPulse
+                            )
+                            .onAppear { ringPulse = true }
+                            .onDisappear { ringPulse = false }
+                    }
+                }
             }
             .accessibilityLabel(L10n.t(isRecording ? "input.mic_stop_hint" : "input.mic_hint"))
 
