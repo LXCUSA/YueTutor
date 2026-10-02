@@ -22,6 +22,17 @@ final class SpeechSynthesizer: ObservableObject {
         guard !trimmed.isEmpty else { return }
         // 先停掉正在读的，避免叠音
         stop()
+        // 关键：朗读前必须把音频会话切到 playback，否则两种情况会无声——
+        // (a) 之前用过语音输入，会话停在 SpeechRecognizer 设的 .record 上；
+        // (b) 手机静音键打开时，默认会话的 AVSpeechSynthesizer 不发声。
+        // .spokenAudio 是专为语音合成设计的 mode。
+        do {
+            let session = AVAudioSession.sharedInstance()
+            try session.setCategory(.playback, mode: .spokenAudio, options: [.duckOthers])
+            try session.setActive(true)
+        } catch {
+            // 会话配置失败也不中断，继续尝试播放
+        }
         let utterance = AVSpeechUtterance(string: trimmed)
         utterance.voice = AVSpeechSynthesisVoice(language: "zh-HK")
             ?? AVSpeechSynthesisVoice(language: "zh-TW")
