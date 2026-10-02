@@ -148,15 +148,14 @@ struct ChatView: View {
                     proxy.scrollTo("bottomAnchor", anchor: .bottom)
                 }
             }
-            // 家教回复送达（pending 原地替换为正式内容）：滚到新消息的顶部，
-            // 从新主题的开头开始看。等一轮布局完成后再定位，否则 LazyVStack
-            // 还没量好新内容高度，会停在消息半中间或空白处。
+            // 家教回复送达（pending 原地替换为正式内容）：新消息从顶部开始显示。
+            // 两点教训：① 必须等 LazyVStack 量好新内容高度后再定位，否则停半中间——
+            // async 一轮不够（16 张主题卡片量高度需要时间），等 0.25s；
+            // ② 定位不要做动画：内容高度变化时动画滚动会插值漂移，直接瞬间定位最准。
             .onChange(of: viewModel.tutorDeliveryNonce) { _, _ in
                 guard let id = viewModel.lastTutorMessageID else { return }
-                DispatchQueue.main.async {
-                    withAnimation {
-                        proxy.scrollTo(id, anchor: .top)
-                    }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    proxy.scrollTo(id, anchor: .top)
                 }
             }
         }
