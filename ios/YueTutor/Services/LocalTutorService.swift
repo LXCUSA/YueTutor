@@ -132,7 +132,7 @@ Self.curriculum.first { $0.id == id}
 /// 按主题名/关键词匹配用户输入
 func theme(matching text: String) -> CourseTheme? {
 let trimmed = text.trimmingCharacters(in:.whitespacesAndNewlines)
-guard!trimmed.isEmpty else { return nil}
+guard !trimmed.isEmpty else { return nil}
 let lower = trimmed.lowercased()
 // 1. 精确匹配：id / 中文名 / 英文名
 for theme in Self.curriculum {
@@ -381,7 +381,7 @@ return a < b
 var items = matched.map { BreakdownItem(cantonese: $0.cantonese, jyutping: $0.jyutping, english: $0.mandarin)}
 if items.count < 2 {
 for segment in alignedSegments(of: theme.sentence) where items.count < 3 {
-if!items.contains(where: { $0.cantonese == segment.cantonese}) {
+if !items.contains(where: { $0.cantonese == segment.cantonese}) {
 items.append(segment)
 }
 }
@@ -400,7 +400,7 @@ s.components(separatedBy: separators)
 let cantoneseParts = split(sentence.cantonese)
 let jyutpingParts = split(sentence.jyutping)
 let mandarinParts = split(sentence.mandarin)
-guard!cantoneseParts.isEmpty,
+guard !cantoneseParts.isEmpty,
 cantoneseParts.count == jyutpingParts.count,
 cantoneseParts.count == mandarinParts.count else {
 return []
