@@ -25,12 +25,3 @@ targets:
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_NSMicrophoneUsageDescription: "粤语陪练需要麦克风，让你可以说粤语跟家教练习。"
         INFOPLIST_KEY_NSSpeechRecognitionUsageDescription: "粤语陪练使用语音识别来理解你说的粤语。"
-    info:
-      properties:
-        CFBundleDisplayName: 粤语陪练
-        CFBundleShortVersionString: "1.0"
-        CFBundleVersion: "1"
-        NSMicrophoneUsageDescription: "粤语陪练需要麦克风，让你可以说粤语跟家教练习。"
-        NSSpeechRecognitionUsageDescription: "粤语陪练使用语音识别来理解你说的粤语。"
-        UILaunchScreen:
-          UIColorName: AccentColor
