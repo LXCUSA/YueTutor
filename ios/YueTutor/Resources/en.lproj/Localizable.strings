@@ -82,6 +82,7 @@
 "settings.cancel" = "Cancel";
 "settings.confirm" = "Confirm";
 "settings.version" = "v1.0 offline";
+"settings.attribution" = "Jyutping data: rime-cantonese (CC BY 4.0)";
 
 // Errors
 "error.chat_failed" = "Couldn't send — tap to retry";

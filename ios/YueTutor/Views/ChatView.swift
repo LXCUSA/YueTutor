@@ -12,7 +12,7 @@ struct ChatView: View {
 
     /// 顶部话题 chips：课程前 6 个主题（中文名）。
     private var topics: [CourseTheme] {
-        Array(LocalTutorService.curriculum.prefix(6))
+        LocalTutorService.curriculum
     }
 
     var body: some View {

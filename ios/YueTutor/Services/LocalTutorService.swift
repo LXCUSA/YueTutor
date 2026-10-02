@@ -17,6 +17,9 @@ CourseWord(cantonese: "早晨", jyutping: "zou2 san4", hakka: "早晨(zo sen)", 
 CourseWord(cantonese: "唔該", jyutping: "m4 goi1", hakka: "唔該(m gai)", mandarin: "谢谢（麻烦别人时说）"),
 CourseWord(cantonese: "多謝", jyutping: "do1 ze6", hakka: "多謝(do qia)", mandarin: "谢谢（收到东西时说）"),
 CourseWord(cantonese: "唔好意思", jyutping: "m4 hou2 ji3 si3", hakka: "唔好意思(m ho yi si)", mandarin: "不好意思"),
+CourseWord(cantonese: "初次見面", jyutping: "co1 ci3 gin3 min6", hakka: "初次见面(chhu chhi kien mien)", mandarin: "初次见面"),
+CourseWord(cantonese: "麻煩你", jyutping: "maa4 faan4 nei5", hakka: "麻烦你(ma fan ngi)", mandarin: "麻烦你"),
+CourseWord(cantonese: "拜拜", jyutping: "baai1 baai3", hakka: "拜拜(pai pai)", mandarin: "拜拜"),
 ],
 sentence: CourseSentence(
 cantonese: "好耐冇见，你最近点呀？",
@@ -35,6 +38,8 @@ CourseWord(cantonese: "錢", jyutping: "cin4", hakka: "钱(tshien)", mandarin: "
 CourseWord(cantonese: "點鐘", jyutping: "dim2 zung1", hakka: "点钟(tiam zung)", mandarin: "几点钟"),
 CourseWord(cantonese: "半", jyutping: "bun3", hakka: "半(pan)", mandarin: "半（半小时）"),
 CourseWord(cantonese: "鐘頭", jyutping: "zung1 tau4", hakka: "钟头(zung thiu)", mandarin: "小时"),
+CourseWord(cantonese: "今日", jyutping: "gam1 jat6", hakka: "今日(kim ngit)", mandarin: "今天"),
+CourseWord(cantonese: "尋日", jyutping: "cam4 jat6", hakka: "寻日(chhim ngit)", mandarin: "昨天"),
 ],
 sentence: CourseSentence(
 cantonese: "呢個幾多錢？",
@@ -53,6 +58,9 @@ CourseWord(cantonese: "飯", jyutping: "faan6", hakka: "飯(fan)", mandarin: "�
 CourseWord(cantonese: "飲", jyutping: "jam2", hakka: "飲(yim)", mandarin: "喝"),
 CourseWord(cantonese: "茶", jyutping: "caa4", hakka: "茶(tsha)", mandarin: "茶"),
 CourseWord(cantonese: "好食", jyutping: "hou2 sik6", hakka: "好吃(ho sit)", mandarin: "好吃（味道好）"),
+CourseWord(cantonese: "好味", jyutping: "hou2 mei6", hakka: "好味(ho mi)", mandarin: "好吃"),
+CourseWord(cantonese: "埋單", jyutping: "maai4 daan1", hakka: "埋单(mai tan)", mandarin: "买单"),
+CourseWord(cantonese: "外賣", jyutping: "ngoi6 maai6", hakka: "外卖(ngoi mai)", mandarin: "外卖"),
 ],
 sentence: CourseSentence(
 cantonese: "我要一杯凍檸茶，唔該。",
@@ -71,6 +79,9 @@ CourseWord(cantonese: "搭", jyutping: "daap3", hakka: "搭(dap)", mandarin: "�
 CourseWord(cantonese: "轉", jyutping: "zyun2", hakka: "转(zon)", mandarin: "转、换乘"),
 CourseWord(cantonese: "左", jyutping: "zo2", hakka: "左(zo)", mandarin: "左"),
 CourseWord(cantonese: "右", jyutping: "jau6", hakka: "右(yu)", mandarin: "右"),
+CourseWord(cantonese: "轉車", jyutping: "zyun3 ce1", hakka: "转车(chon chha)", mandarin: "转车"),
+CourseWord(cantonese: "落車", jyutping: "lok6 ce1", hakka: "落车(lok chha)", mandarin: "下车"),
+CourseWord(cantonese: "上車", jyutping: "soeng5 ce1", hakka: "上车(shong chha)", mandarin: "上车"),
 ],
 sentence: CourseSentence(
 cantonese: "唔該，去地鐵站點行呀？",
@@ -89,6 +100,9 @@ CourseWord(cantonese: "平", jyutping: "ping4", hakka: "平(piang)", mandarin: "
 CourseWord(cantonese: "貴", jyutping: "gwai3", hakka: "贵(gui)", mandarin: "贵"),
 CourseWord(cantonese: "抵", jyutping: "dai2", hakka: "抵(dai)", mandarin: "划算、值"),
 CourseWord(cantonese: "價錢", jyutping: "gaa3 cin4", hakka: "价钱(ga qien)", mandarin: "价格"),
+CourseWord(cantonese: "找錢", jyutping: "zaau2 cin2", hakka: "找钱(chau chhien)", mandarin: "找钱"),
+CourseWord(cantonese: "收銀", jyutping: "sau1 ngan2", hakka: "收银(shu ngiun)", mandarin: "收银"),
+CourseWord(cantonese: "特價", jyutping: "dak6 gaa3", hakka: "特价(thit ka)", mandarin: "特价"),
 ],
 sentence: CourseSentence(
 cantonese: "老闆，平啲得唔得呀？",
@@ -107,6 +121,9 @@ CourseWord(cantonese: "媽媽", jyutping: "maa4 maa1", hakka: "妈妈(ma ma)", m
 CourseWord(cantonese: "食飯", jyutping: "sik6 faan6", hakka: "食饭(sit fan)", mandarin: "吃饭"),
 CourseWord(cantonese: "瞓覺", jyutping: "fan3 gaau3", hakka: "瞓觉(fun kau)", mandarin: "睡觉"),
 CourseWord(cantonese: "返工", jyutping: "faan1 gung1", hakka: "返工(fan kung)", mandarin: "上班"),
+CourseWord(cantonese: "細佬", jyutping: "sai3 lou2", hakka: "细佬(se lau)", mandarin: "弟弟"),
+CourseWord(cantonese: "家姐", jyutping: "gaa1 ze1", hakka: "家姐(ka chia)", mandarin: "姐姐"),
+CourseWord(cantonese: "哥哥", jyutping: "go4 go1", hakka: "哥哥(ko ko)", mandarin: "哥哥"),
 ],
 sentence: CourseSentence(
 cantonese: "阿爸今晚唔返嚟食飯？",
@@ -114,6 +131,213 @@ jyutping: "aa3 baa4 gam1 maan5 m4 faan1 lai4 sik6 faan6?",
 mandarin: "爸爸今晚不回来吃饭吗？"
 ),
 tip: "返 faan1、飯 faan6 的 aa 拉长；瞓 fan3 先圆唇再收 -n 鼻音，别读松了。"
+),CourseTheme(
+id: "weather",
+titleZh: "天气",
+titleEn: "Weather",
+words: [
+CourseWord(cantonese: "天氣", jyutping: "tin1 hei3", hakka: "天气(thien hi)", mandarin: "天气"),
+CourseWord(cantonese: "落雨", jyutping: "lok6 jyu5", hakka: "落雨(lok i)", mandarin: "下雨"),
+CourseWord(cantonese: "好熱", jyutping: "hou2 jit6", hakka: "好热(ho ngiet)", mandarin: "很热"),
+CourseWord(cantonese: "好凍", jyutping: "hou2 dung3", hakka: "好冻(ho tung)", mandarin: "很冷"),
+CourseWord(cantonese: "颱風", jyutping: "toi4 fung1", hakka: "台风(thoi fung)", mandarin: "台风"),
+CourseWord(cantonese: "出太陽", jyutping: "ceot1 taai3 joeng4", hakka: "出太阳(chut thai iong)", mandarin: "出太阳"),
+CourseWord(cantonese: "涼快", jyutping: "loeng4 faai3", hakka: "凉快(liong khuai)", mandarin: "凉快"),
+CourseWord(cantonese: "乾燥", jyutping: "gon1 cou3", hakka: "干燥(kon chau)", mandarin: "干燥"),
+],
+sentence: CourseSentence(
+cantonese: "聽日會落雨，記得帶遮。",
+jyutping: "ting1 jat6 wui5 lok6 jyu5, gei3 dak1 daai3 ze1.",
+mandarin: "明天会下雨，记得带伞。"
+),
+tip: "入聲 -k 尾（熱 jit6、落 lok6）要短促收住，別拖長；遮 ze1 是陰平高平調。"
+),
+CourseTheme(
+id: "doctor",
+titleZh: "睇醫生",
+titleEn: "Seeing a Doctor",
+words: [
+CourseWord(cantonese: "醫生", jyutping: "ji1 sang1", hakka: "医生(yi sen)", mandarin: "医生"),
+CourseWord(cantonese: "唔舒服", jyutping: "m4 syu1 fuk6", hakka: "唔舒服(m shu fuk)", mandarin: "不舒服"),
+CourseWord(cantonese: "發燒", jyutping: "faat3 siu1", hakka: "发烧(fat sheu)", mandarin: "发烧"),
+CourseWord(cantonese: "頭痛", jyutping: "tau4 tung3", hakka: "头痛(theu thung)", mandarin: "头痛"),
+CourseWord(cantonese: "藥", jyutping: "joek6", hakka: "药(iok)", mandarin: "药"),
+CourseWord(cantonese: "感冒", jyutping: "gam2 mou6", hakka: "感冒(kam mau)", mandarin: "感冒"),
+CourseWord(cantonese: "休息", jyutping: "jau1 sik1", hakka: "休息(hiu sit)", mandarin: "休息"),
+CourseWord(cantonese: "睇醫生", jyutping: "tai2 ji1 sang1", hakka: "睇医生(thai yi sen)", mandarin: "看医生"),
+],
+sentence: CourseSentence(
+cantonese: "我有啲發燒，聽日去睇醫生。",
+jyutping: "ngo5 jau5 di1 faat3 siu1, ting1 jat6 heoi3 tai2 ji1 sang1.",
+mandarin: "我有点发烧，明天去看医生。"
+),
+tip: "醫 ji1 陰平起音要高；燒 siu1 的 iu 係雙元音，別讀成單音素。"
+),
+CourseTheme(
+id: "phone",
+titleZh: "打電話",
+titleEn: "Phone Calls",
+words: [
+CourseWord(cantonese: "電話", jyutping: "din6 waa2", hakka: "电话(thien fa)", mandarin: "电话"),
+CourseWord(cantonese: "喂", jyutping: "wai2", hakka: "喂(we)", mandarin: "喂（接电话用语）"),
+CourseWord(cantonese: "留言", jyutping: "lau4 jin4", hakka: "留言(liu ngien)", mandarin: "留言"),
+CourseWord(cantonese: "覆電話", jyutping: "fuk1 din6 waa2", hakka: "覆电话(phuk thien fa)", mandarin: "回电话"),
+CourseWord(cantonese: "訊息", jyutping: "seon3 sik1", hakka: "讯息(sin sit)", mandarin: "信息"),
+CourseWord(cantonese: "接電話", jyutping: "zip3 din6 waa2", hakka: "接电话(chiap thien fa)", mandarin: "接电话"),
+CourseWord(cantonese: "收線", jyutping: "sau1 sin3", hakka: "收线(shu sien)", mandarin: "挂电话"),
+CourseWord(cantonese: "打錯", jyutping: "daa2 co3", hakka: "打错(ta chho)", mandarin: "打错（电话）"),
+],
+sentence: CourseSentence(
+cantonese: "你聽日得唔得閒，我打畀你？",
+jyutping: "nei5 ting1 jat6 dak1 m4 dak1 haan4, ngo5 daa2 bei2 nei5?",
+mandarin: "你明天有空吗，我打给你？"
+),
+tip: "電 din6 陽去低降調，別讀成高音；畀 bei2 係「給」嘅意思，口語常用。"
+),
+CourseTheme(
+id: "bank",
+titleZh: "銀行",
+titleEn: "Bank",
+words: [
+CourseWord(cantonese: "銀行", jyutping: "ngan4 hong4", hakka: "银行(ngiun hong)", mandarin: "银行"),
+CourseWord(cantonese: "提款", jyutping: "tai4 fun2", hakka: "提款(thai khon)", mandarin: "取款"),
+CourseWord(cantonese: "存款", jyutping: "cyun4 fun2", hakka: "存款(chhun khon)", mandarin: "存款"),
+CourseWord(cantonese: "找換", jyutping: "zaau2 wun6", hakka: "找换(chau fon)", mandarin: "兑换"),
+CourseWord(cantonese: "信用咭", jyutping: "seon3 jung6 kaat1", hakka: "信用咭(sin iung khat)", mandarin: "信用卡"),
+CourseWord(cantonese: "戶口", jyutping: "wu6 hau2", hakka: "户口(fu heu)", mandarin: "账户"),
+CourseWord(cantonese: "㩒錢", jyutping: "gam6 cin2", hakka: "㩒钱(khem chhien)", mandarin: "取钱（按钱）"),
+CourseWord(cantonese: "櫃員機", jyutping: "gwai6 jyun4 gei1", hakka: "柜员机(khui ien ki)", mandarin: "ATM"),
+],
+sentence: CourseSentence(
+cantonese: "附近有冇櫃員機，我想㩒錢。",
+jyutping: "fu6 gan6 jau5 mou5 gwai6 jyun4 gei1, ngo5 soeng2 gam6 cin2.",
+mandarin: "附近有ATM吗，我想取钱。"
+),
+tip: "銀 ngan4 嘅 ng 聲母係鼻音起頭，普通話冇呢個聲母，多練；㩒 gem6 係地道口語「按」嘅意思。"
+),
+CourseTheme(
+id: "travel",
+titleZh: "旅行",
+titleEn: "Travel",
+words: [
+CourseWord(cantonese: "旅行", jyutping: "leoi5 hang4", hakka: "旅行(li hang)", mandarin: "旅行"),
+CourseWord(cantonese: "酒店", jyutping: "zau2 dim3", hakka: "酒店(chiu tiam)", mandarin: "酒店"),
+CourseWord(cantonese: "機票", jyutping: "gei1 piu3", hakka: "机票(ki phiau)", mandarin: "机票"),
+CourseWord(cantonese: "景點", jyutping: "ging2 dim2", hakka: "景点(kin tiam)", mandarin: "景点"),
+CourseWord(cantonese: "護照", jyutping: "wu6 ziu3", hakka: "护照(fu chau)", mandarin: "护照"),
+CourseWord(cantonese: "行李", jyutping: "hang4 lei5", hakka: "行李(hang li)", mandarin: "行李"),
+CourseWord(cantonese: "導遊", jyutping: "dou6 jau4", hakka: "导游(tho iu)", mandarin: "导游"),
+CourseWord(cantonese: "出發", jyutping: "ceot1 faat3", hakka: "出发(chut fat)", mandarin: "出发"),
+],
+sentence: CourseSentence(
+cantonese: "我哋下個月去旅行，你去唔去？",
+jyutping: "ngo5 dei6 haa6 go3 jyut6 heoi3 leoi5 hang4, nei5 heoi3 m4 heoi3?",
+mandarin: "我们下个月去旅行，你去不去？"
+),
+tip: "旅 leoi5 嘅 eo 係圓唇元音，先圓唇再展唇，陽上調上揚。"
+),
+CourseTheme(
+id: "fun",
+titleZh: "娛樂",
+titleEn: "Entertainment",
+words: [
+CourseWord(cantonese: "睇戲", jyutping: "tai2 hei3", hakka: "睇戏(thai hi)", mandarin: "看电影"),
+CourseWord(cantonese: "唱K", jyutping: "coeng3 kei1", hakka: "唱K(chhong K)", mandarin: "唱K"),
+CourseWord(cantonese: "行街", jyutping: "haang4 gaai1", hakka: "行街(hang kai)", mandarin: "逛街"),
+CourseWord(cantonese: "打機", jyutping: "daa2 gei1", hakka: "打机(ta ki)", mandarin: "打游戏"),
+CourseWord(cantonese: "朋友", jyutping: "pang4 jau5", hakka: "朋友(phang iu)", mandarin: "朋友"),
+CourseWord(cantonese: "食嘢", jyutping: "sik6 je5", hakka: "食嘢(sit ie)", mandarin: "吃东西"),
+CourseWord(cantonese: "假期", jyutping: "gaa3 kei4", hakka: "假期(ka khi)", mandarin: "假期"),
+],
+sentence: CourseSentence(
+cantonese: "週末一齊去睇戲，好唔好？",
+jyutping: "zau1 mut6 jat1 cai4 heoi3 tai2 hei3, hou2 m4 hou2?",
+mandarin: "周末一起去看电影，好不好？"
+),
+tip: "戲 hei3 嘅 ei 係雙元音，嘴型由半開到閉，陰去調下降。"
+),
+CourseTheme(
+id: "work",
+titleZh: "工作",
+titleEn: "Work",
+words: [
+CourseWord(cantonese: "放工", jyutping: "fong3 gung1", hakka: "放工(piong kung)", mandarin: "下班"),
+CourseWord(cantonese: "老闆", jyutping: "lou5 baan2", hakka: "老板(lo pan)", mandarin: "老板"),
+CourseWord(cantonese: "同事", jyutping: "tung4 si6", hakka: "同事(thung si)", mandarin: "同事"),
+CourseWord(cantonese: "開會", jyutping: "hoi1 wui2", hakka: "开会(khoi fi)", mandarin: "开会"),
+CourseWord(cantonese: "加班", jyutping: "gaa1 baan1", hakka: "加班(ka pan)", mandarin: "加班"),
+CourseWord(cantonese: "人工", jyutping: "jan4 gung1", hakka: "人工(ngin kung)", mandarin: "工资"),
+CourseWord(cantonese: "請假", jyutping: "ceng2 gaa3", hakka: "请假(chhiang ka)", mandarin: "请假"),
+],
+sentence: CourseSentence(
+cantonese: "我今日要加班，唔嚟食飯啦。",
+jyutping: "ngo5 gam1 jat6 jiu3 gaa1 baan1, m4 lai4 sik6 faan6 laa1.",
+mandarin: "我今天要加班，不来吃饭了。"
+),
+tip: "闆 baan2 嘅 aa 長元音拉長，陽上調上揚，別讀短。"
+),
+CourseTheme(
+id: "hkculture",
+titleZh: "港味文化",
+titleEn: "HK Culture",
+words: [
+CourseWord(cantonese: "茶餐廳", jyutping: "caa4 caan1 teng1", hakka: "茶餐厅(chha chhan then)", mandarin: "茶餐厅"),
+CourseWord(cantonese: "飲茶", jyutping: "jam2 caa4", hakka: "饮茶(im chha)", mandarin: "饮茶"),
+CourseWord(cantonese: "叮叮", jyutping: "ding1 ding1", hakka: "叮叮(tin tin)", mandarin: "叮叮车（电车）"),
+CourseWord(cantonese: "拜年", jyutping: "baai3 nin4", hakka: "拜年(pai ngien)", mandarin: "拜年"),
+CourseWord(cantonese: "利是", jyutping: "lai6 si6", hakka: "利是(li shi)", mandarin: "利是（红包）"),
+CourseWord(cantonese: "大排檔", jyutping: "daai6 paai4 dong3", hakka: "大排档(thai phai tong)", mandarin: "大排档"),
+CourseWord(cantonese: "港式", jyutping: "gong2 sik1", hakka: "港式(kong shit)", mandarin: "港式"),
+CourseWord(cantonese: "地道", jyutping: "dei6 dou6", hakka: "地道(thi tho)", mandarin: "地道"),
+],
+sentence: CourseSentence(
+cantonese: "嚟香港一定要去茶餐廳飲茶！",
+jyutping: "lai4 hoeng1 gong2 jat1 ding6 jiu3 heoi3 caa4 caan1 teng1 jam2 caa4!",
+mandarin: "来香港一定要去茶餐厅饮茶！"
+),
+tip: "餐 caan1 嘅 aan 鼻韻尾，陰平高平調，一字一頓讀清楚。"
+),
+CourseTheme(
+id: "plans",
+titleZh: "約人",
+titleEn: "Making Plans",
+words: [
+CourseWord(cantonese: "約", jyutping: "joek3", hakka: "约(iok)", mandarin: "约"),
+CourseWord(cantonese: "聽日", jyutping: "ting1 jat6", hakka: "听日(thang ngit)", mandarin: "明天"),
+CourseWord(cantonese: "晏晝", jyutping: "aan3 zau3", hakka: "晏昼(an chu)", mandarin: "下午"),
+CourseWord(cantonese: "夜晚", jyutping: "je6 maan5", hakka: "夜晚(ia van)", mandarin: "晚上"),
+CourseWord(cantonese: "得閒", jyutping: "dak1 haan4", hakka: "得闲(tet han)", mandarin: "有空"),
+CourseWord(cantonese: "遲到", jyutping: "ci4 dou3", hakka: "迟到(chhi to)", mandarin: "迟到"),
+CourseWord(cantonese: "等陣", jyutping: "dang2 zan6", hakka: "等阵(ten chhin)", mandarin: "等一下"),
+CourseWord(cantonese: "見面", jyutping: "gin3 min6", hakka: "见面(kien mien)", mandarin: "见面"),
+],
+sentence: CourseSentence(
+cantonese: "聽日晏晝三點見，得唔得？",
+jyutping: "ting1 jat6 aan3 zau3 saam1 dim2 gin3, dak1 m4 dak1?",
+mandarin: "明天下午三点见，行不行？"
+),
+tip: "約 joek3 入聲 -k 尾短促；晝 zau3 嘅 au 雙元音，陰去調下降。"
+),
+CourseTheme(
+id: "feelings",
+titleZh: "心情",
+titleEn: "Feelings",
+words: [
+CourseWord(cantonese: "開心", jyutping: "hoi1 sam1", hakka: "开心(khoi sim)", mandarin: "开心"),
+CourseWord(cantonese: "唔開心", jyutping: "m4 hoi1 sam1", hakka: "唔开心(m khoi sim)", mandarin: "不开心"),
+CourseWord(cantonese: "攰", jyutping: "gui6", hakka: "攰(khui)", mandarin: "累"),
+CourseWord(cantonese: "擔心", jyutping: "daam1 sam1", hakka: "担心(tam sim)", mandarin: "担心"),
+CourseWord(cantonese: "嬲", jyutping: "nau1", hakka: "嬲(nau)", mandarin: "生气"),
+CourseWord(cantonese: "驚", jyutping: "geng1", hakka: "惊(kiang)", mandarin: "害怕"),
+CourseWord(cantonese: "冇嘢", jyutping: "mou5 je5", hakka: "冇嘢(mau ie)", mandarin: "没事"),
+CourseWord(cantonese: "加油", jyutping: "gaa1 jau2", hakka: "加油(ka iu)", mandarin: "加油"),
+],
+sentence: CourseSentence(
+cantonese: "唔使擔心，一切都會好返嘅。",
+jyutping: "m4 sai2 daam1 sam1, jat1 cai3 dou1 wui5 hou2 faan1 ge3.",
+mandarin: "不用担心，一切都会好起来的。"
+),
+tip: "嬲 nau1 陰平高平調，au 雙元音飽滿；驚 geng1 嘅 eng 鼻韻別讀成 en。"
 ),
 ]
 
@@ -191,6 +415,16 @@ let keywordMap: [(id: String, keywords: [String])] = [
 ("direction", ["路", "方向", "地铁", "地鐵", "出行", "转车", "轉車", "怎么走", "點行", "点行", "direction", "metro"]),
 ("shopping", ["买", "買", "便宜", "贵", "貴", "砍价", "砍價", "购物", "購物", "打折", "减价", "減價", "平", "shop"]),
 ("family", ["爸爸", "妈妈", "媽媽", "爸", "妈", "媽", "家", "家庭", "family"]),
+("weather", ["天气", "天氣", "下雨", "落雨", "打风", "打風", "weather", "rain"]),
+("doctor", ["医生", "醫生", "看病", "睇医生", "睇醫生", "发烧", "發燒", "医院", "醫院", "doctor", "hospital"]),
+("phone", ["电话", "電話", "打电话", "打電話", "手机", "手機", "phone", "call"]),
+("bank", ["银行", "銀行", "取钱", "㩒錢", "柜员机", "櫃員機", "bank", "atm"]),
+("travel", ["旅行", "旅游", "旅遊", "机场", "機場", "护照", "護照", "travel", "trip"]),
+("fun", ["娱乐", "娛樂", "好玩", "电影", "電影", "睇戏", "睇戲", "唱K", "fun", "movie"]),
+("work", ["工作", "上班", "返工", "老板", "老細", "加班", "work", "job"]),
+("hkculture", ["香港", "文化", "茶餐厅", "茶餐廳", "饮茶", "飲茶", "hongkong", "culture"]),
+("plans", ["约人", "約人", "约会", "約會", "见面", "見面", "安排", "plan"]),
+("feelings", ["心情", "开心", "開心", "难过", "難過", "加油", "feeling", "mood"]),
 ]
 let tokens = lower.split(whereSeparator: {!$0.isLetter}).map(String.init)
 for entry in keywordMap {

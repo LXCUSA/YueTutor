@@ -30,16 +30,16 @@ struct SettingsView: View {
                     }
                 }
 
-                // AI 陪练代理配置：v1 置灰，以后启用
-                Section(header: Text(L10n.t("settings.proxy_section"))) {
-                    TextField(L10n.t("settings.proxy_url"), text: $settings.proxyBaseURL)
-                        .disabled(true)
-                    SecureField(L10n.t("settings.proxy_secret"), text: $settings.appSecret)
-                        .disabled(true)
-                    Text(L10n.t("settings.proxy_note"))
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                }
+                // AI 陪练代理配置：v1 暂不显示（用户要求），以后启用时取消注释
+                // Section(header: Text(L10n.t("settings.proxy_section"))) {
+                //     TextField(L10n.t("settings.proxy_url"), text: $settings.proxyBaseURL)
+                //         .disabled(true)
+                //     SecureField(L10n.t("settings.proxy_secret"), text: $settings.appSecret)
+                //         .disabled(true)
+                //     Text(L10n.t("settings.proxy_note"))
+                //         .font(.footnote)
+                //         .foregroundColor(.secondary)
+                // }
 
                 // 语音：语速 + 自动朗读
                 Section(header: Text(L10n.t("settings.voice_section"))) {
@@ -71,6 +71,10 @@ struct SettingsView: View {
                 // 版本号
                 Section {
                     Text(L10n.t("settings.version"))
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    Text(L10n.t("settings.attribution"))
                         .font(.footnote)
                         .foregroundColor(.secondary)
                         .frame(maxWidth: .infinity, alignment: .center)

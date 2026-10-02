@@ -82,6 +82,7 @@
 "settings.cancel" = "取消";
 "settings.confirm" = "确定";
 "settings.version" = "v1.0 离线版";
+"settings.attribution" = "课程粤拼数据来源：rime-cantonese（CC BY 4.0）";
 
 // 错误
 "error.chat_failed" = "发送失败，请轻触重试";
