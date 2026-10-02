@@ -369,11 +369,28 @@ func theme(id: String) -> CourseTheme? {
 Self.curriculum.first { $0.id == id}
 }
 
-/// 下一个练习主题：跳过 deferred 的难句；绕完一圈后把 deferred 清空
-///（之前跳过的重新出现，即"以后重试"）；极端全跳过时清空重来，绝不死循环
-private func nextPracticeTheme(after id: String) -> CourseTheme {
+/// 下一个练习主题：兴趣优先——若用户在设置页勾了感兴趣的主题，
+/// 按课程顺序跳到下一个感兴趣的（跳过当前主题、跳过已暂存的难句）；
+/// 没选兴趣 / 感兴趣的都不可用时，回退到全量顺序轮换。
+private func nextPracticeTheme(after id: String, interests: [String]) -> CourseTheme {
 let n = Self.curriculum.count
 guard let idx = Self.curriculum.firstIndex(where: { $0.id == id }) else { return Self.curriculum[0] }
+
+if !interests.isEmpty {
+var i = (idx + 1) % n
+var guardCount = 0
+while guardCount < n {
+let theme = Self.curriculum[i]
+if theme.id != id,
+interests.contains(theme.titleZh),
+!deferredThemes.contains(theme.id) {
+return theme
+}
+i = (i + 1) % n
+guardCount += 1
+}
+}
+
 let nextIdx = (idx + 1) % n
 if nextIdx == 0, !deferredThemes.isEmpty {
 deferredThemes = []
@@ -471,11 +488,11 @@ pendingReadAlong = theme.id
 return readAlongLesson(theme, round: count)
 }
 
-// 2b. 换个主题：按课程顺序切到下一个（跳过已暂存的难句）
+// 2b. 换个主题：兴趣优先（设置页勾选的主题先轮），否则按课程顺序切到下一个（跳过已暂存的难句）
 if text.contains("换个主题") || text.contains("換個主題") {
 let next: CourseTheme
 if let cur = currentThemeId {
-next = nextPracticeTheme(after: cur)
+next = nextPracticeTheme(after: cur, interests: profile.interests)
 } else {
 next = Self.curriculum[0]
 }
