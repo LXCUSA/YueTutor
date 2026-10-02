@@ -83,24 +83,26 @@ struct ChatView: View {
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .padding(.horizontal)
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 8) {
-                    ForEach(topics, id: \.id) { theme in
-                        let isCurrent = theme.id == viewModel.currentTopicId
-                        Button {
-                            viewModel.switchTopic(theme.titleZh)
-                        } label: {
-                            Text(theme.titleZh)
-                                .font(.subheadline)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 7)
-                                .background(isCurrent ? Theme.accent : Theme.accent.opacity(0.10))
-                                .foregroundColor(isCurrent ? .white : Theme.accent)
-                                .clipShape(Capsule())
+            ScrollViewReader { chipProxy in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 8) {
+                        ForEach(topics, id: \.id) { theme in
+                            let isCurrent = theme.id == viewModel.currentTopicId
+                            Button {
+                                viewModel.switchTopic(theme.titleZh)
+                            } label: {
+                                Text(theme.titleZh)
+                                    .font(.subheadline)
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 7)
+                                    .background(isCurrent ? Theme.accent : Theme.accent.opacity(0.10))
+                                    .foregroundColor(isCurrent ? .white : Theme.accent)
+                                    .clipShape(Capsule())
+                            }
+                            .buttonStyle(.plain)
+                            .disabled(viewModel.isSending)
+                            .id(theme.id)
                         }
-                        .buttonStyle(.plain)
-                        .disabled(viewModel.isSending)
-                    }
                     Button {
                         viewModel.askForQuiz()
                     } label: {
@@ -121,6 +123,14 @@ struct ChatView: View {
                     .disabled(viewModel.isSending)
                 }
                 .padding(.horizontal)
+            }
+            // 当前主题变化时，把对应的 chip 滚到可视区（16 个主题横向排布，
+            // 打字/"换个主题"切换后高亮的 chip 可能在屏幕外）
+            .onChange(of: viewModel.currentTopicId) { _, newId in
+                guard let newId else { return }
+                withAnimation {
+                    chipProxy.scrollTo(newId, anchor: .center)
+                }
             }
         }
         .padding(.vertical, 8)
