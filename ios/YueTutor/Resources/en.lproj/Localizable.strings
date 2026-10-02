@@ -54,7 +54,7 @@
 
 // Courses
 "course.title" = "Local courses";
-"course.subtitle" = "6 topics · fully offline, review anytime";
+"course.subtitle" = "%d topics · fully offline, review anytime";
 "course.word_count" = "%d words";
 "course.words_section" = "Words";
 "course.sentence_section" = "Example sentence";

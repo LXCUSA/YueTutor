@@ -34,7 +34,7 @@ struct CourseListView: View {
                         }
                     }
                 } header: {
-                    Text(L10n.t("course.subtitle"))
+                    Text(String(format: L10n.t("course.subtitle"), LocalTutorService.curriculum.count))
                 }
             }
             .navigationTitle(L10n.t("course.title"))

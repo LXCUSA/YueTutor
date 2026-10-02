@@ -54,7 +54,7 @@
 
 // 课程
 "course.title" = "本地课程";
-"course.subtitle" = "6 大主题 · 纯离线，随时翻出来复习";
+"course.subtitle" = "%d 大主题 · 纯离线，随时翻出来复习";
 "course.word_count" = "%d 个生词";
 "course.words_section" = "生词";
 "course.sentence_section" = "场景句";
