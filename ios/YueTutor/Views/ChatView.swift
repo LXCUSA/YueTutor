@@ -153,22 +153,21 @@ struct ChatView: View {
                 .padding()
             }
             .scrollDismissesKeyboard(.never)
-            .overlay(alignment: .bottomTrailing) {
+            .overlay(alignment: .bottom) {
                 if showJumpToBottom {
                     Button {
                         playHaptic(settings)
                         jumpToBottomNonce += 1
                     } label: {
                         Image(systemName: "chevron.down")
-                            .font(.body.weight(.semibold))
+                            .font(.title3.weight(.semibold))
                             .foregroundColor(.white)
-                            .frame(width: 44, height: 44)
-                            .background(Theme.accent)
+                            .frame(width: 52, height: 52)
+                            .background(Color.blue)
                             .clipShape(Circle())
-                            .shadow(color: .black.opacity(0.3), radius: 6, x: 0, y: 3)
+                            .shadow(color: .black.opacity(0.3), radius: 8, x: 0, y: 4)
                     }
-                    .padding(.trailing, 16)
-                    .padding(.bottom, 12)
+                    .padding(.bottom, 16)
                     .transition(.scale.combined(with: .opacity))
                     .accessibilityLabel("跳到底部")
                 }
