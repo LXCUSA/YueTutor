@@ -31,6 +31,11 @@ struct Lesson: Codable, Hashable {
     let suggestedReplies: [SuggestedReply]
     let difficulty: String?
 
+    enum CodingKeys: String, CodingKey {
+        case replyCantonese, replyJyutping, replyEnglish
+        case breakdown, correction, tip, suggestedReplies, difficulty
+    }
+
     /// 供本地服务直接构造的 memberwise 风格初始化器
     init(
         replyCantonese: String,
@@ -85,6 +90,10 @@ struct LessonResponse: Codable {
     let ok: Bool
     let lesson: Lesson?
     let error: String?
+
+    enum CodingKeys: String, CodingKey {
+        case ok, lesson, error
+    }
 
     /// 防御性解码：ok 缺失时视为 false，绝不抛错
     init(from decoder: Decoder) throws {

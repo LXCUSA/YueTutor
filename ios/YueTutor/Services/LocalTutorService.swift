@@ -234,7 +234,7 @@ difficulty: "beginner"
 
 /// 测验出题：从当前主题（无则随机）抽一个词，先不给答案，记到 pendingQuiz
 private func quizLesson() -> Lesson {
-let theme = currentThemeId.flatMap { theme(id: $0)}
+let theme = currentThemeId.flatMap { self.theme(id: $0)}
 ?? Self.curriculum.randomElement()
 ?? Self.curriculum[0]
 guard let word = theme.words.randomElement() else {
@@ -374,8 +374,8 @@ if matched.count >= 3 { break}
 }
 // 按在句中出现的先后顺序排列
 matched.sort {
-let a = sentence.range(of: $0.cantonese)?.lowerBound?? sentence.startIndex
-let b = sentence.range(of: $1.cantonese)?.lowerBound?? sentence.startIndex
+let a = sentence.range(of: $0.cantonese)?.lowerBound ?? sentence.startIndex
+let b = sentence.range(of: $1.cantonese)?.lowerBound ?? sentence.startIndex
 return a < b
 }
 var items = matched.map { BreakdownItem(cantonese: $0.cantonese, jyutping: $0.jyutping, english: $0.mandarin)}
