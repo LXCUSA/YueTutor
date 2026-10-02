@@ -454,9 +454,17 @@ difficulty: "beginner"
 
 // MARK: - 小工具
 
-/// 去标点去空白后的纯文本（只留字母与数字），用于跟读比对
+/// 去标点去空白后的纯文本（只留字母与数字），用于跟读比对。
+/// 比对前做两层归一化：
+/// 1. 简→繁（ICU Hans-Hant）：语音识别（zh-HK）输出繁体如 點，课程多为简体如 点，实为同字；
+/// 2. 粤语语气词异体归一：呀/嗄→啊（同为 aa3），避免"點啊"被判错。
 static func plainText(_ s: String) -> String {
-s.filter { $0.isLetter || $0.isNumber}
+let traditional = (s as NSString).applyingTransform(StringTransform("Hans-Hant"), reverse: false) ?? s
+let particleMap: [Character: Character] = ["呀": "啊", "嗄": "啊"]
+return String(traditional.compactMap { ch -> Character? in
+let c = particleMap[ch] ?? ch
+return (c.isLetter || c.isNumber) ? c : nil
+})
 }
 
 /// 两个入门词：你好、早晨
