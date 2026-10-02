@@ -135,6 +135,7 @@ struct ChatView: View {
         }
         .padding(.vertical, 8)
     }
+    }
 
     // MARK: - 消息列表
 
