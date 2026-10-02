@@ -68,6 +68,12 @@ final class ProfileStore: ObservableObject {
         profile = TutorProfile(name: "", level: .beginner, interests: [], tutorName: "小粤", focus: nil)
     }
 
+    /// 更新兴趣（多选）：设置页的主题多选用
+    func setInterests(_ interests: [String]) {
+        profile.interests = interests
+        persist()
+    }
+
     /// 把当前 profile 写进 UserDefaults
     private func persist() {
         if let data = try? JSONEncoder().encode(profile) {

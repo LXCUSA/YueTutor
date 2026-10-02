@@ -73,6 +73,7 @@
 "settings.proxy_url" = "代理地址";
 "settings.proxy_secret" = "密钥";
 "settings.proxy_note" = "AI 陪练需要 Anthropic API key，以后启用";
+"settings.interests_section" = "兴趣";
 "settings.voice_section" = "语音";
 "settings.speech_rate" = "语速";
 "settings.auto_speak" = "自动朗读家教回复";
