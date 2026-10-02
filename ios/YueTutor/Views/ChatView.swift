@@ -10,9 +10,13 @@ struct ChatView: View {
     @StateObject private var recognizer = SpeechRecognizer()
     @State private var inputText = ""
 
-    /// 顶部话题 chips：课程全部主题（中文名），横向滚动。
+    /// 顶部话题 chips：设置页勾了兴趣主题就只显示勾选的；没勾则显示全部。
+    /// profileStore.profile.interests 变化时自动刷新。
     private var topics: [CourseTheme] {
-        LocalTutorService.curriculum
+        let interests = profileStore.profile.interests
+        guard !interests.isEmpty else { return LocalTutorService.curriculum }
+        let filtered = LocalTutorService.curriculum.filter { interests.contains($0.titleZh) }
+        return filtered.isEmpty ? LocalTutorService.curriculum : filtered
     }
 
     var body: some View {
