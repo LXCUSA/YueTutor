@@ -51,10 +51,6 @@ struct ChatView: View {
 
     private var topicChips: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(L10n.t("chat.topics_title"))
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .padding(.horizontal)
             ScrollViewReader { chipProxy in
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 8) {
@@ -64,7 +60,7 @@ struct ChatView: View {
                                 viewModel.switchTopic(theme.titleZh)
                             } label: {
                                 Text(theme.titleZh)
-                                    .font(.subheadline)
+                                    .font(.system(size: 17))
                                     .padding(.horizontal, 12)
                                     .padding(.vertical, 7)
                                     .background(isCurrent ? Theme.accent : Theme.accent.opacity(0.10))
@@ -79,7 +75,7 @@ struct ChatView: View {
                         viewModel.askForQuiz()
                     } label: {
                         Text(L10n.t("chat.quiz"))
-                            .font(.subheadline)
+                            .font(.system(size: 17))
                             .fontWeight(.semibold)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 7)
