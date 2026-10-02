@@ -26,7 +26,10 @@ struct InputBar: View {
         HStack(spacing: 10) {
             // 麦克风：最高频按钮，做成主按钮样式——52 大圆、实心底、白色图标；
             // 录音中加呼吸光环提示"正在听"，红色与发送按钮同色（Theme.accent）。
-            Button(action: onMic) {
+            Button(action: {
+                playHaptic(settings)
+                onMic()
+            }) {
                 ZStack {
                     Circle()
                         .fill(Theme.accent)
@@ -61,7 +64,10 @@ struct InputBar: View {
                 .background(Color(.secondarySystemBackground))
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
 
-            Button(action: onSend) {
+            Button(action: {
+                playHaptic(settings)
+                onSend()
+            }) {
                 Group {
                     if isSending {
                         ProgressView()

@@ -49,6 +49,18 @@ struct SettingsView: View {
                         .tint(Theme.accent)
                 }
 
+                // 按钮震动反馈：开关（打开时震一下确认）
+                Section {
+                    Toggle(L10n.t("settings.haptics"), isOn: Binding(
+                        get: { settings.hapticsEnabled },
+                        set: {
+                            settings.hapticsEnabled = $0
+                            playHaptic(settings)
+                        }
+                    ))
+                    .tint(Theme.accent)
+                }
+
                 // 版本号
                 Section {
                     Text(L10n.t("settings.version"))

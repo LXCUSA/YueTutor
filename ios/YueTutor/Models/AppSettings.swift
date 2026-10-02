@@ -29,6 +29,8 @@ final class AppSettings: ObservableObject {
     @Published var appSecret: String = "" { didSet { persist() } }
     @Published var speechRate: Double = 0.42 { didSet { persist() } }
     @Published var autoSpeak: Bool = true { didSet { persist() } }
+    /// 按钮震动反馈开关（设置页可关）
+    @Published var hapticsEnabled: Bool = true { didSet { persist() } }
 
     /// 代理地址是否已配置：proxyBaseURL 非空即视为已配置
     var proxyConfigured: Bool {
@@ -45,6 +47,7 @@ final class AppSettings: ObservableObject {
             appSecret = saved.appSecret
             speechRate = saved.speechRate
             autoSpeak = saved.autoSpeak
+            hapticsEnabled = saved.hapticsEnabled
         }
     }
 
@@ -55,7 +58,8 @@ final class AppSettings: ObservableObject {
             proxyBaseURL: proxyBaseURL,
             appSecret: appSecret,
             speechRate: speechRate,
-            autoSpeak: autoSpeak
+            autoSpeak: autoSpeak,
+            hapticsEnabled: hapticsEnabled
         )
         if let data = try? JSONEncoder().encode(snapshot) {
             UserDefaults.standard.set(data, forKey: Self.storageKey)
@@ -64,11 +68,33 @@ final class AppSettings: ObservableObject {
 }
 
 // MARK: - 设置快照
-/// 设置的 Codable 快照，用于整体持久化
+/// 设置的 Codable 快照，用于整体持久化。
+/// 自定义解码：老版本存档缺字段时用默认值，保证升级不丢已有设置。
 private struct SettingsData: Codable {
     var tutorMode: TutorMode
     var proxyBaseURL: String
     var appSecret: String
     var speechRate: Double
     var autoSpeak: Bool
+    var hapticsEnabled: Bool
+
+    init(tutorMode: TutorMode, proxyBaseURL: String, appSecret: String,
+         speechRate: Double, autoSpeak: Bool, hapticsEnabled: Bool) {
+        self.tutorMode = tutorMode
+        self.proxyBaseURL = proxyBaseURL
+        self.appSecret = appSecret
+        self.speechRate = speechRate
+        self.autoSpeak = autoSpeak
+        self.hapticsEnabled = hapticsEnabled
+    }
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        tutorMode = try c.decodeIfPresent(TutorMode.self, forKey: .tutorMode) ?? .local
+        proxyBaseURL = try c.decodeIfPresent(String.self, forKey: .proxyBaseURL) ?? ""
+        appSecret = try c.decodeIfPresent(String.self, forKey: .appSecret) ?? ""
+        speechRate = try c.decodeIfPresent(Double.self, forKey: .speechRate) ?? 0.42
+        autoSpeak = try c.decodeIfPresent(Bool.self, forKey: .autoSpeak) ?? true
+        hapticsEnabled = try c.decodeIfPresent(Bool.self, forKey: .hapticsEnabled) ?? true
+    }
 }

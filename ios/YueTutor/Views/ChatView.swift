@@ -57,6 +57,7 @@ struct ChatView: View {
                         ForEach(topics, id: \.id) { theme in
                             let isCurrent = theme.id == viewModel.currentTopicId
                             Button {
+                                playHaptic(settings)
                                 viewModel.switchTopic(theme.titleZh)
                             } label: {
                                 Text(theme.titleZh)
@@ -72,6 +73,7 @@ struct ChatView: View {
                             .id(theme.id)
                         }
                     Button {
+                        playHaptic(settings)
                         viewModel.askForQuiz()
                     } label: {
                         Text(L10n.t("chat.quiz"))

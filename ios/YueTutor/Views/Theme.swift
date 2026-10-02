@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 /// App 全局视觉规范：主色、圆角、字体集中定义，各 View 统一引用。
 enum Theme {
@@ -15,4 +16,12 @@ enum Theme {
     static func jyutpingFont(size: CGFloat) -> Font {
         .system(size: size, design: .monospaced)
     }
+}
+
+// MARK: - 震动反馈
+
+/// 按钮触感反馈：轻点按钮时调用，`settings.hapticsEnabled` 关闭时不震。
+func playHaptic(_ settings: AppSettings, style: UIImpactFeedbackGenerator.FeedbackStyle = .medium) {
+    guard settings.hapticsEnabled else { return }
+    UIImpactFeedbackGenerator(style: style).impactOccurred()
 }

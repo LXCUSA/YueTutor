@@ -74,6 +74,7 @@
 "settings.proxy_secret" = "Secret";
 "settings.proxy_note" = "AI tutoring needs an Anthropic API key — coming later";
 "settings.interests_section" = "Interests";
+"settings.haptics" = "Button haptics";
 "settings.voice_section" = "Voice";
 "settings.speech_rate" = "Speech rate";
 "settings.auto_speak" = "Auto-read tutor replies";

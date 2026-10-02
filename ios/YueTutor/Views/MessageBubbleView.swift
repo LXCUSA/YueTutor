@@ -24,6 +24,7 @@ struct MessageBubbleView: View {
                     .fontWeight(.semibold)
                 Spacer(minLength: 4)
                 Button {
+                    playHaptic(settings)
                     onSpeak(lesson.replyCantonese)
                 } label: {
                     Image(systemName: "speaker.wave.2.fill")
@@ -93,6 +94,7 @@ struct MessageBubbleView: View {
                     ForEach(lesson.suggestedReplies.indices, id: \.self) { index in
                         let reply = lesson.suggestedReplies[index]
                         Button {
+                            playHaptic(settings)
                             onSuggestedReply(reply.cantonese)
                         } label: {
                             HStack {
