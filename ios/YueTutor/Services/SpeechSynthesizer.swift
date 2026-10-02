@@ -28,6 +28,8 @@ final class SpeechSynthesizer: ObservableObject {
         // .spokenAudio 是专为语音合成设计的 mode。
         do {
             let session = AVAudioSession.sharedInstance()
+            // 先失活再切：会话可能停在录音的 .record 上，同上，切不彻底会无声
+            try session.setActive(false)
             try session.setCategory(.playback, mode: .spokenAudio, options: [.duckOthers])
             try session.setActive(true)
         } catch {

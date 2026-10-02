@@ -70,6 +70,9 @@ final class SpeechRecognizer: ObservableObject {
 
         do {
             let audioSession = AVAudioSession.sharedInstance()
+            // 先失活再切 category：会话可能停在 TTS 的 .playback 上（激活状态直接切
+            // category 切不彻底），会导致 inputNode 读到 0 声道格式
+            try audioSession.setActive(false, options: .notifyOthersOnDeactivation)
             try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
