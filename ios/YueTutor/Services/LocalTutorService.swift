@@ -444,7 +444,7 @@ return nil
 func sendChat(profile: TutorProfile, history: [ChatTurn], userText: String, useWebSearch: Bool) async throws -> Lesson {
 let text = userText.trimmingCharacters(in:.whitespacesAndNewlines)
 
-// 1. 开场：输入为空，问好 + 自我介绍 + 列出 6 个主题
+// 1. 开场：输入为空，问好 + 自我介绍 + 列出全部主题
 if text.isEmpty {
 return greetingLesson()
 }
@@ -525,19 +525,19 @@ pendingReadAlong = theme.id
 return themeLesson(theme)
 }
 
-// 7. 兜底：温和回复 + 列出 6 个主题引导
+// 7. 兜底：温和回复 + 列出全部主题引导
 return fallbackLesson()
 }
 
 // MARK: - 各分支 Lesson 构造
 
-/// 开场 Lesson：问好 + 介绍自己是本地粤语陪练 + 列出 6 个主题
+/// 开场 Lesson：问好 + 介绍自己是本地粤语陪练 + 列出全部主题
 private func greetingLesson() -> Lesson {
 let themes = Self.curriculum.map(\.titleZh).joined(separator: "、")
 return Lesson(
-replyCantonese: "你好！我系你嘅离线粤语陪练。我哋可以由下面 6 个主题开始学：\(themes)。你想先学边个？",
+replyCantonese: "你好！我系你嘅离线粤语陪练。我哋可以由下面 \(Self.curriculum.count) 个主题开始学：\(themes)。你想先学边个？",
 replyJyutping: "nei5 hou2! ngo5 hai6 nei5 ge3 loi4 sin3 jyut6 jyu5 pui4 lin6.",
-replyEnglish: "你好！我是你的离线粤语陪练。我们可以从下面 6 个主题开始：\(themes)。你想先学哪个？",
+replyEnglish: "你好！我是你的离线粤语陪练。我们可以从下面 \(Self.curriculum.count) 个主题开始：\(themes)。你想先学哪个？",
 breakdown: introWords(),
 tip: nil,
 suggestedReplies: themeSuggestions(),
@@ -686,13 +686,13 @@ difficulty: "beginner"
 )
 }
 
-/// 兜底 Lesson：温和中文回复 + 列出 6 个主题名引导
+/// 兜底 Lesson：温和中文回复 + 列出全部主题名引导
 private func fallbackLesson() -> Lesson {
 let themes = Self.curriculum.map(\.titleZh).joined(separator: "、")
 return Lesson(
 replyCantonese: "唔好意思，我暂时听唔明呀。我系离线版粤语陪练，你可以拣下面其中一个主题开始学：\(themes)。",
 replyJyutping: "",
-replyEnglish: "没听懂你的意思。我是离线版粤语陪练，试试从下面 6 个主题里选一个开始：\(themes)。",
+replyEnglish: "没听懂你的意思。我是离线版粤语陪练，试试从下面 \(Self.curriculum.count) 个主题里选一个开始：\(themes)。",
 breakdown: introWords(),
 tip: nil,
 suggestedReplies: themeSuggestions(),
@@ -771,7 +771,7 @@ BreakdownItem(cantonese: "早晨", jyutping: "zou2 san4", english: "早上好"),
 ]
 }
 
-/// 6 个主题名快捷回复
+/// 全部主题名快捷回复
 private func themeSuggestions() -> [SuggestedReply] {
 Self.curriculum.map { SuggestedReply(cantonese: $0.titleZh, jyutping: "", english: $0.titleEn)}
 }

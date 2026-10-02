@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// 课程列表：`LocalTutorService.curriculum` 的 6 个主题，点入详情。
+/// 课程列表：`LocalTutorService.curriculum` 的全部主题，点入详情。
 struct CourseListView: View {
     @EnvironmentObject private var settings: AppSettings
     @EnvironmentObject private var synthesizer: SpeechSynthesizer

@@ -10,7 +10,7 @@ struct ChatView: View {
     @StateObject private var recognizer = SpeechRecognizer()
     @State private var inputText = ""
 
-    /// 顶部话题 chips：课程前 6 个主题（中文名）。
+    /// 顶部话题 chips：课程全部主题（中文名），横向滚动。
     private var topics: [CourseTheme] {
         LocalTutorService.curriculum
     }
