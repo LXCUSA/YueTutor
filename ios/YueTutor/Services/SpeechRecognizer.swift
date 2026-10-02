@@ -41,12 +41,17 @@ final class SpeechRecognizer: ObservableObject {
         return available
     }
 
-    /// 在开始 / 停止之间切换
+    /// 在开始 / 停止之间切换；开始前先拿到麦克风 + 语音识别双授权，
+    /// 否则 installTap 会因 0 声道格式抛 ObjC 异常直接崩溃（见 2026-10-02 .ips）。
     func toggle() {
         if isRecording {
             stop()
         } else {
-            start()
+            Task {
+                let ok = await requestAuthorization()
+                guard ok else { return }  // 失败原因已由 requestAuthorization 写进 errorMessage
+                start()
+            }
         }
     }
 
@@ -78,6 +83,13 @@ final class SpeechRecognizer: ObservableObject {
 
         let inputNode = audioEngine.inputNode
         let format = inputNode.outputFormat(forBus: 0)
+        // 纵深防御：无权限/会话未就绪时 format 可能是 0 声道，
+        // 此时 installTap 会抛 ObjC NSException（Swift 无法捕获）导致闪退，绝不能调
+        guard format.channelCount > 0, format.sampleRate > 0 else {
+            stopEngine()
+            errorMessage = "麦克风不可用：未能获取录音格式，请检查麦克风权限后重试。"
+            return
+        }
         inputNode.removeTap(onBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) { [weak request] buffer, _ in
             request?.append(buffer)
