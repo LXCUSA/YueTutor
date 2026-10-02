@@ -23,7 +23,6 @@ final class AppSettings: ObservableObject {
     @Published var appSecret: String = "" { didSet { persist() } }
     @Published var speechRate: Double = 0.42 { didSet { persist() } }
     @Published var autoSpeak: Bool = true { didSet { persist() } }
-    @Published var appLanguage: AppLanguage = .chinese { didSet { persist() } }
 
     /// 代理地址是否已配置：proxyBaseURL 非空即视为已配置
     var proxyConfigured: Bool {
@@ -40,7 +39,6 @@ final class AppSettings: ObservableObject {
             appSecret = saved.appSecret
             speechRate = saved.speechRate
             autoSpeak = saved.autoSpeak
-            appLanguage = saved.appLanguage
         }
     }
 
@@ -51,8 +49,7 @@ final class AppSettings: ObservableObject {
             proxyBaseURL: proxyBaseURL,
             appSecret: appSecret,
             speechRate: speechRate,
-            autoSpeak: autoSpeak,
-            appLanguage: appLanguage
+            autoSpeak: autoSpeak
         )
         if let data = try? JSONEncoder().encode(snapshot) {
             UserDefaults.standard.set(data, forKey: Self.storageKey)
@@ -68,5 +65,4 @@ private struct SettingsData: Codable {
     var appSecret: String
     var speechRate: Double
     var autoSpeak: Bool
-    var appLanguage: AppLanguage
 }

@@ -11,15 +11,6 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
-                // 界面语言：中文 / English（切换后 L10n.language 同步，全界面重绘）
-                Section {
-                    Picker(L10n.t("settings.language"), selection: $settings.appLanguage) {
-                        Text(L10n.t("settings.lang_chinese")).tag(AppLanguage.chinese)
-                        Text(L10n.t("settings.lang_english")).tag(AppLanguage.english)
-                    }
-                    .pickerStyle(.segmented)
-                }
-
                 // 家教模式：v1 只支持本地课程，不提供切到 proxy 的 UI
                 Section(header: Text(L10n.t("settings.tutor_section"))) {
                     HStack {
