@@ -101,10 +101,13 @@ final class SpeechRecognizer: ObservableObject {
             request?.append(buffer)
         }
 
-        recognitionTask = recognizer.recognitionTask(with: request) { [weak self] result, error in
+        recognitionTask = recognizer.recognitionTask(with: request) { [weak self, weak request] result, error in
             // 识别回调不在主线程，用 Task 跳回 @MainActor 再碰状态
             Task { @MainActor [weak self] in
                 guard let self = self else { return }
+                // 只处理当前轮任务的回调：旧任务被 cancel 后延迟到达的回调直接丢弃，
+                // 否则老文本会被写回 transcript、跟新一轮的文本拼接在一起
+                guard let request = request, self.recognitionRequest === request else { return }
                 if let result = result {
                     self.transcript = result.bestTranscription.formattedString
                     self.errorMessage = nil
@@ -126,6 +129,9 @@ final class SpeechRecognizer: ObservableObject {
             audioEngine.prepare()
             try audioEngine.start()
             isRecording = true
+            // 新一轮录音从空文本开始：旧文本不残留、不与新文本拼接
+            //（会触发 ChatView 的 onChange 把输入框同步清空）
+            transcript = ""
             errorMessage = nil
         } catch {
             stopEngine()
