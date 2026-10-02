@@ -126,6 +126,16 @@ var pendingQuiz: CourseWord?
 var readAlongCount: [String: Int] = [:]
 /// 跟读过关所需的正确遍数
 static let readAlongPassCount = 2
+/// 当前期待跟读的主题 id（刚展示了场景句，等用户跟读）
+var pendingReadAlong: String?
+/// 跟读失败计数：themeId -> 连错次数（读对后清零）
+var readAlongFails: [String: Int] = [:]
+/// 暂时跳过的主题 id（多次读不对），绕完一圈后重新加入练习
+var deferredThemes: [String] = []
+/// 跟读连错几次后智能跳过
+static let readAlongMaxFails = 3
+/// 判定"用户在尝试跟读"的字符重合度阈值（0~1）
+static let readAlongAttemptThreshold = 0.4
 
 // MARK: - 主题查询
 /// 按主题 id 取主题
@@ -133,10 +143,31 @@ func theme(id: String) -> CourseTheme? {
 Self.curriculum.first { $0.id == id}
 }
 
-/// 课程顺序中的下一个主题（到末尾后回到开头），用于跟读过关后自动推进
-static func nextTheme(after id: String) -> CourseTheme {
-guard let idx = curriculum.firstIndex(where: { $0.id == id }) else { return curriculum[0] }
-return curriculum[(idx + 1) % curriculum.count]
+/// 下一个练习主题：跳过 deferred 的难句；绕完一圈后把 deferred 清空
+///（之前跳过的重新出现，即"以后重试"）；极端全跳过时清空重来，绝不死循环
+private func nextPracticeTheme(after id: String) -> CourseTheme {
+let n = Self.curriculum.count
+guard let idx = Self.curriculum.firstIndex(where: { $0.id == id }) else { return Self.curriculum[0] }
+let nextIdx = (idx + 1) % n
+if nextIdx == 0, !deferredThemes.isEmpty {
+deferredThemes = []
+return Self.curriculum[0]
+}
+var i = nextIdx
+var guardCount = 0
+while deferredThemes.contains(Self.curriculum[i].id), guardCount < n {
+i = (i + 1) % n
+guardCount += 1
+}
+if guardCount >= n { deferredThemes = [] }
+return Self.curriculum[i]
+}
+
+/// 输入与目标句的字符重合度（0~1），用于判断用户是否在尝试跟读（而非闲聊）
+private static func similarity(_ input: String, _ target: String) -> Double {
+let a = Set(plainText(input)), b = Set(plainText(target))
+guard !b.isEmpty else { return 0 }
+return Double(a.intersection(b).count) / Double(b.count)
 }
 
 /// 按主题名/关键词匹配用户输入
@@ -182,25 +213,43 @@ if text.isEmpty {
 return greetingLesson()
 }
 
-// 2. 跟读：输入与场景句去标点/空白后一致即算跟读（用户常省略标点），
+// 2. 跟读正确：输入与场景句去标点/空白后一致即算跟读（用户常省略标点），
 //    先于主题关键词匹配，保证快捷按钮和手动输入都能进跟读。
 //    每句读对 readAlongPassCount 遍即过关，自动进入下一主题的场景句，避免无限重复。
 let plainInput = Self.plainText(text)
 if let theme = Self.curriculum.first(where: { Self.plainText($0.sentence.cantonese) == plainInput }) {
 currentThemeId = theme.id
+readAlongFails[theme.id] = 0
+deferredThemes.removeAll { $0 == theme.id }
 let count = (readAlongCount[theme.id] ?? 0) + 1
 if count >= Self.readAlongPassCount {
 readAlongCount[theme.id] = 0
-let next = Self.nextTheme(after: theme.id)
+let next = nextPracticeTheme(after: theme.id)
 currentThemeId = next.id
+pendingReadAlong = next.id
 return readAlongPassedLesson(passed: theme, next: next)
 }
 readAlongCount[theme.id] = count
+pendingReadAlong = theme.id
 return readAlongLesson(theme, round: count)
+}
+
+// 2b. 换个主题：按课程顺序切到下一个（跳过已暂存的难句）
+if text.contains("换个主题") || text.contains("換個主題") {
+let next: CourseTheme
+if let cur = currentThemeId {
+next = nextPracticeTheme(after: cur)
+} else {
+next = Self.curriculum[0]
+}
+currentThemeId = next.id
+pendingReadAlong = next.id
+return themeLesson(next)
 }
 
 // 3. 测验请求：出题（先不给答案）
 if isQuizRequest(text) {
+pendingReadAlong = nil
 return quizLesson()
 }
 
@@ -210,13 +259,34 @@ pendingQuiz = nil
 return quizAnswerLesson(word: quiz, userText: text)
 }
 
-// 5. 主题匹配：进入主题学习
+// 5. 跟读失败：正等用户跟读某句，输入与该句有明显重合却对不上，
+//    视为一次跟读尝试（纯闲聊不计）。连错 readAlongMaxFails 次则智能跳过，
+//    记下该句，绕完其他主题一圈后重新出现（以后重试）。
+if let pendingId = pendingReadAlong,
+let pendingTheme = theme(id: pendingId),
+Self.similarity(text, pendingTheme.sentence.cantonese) >= Self.readAlongAttemptThreshold {
+let fails = (readAlongFails[pendingId] ?? 0) + 1
+if fails >= Self.readAlongMaxFails {
+readAlongFails[pendingId] = 0
+pendingReadAlong = nil
+if !deferredThemes.contains(pendingId) { deferredThemes.append(pendingId) }
+let next = nextPracticeTheme(after: pendingId)
+currentThemeId = next.id
+pendingReadAlong = next.id
+return readAlongSkippedLesson(skipped: pendingTheme, next: next)
+}
+readAlongFails[pendingId] = fails
+return readAlongRetryLesson(pendingTheme)
+}
+
+// 6. 主题匹配：进入主题学习
 if let theme = theme(matching: text) {
 currentThemeId = theme.id
+pendingReadAlong = theme.id
 return themeLesson(theme)
 }
 
-// 6. 兜底：温和回复 + 列出 6 个主题引导
+// 7. 兜底：温和回复 + 列出 6 个主题引导
 return fallbackLesson()
 }
 
@@ -311,6 +381,39 @@ breakdown: sentenceKeywords(in: theme),
 tip: "跟读建议：先慢速跟准每个字嘅声调，再加速连成一句，一句读够 \(Self.readAlongPassCount) 遍就过关。",
 suggestedReplies: [
 SuggestedReply(cantonese: theme.sentence.cantonese, jyutping: theme.sentence.jyutping, english: theme.sentence.mandarin),
+SuggestedReply(cantonese: "考考我", jyutping: "haau2 haau2 ngo5", english: "来个小测验"),
+SuggestedReply(cantonese: "换个主题", jyutping: "wun6 go3 zyu2 tai4", english: "看看其他主题"),
+],
+difficulty: "beginner"
+)
+}
+
+/// 跟读没对：温和纠正，再示范一次（不报次数，不给压力）
+private func readAlongRetryLesson(_ theme: CourseTheme) -> Lesson {
+Lesson(
+replyCantonese: "唔紧要，慢慢嚟。听我读一次，你跟住读：「\(theme.sentence.cantonese)」",
+replyJyutping: theme.sentence.jyutping,
+replyEnglish: "没关系，慢慢来。听我读一遍，你跟着读：「\(theme.sentence.mandarin)」",
+breakdown: sentenceKeywords(in: theme),
+tip: "跟读建议：先慢速跟准每个字嘅声调，再加速连成一句。",
+suggestedReplies: [
+SuggestedReply(cantonese: theme.sentence.cantonese, jyutping: theme.sentence.jyutping, english: theme.sentence.mandarin),
+SuggestedReply(cantonese: "换个主题", jyutping: "wun6 go3 zyu2 tai4", english: "看看其他主题"),
+],
+difficulty: "beginner"
+)
+}
+
+/// 智能跳过：多次读不对，先跳过（绕完一圈后会回来重试），切到下一句
+private func readAlongSkippedLesson(skipped: CourseTheme, next: CourseTheme) -> Lesson {
+Lesson(
+replyCantonese: "呢句有啲拗口，我哋跳过先，迟啲再返嚟试过，你已经好叻啦！下一句嚟啦，跟住读：「\(next.sentence.cantonese)」",
+replyJyutping: next.sentence.jyutping,
+replyEnglish: "这句有点难，我们先跳过，之后再回来试。你已经很棒了！下一句：「\(next.sentence.mandarin)」",
+breakdown: next.words.map { BreakdownItem(cantonese: $0.cantonese, jyutping: $0.jyutping, english: $0.mandarin) },
+tip: next.tip,
+suggestedReplies: [
+SuggestedReply(cantonese: next.sentence.cantonese, jyutping: next.sentence.jyutping, english: next.sentence.mandarin),
 SuggestedReply(cantonese: "考考我", jyutping: "haau2 haau2 ngo5", english: "来个小测验"),
 SuggestedReply(cantonese: "换个主题", jyutping: "wun6 go3 zyu2 tai4", english: "看看其他主题"),
 ],
