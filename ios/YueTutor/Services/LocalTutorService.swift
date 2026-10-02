@@ -545,6 +545,17 @@ difficulty: "beginner"
 )
 }
 
+/// "换个主题"快捷回复：按钮上标注当前主题，如"换个主题（当前：问候与礼貌）"。
+/// 点按后发出的文本仍含"换个主题"，service 用子串匹配照常切主题。
+private func switchThemeReply(current theme: CourseTheme?) -> SuggestedReply {
+    let label = theme.map { "换个主题（当前：\($0.titleZh)）" } ?? "换个主题"
+    return SuggestedReply(
+        cantonese: label,
+        jyutping: "wun6 go3 zyu2 tai4",
+        english: "看看其他主题"
+    )
+}
+
 /// 主题 Lesson：主题导语 + 场景句，breakdown 放 5 个词，tip 放主题 tip
 private func themeLesson(_ theme: CourseTheme, switched: Bool = false) -> Lesson {
 let lead = switched
@@ -559,7 +570,7 @@ tip: theme.tip,
 suggestedReplies: [
 SuggestedReply(cantonese: "考考我", jyutping: "haau2 haau2 ngo5", english: "来个小测验"),
 SuggestedReply(cantonese: theme.sentence.cantonese, jyutping: theme.sentence.jyutping, english: theme.sentence.mandarin),
-SuggestedReply(cantonese: "换个主题", jyutping: "wun6 go3 zyu2 tai4", english: "看看其他主题"),
+switchThemeReply(current: theme),
 ],
 difficulty: "beginner"
 )
@@ -613,7 +624,7 @@ correction: correction,
 tip: quizTheme?.tip,
 suggestedReplies: [
 SuggestedReply(cantonese: "再考一个", jyutping: "zoi3 haau2 jat1 go3", english: "再考一个"),
-SuggestedReply(cantonese: "换个主题", jyutping: "wun6 go3 zyu2 tai4", english: "看看其他主题"),
+switchThemeReply(current: quizTheme),
 ],
 difficulty: "beginner"
 )
@@ -630,7 +641,7 @@ tip: "跟读建议：先慢速跟准每个字嘅声调，再加速连成一句�
 suggestedReplies: [
 SuggestedReply(cantonese: theme.sentence.cantonese, jyutping: theme.sentence.jyutping, english: theme.sentence.mandarin),
 SuggestedReply(cantonese: "考考我", jyutping: "haau2 haau2 ngo5", english: "来个小测验"),
-SuggestedReply(cantonese: "换个主题", jyutping: "wun6 go3 zyu2 tai4", english: "看看其他主题"),
+switchThemeReply(current: theme),
 ],
 difficulty: "beginner"
 )
@@ -646,7 +657,7 @@ breakdown: sentenceKeywords(in: theme),
 tip: "跟读建议：先慢速跟准每个字嘅声调，再加速连成一句。",
 suggestedReplies: [
 SuggestedReply(cantonese: theme.sentence.cantonese, jyutping: theme.sentence.jyutping, english: theme.sentence.mandarin),
-SuggestedReply(cantonese: "换个主题", jyutping: "wun6 go3 zyu2 tai4", english: "看看其他主题"),
+switchThemeReply(current: theme),
 ],
 difficulty: "beginner"
 )
@@ -663,7 +674,7 @@ tip: next.tip,
 suggestedReplies: [
 SuggestedReply(cantonese: next.sentence.cantonese, jyutping: next.sentence.jyutping, english: next.sentence.mandarin),
 SuggestedReply(cantonese: "考考我", jyutping: "haau2 haau2 ngo5", english: "来个小测验"),
-SuggestedReply(cantonese: "换个主题", jyutping: "wun6 go3 zyu2 tai4", english: "看看其他主题"),
+switchThemeReply(current: next),
 ],
 difficulty: "beginner"
 )
@@ -680,7 +691,7 @@ tip: next.tip,
 suggestedReplies: [
 SuggestedReply(cantonese: next.sentence.cantonese, jyutping: next.sentence.jyutping, english: next.sentence.mandarin),
 SuggestedReply(cantonese: "考考我", jyutping: "haau2 haau2 ngo5", english: "来个小测验"),
-SuggestedReply(cantonese: "换个主题", jyutping: "wun6 go3 zyu2 tai4", english: "看看其他主题"),
+switchThemeReply(current: next),
 ],
 difficulty: "beginner"
 )
