@@ -372,7 +372,8 @@ Self.curriculum.first { $0.id == id}
 }
 
 /// 下一个练习主题：兴趣优先——若用户在设置页勾了感兴趣的主题，
-/// 按课程顺序跳到下一个感兴趣的（跳过当前主题、跳过已暂存的难句）；
+/// 按课程顺序找下一个感兴趣的（跳过已暂存的难句）；
+/// 只剩当前主题自己可选时原地停留（单兴趣主题）；
 /// 没选兴趣 / 感兴趣的都不可用时，回退到全量顺序轮换。
 private func nextPracticeTheme(after id: String, interests: [String] = []) -> CourseTheme {
 let n = Self.curriculum.count
@@ -383,8 +384,8 @@ var i = (idx + 1) % n
 var guardCount = 0
 while guardCount < n {
 let theme = Self.curriculum[i]
-if theme.id != id,
-interests.contains(theme.titleZh),
+// 注意不排除当前主题：单兴趣时转一圈落回自己，即原地停留
+if interests.contains(theme.titleZh),
 !deferredThemes.contains(theme.id) {
 return theme
 }
@@ -491,17 +492,20 @@ return readAlongLesson(theme, round: count)
 }
 
 // 2b. 换个主题：兴趣优先（设置页勾选的主题先轮），否则按课程顺序切到下一个（跳过已暂存的难句）
+// 单兴趣主题时可能原地停留（stayed），此时不说"换到"
 if text.contains("换个主题") || text.contains("換個主題") {
 let next: CourseTheme
+var stayed = false
 if let cur = currentThemeId {
 next = nextPracticeTheme(after: cur, interests: profile.interests)
+stayed = (next.id == cur)
 } else {
 next = Self.curriculum[0]
 }
 currentThemeId = next.id
 pendingQuiz = nil
 pendingReadAlong = next.id
-return themeLesson(next, switched: true)
+return themeLesson(next, switched: !stayed, stayed: stayed)
 }
 
 // 3. 测验请求：出题（先不给答案）
@@ -589,14 +593,21 @@ private func switchThemeReply(current theme: CourseTheme?) -> SuggestedReply {
 }
 
 /// 主题 Lesson：主题导语 + 场景句，breakdown 放 5 个词，tip 放主题 tip
-private func themeLesson(_ theme: CourseTheme, switched: Bool = false) -> Lesson {
-let lead = switched
-? "好，换到「\(theme.titleZh)」主题！"
-: "好，我哋嚟学「\(theme.titleZh)」！"
+private func themeLesson(_ theme: CourseTheme, switched: Bool = false, stayed: Bool = false) -> Lesson {
+let lead: String
+if stayed {
+lead = "「\(theme.titleZh)」系而家可选嘅兴趣主题，我哋留喺度继续！"
+} else if switched {
+lead = "好，换到「\(theme.titleZh)」主题！"
+} else {
+lead = "好，我哋嚟学「\(theme.titleZh)」！"
+}
 return Lesson(
 replyCantonese: "\(lead)先嚟一句最实用嘅场景句：「\(theme.sentence.cantonese)」",
 replyJyutping: theme.sentence.jyutping,
-replyEnglish: "今天我们学「\(theme.titleZh)」。先来一句最实用的场景句：「\(theme.sentence.mandarin)」",
+replyEnglish: stayed
+? "「\(theme.titleZh)」是目前可选的兴趣主题，我们留在这里继续。"
+: "今天我们学「\(theme.titleZh)」。先来一句最实用的场景句：「\(theme.sentence.mandarin)」",
 breakdown: theme.words.map { BreakdownItem(cantonese: $0.cantonese, jyutping: $0.jyutping, english: $0.mandarin)},
 tip: theme.tip,
 suggestedReplies: [
