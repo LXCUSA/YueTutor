@@ -15,6 +15,10 @@ final class ChatViewModel: ObservableObject {
     private var profileStore: ProfileStore?
     private var synthesizer: SpeechSynthesizer?
     private var didStart = false
+    /// 缓存的 service 实例：LocalTutorService 在内部维护跟读计数、待跟读句、
+    /// 失败跳过等会话状态，必须复用同一实例；每次新建会导致状态丢失（永远"第 1 遍"）。
+    private var cachedService: (any TutorService)?
+    private var cachedServiceMode: TutorMode?
 
     // MARK: - 配置
 
@@ -84,14 +88,22 @@ final class ChatViewModel: ObservableObject {
 
     // MARK: - 内部
 
-    /// 按设置选择 service。
+    /// 按设置选择 service。实例按 tutorMode 缓存复用（切换模式时重建），
+    /// 保证 LocalTutorService 的会话状态（跟读计数等）在多轮对话间连续。
     private func makeService() -> (any TutorService)? {
         guard let settings else { return nil }
-        if settings.tutorMode == .local {
-            return LocalTutorService()
-        } else {
-            return ProxyTutorService(settings: settings)
+        if let cached = cachedService, cachedServiceMode == settings.tutorMode {
+            return cached
         }
+        let service: any TutorService
+        if settings.tutorMode == .local {
+            service = LocalTutorService()
+        } else {
+            service = ProxyTutorService(settings: settings)
+        }
+        cachedService = service
+        cachedServiceMode = settings.tutorMode
+        return service
     }
 
     /// 最近 20 条有效消息转 `[ChatTurn]`（去掉思考中的 pending；role 用
