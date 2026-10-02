@@ -160,9 +160,9 @@ struct ChatView: View {
                         jumpToBottomNonce += 1
                     } label: {
                         Image(systemName: "chevron.down")
-                            .font(.title3.weight(.semibold))
+                            .font(.body.weight(.semibold))
                             .foregroundColor(.white)
-                            .frame(width: 52, height: 52)
+                            .frame(width: 44, height: 44)
                             .background(Theme.accent)
                             .clipShape(Circle())
                             .shadow(color: .black.opacity(0.3), radius: 8, x: 0, y: 4)
