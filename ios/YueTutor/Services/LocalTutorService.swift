@@ -120,6 +120,8 @@ tip: "返 faan1、飯 faan6 的 aa 拉长；瞓 fan3 先圆唇再收 -n 鼻音�
 // MARK: - 会话状态
 /// 当前主题 id（用户最近一次进入的主题）
 var currentThemeId: String?
+/// 协议属性：供 UI 高亮当前话题
+var currentTopicId: String? { currentThemeId }
 /// 待公布答案的测验词
 var pendingQuiz: CourseWord?
 /// 跟读计数：themeId -> 该主题场景句已读对的遍数（过关后清零）
@@ -244,7 +246,7 @@ next = Self.curriculum[0]
 }
 currentThemeId = next.id
 pendingReadAlong = next.id
-return themeLesson(next)
+return themeLesson(next, switched: true)
 }
 
 // 3. 测验请求：出题（先不给答案）
@@ -307,9 +309,12 @@ difficulty: "beginner"
 }
 
 /// 主题 Lesson：主题导语 + 场景句，breakdown 放 5 个词，tip 放主题 tip
-private func themeLesson(_ theme: CourseTheme) -> Lesson {
-Lesson(
-replyCantonese: "今日我哋学！先嚟一句最实用嘅场景句：「\(theme.sentence.cantonese)」",
+private func themeLesson(_ theme: CourseTheme, switched: Bool = false) -> Lesson {
+let lead = switched
+? "好，换到「\(theme.titleZh)」主题！"
+: "好，我哋嚟学「\(theme.titleZh)」！"
+return Lesson(
+replyCantonese: "\(lead)先嚟一句最实用嘅场景句：「\(theme.sentence.cantonese)」",
 replyJyutping: theme.sentence.jyutping,
 replyEnglish: "今天我们学「\(theme.titleZh)」。先来一句最实用的场景句：「\(theme.sentence.mandarin)」",
 breakdown: theme.words.map { BreakdownItem(cantonese: $0.cantonese, jyutping: $0.jyutping, english: $0.mandarin)},

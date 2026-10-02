@@ -10,6 +10,8 @@ final class ChatViewModel: ObservableObject {
     @Published var messages: [ChatMessage] = []
     /// 是否正在等待家教回复。
     @Published var isSending = false
+    /// 当前主题 id（用于高亮顶部话题 chip），每次收到家教回复后更新。
+    @Published var currentTopicId: String?
 
     private var settings: AppSettings?
     private var profileStore: ProfileStore?
@@ -144,6 +146,7 @@ final class ChatViewModel: ObservableObject {
             if let index = messages.firstIndex(where: { $0.id == pendingID }) {
                 messages[index] = .tutor(lesson)
             }
+            currentTopicId = service.currentTopicId
             if settings.autoSpeak {
                 synthesizer?.speak(lesson.replyCantonese, rate: settings.speechRate)
             }

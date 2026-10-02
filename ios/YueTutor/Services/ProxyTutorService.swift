@@ -42,4 +42,7 @@ final class ProxyTutorService: TutorService {
         let request = ChatRequest(profile: payload, history: history, userText: userText, useWebSearch: useWebSearch)
         return try await client.sendChat(request)
     }
+
+    /// 代理模式不维护本地主题状态，返回 nil（话题 chip 不高亮）
+    var currentTopicId: String? { nil }
 }

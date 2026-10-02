@@ -86,6 +86,7 @@ struct ChatView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
                     ForEach(topics, id: \.id) { theme in
+                        let isCurrent = theme.id == viewModel.currentTopicId
                         Button {
                             viewModel.switchTopic(theme.titleZh)
                         } label: {
@@ -93,8 +94,8 @@ struct ChatView: View {
                                 .font(.subheadline)
                                 .padding(.horizontal, 12)
                                 .padding(.vertical, 7)
-                                .background(Theme.accent.opacity(0.10))
-                                .foregroundColor(Theme.accent)
+                                .background(isCurrent ? Theme.accent : Theme.accent.opacity(0.10))
+                                .foregroundColor(isCurrent ? .white : Theme.accent)
                                 .clipShape(Capsule())
                         }
                         .buttonStyle(.plain)
