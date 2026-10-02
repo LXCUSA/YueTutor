@@ -11,6 +11,12 @@ enum TutorMode: String, Codable, CaseIterable {
 enum AppLanguage: String, Codable, CaseIterable {
     case chinese = "zh-Hans"
     case english = "en"
+
+    /// 跟随系统语言：中文系（zh-Hans/zh-Hant/…）显示中文，其他显示英文
+    static var systemDefault: AppLanguage {
+        let first = Locale.preferredLanguages.first ?? ""
+        return first.hasPrefix("zh") ? .chinese : .english
+    }
 }
 
 // MARK: - App 设置

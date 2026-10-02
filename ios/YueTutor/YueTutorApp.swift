@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// App 入口：装配全局状态（设置 / 个人信息 / 语音合成）。界面语言固定中文。
+/// App 入口：装配全局状态（设置 / 个人信息 / 语音合成）。界面语言跟随系统（中文系→中文，其他→英文）。
 @main
 struct YueTutorApp: App {
     @StateObject private var settings: AppSettings
@@ -9,7 +9,7 @@ struct YueTutorApp: App {
 
     init() {
         _settings = StateObject(wrappedValue: AppSettings())
-        L10n.language = .chinese
+        L10n.language = .systemDefault
     }
 
     var body: some Scene {

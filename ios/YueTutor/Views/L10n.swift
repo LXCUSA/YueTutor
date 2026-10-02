@@ -1,12 +1,12 @@
 import Foundation
 
-/// 界面文案本地化：固定中文（`AppLanguage.chinese`），不跟随系统语言。
+/// 界面文案本地化：跟随系统语言（中文系显示中文，其他显示英文），设置页不提供手动切换。
 ///
 /// 用法：`L10n.t("tab.chat")`
 /// 文案从 Bundle.main 下 `{language.rawValue}.lproj/Localizable.strings` 读取，
 /// 找不到时回退为 key 本身，方便在开发期发现漏配的 key。
 enum L10n {
-    /// 当前界面语言，固定 `.chinese`（设置页不提供语言切换）。
+    /// 当前界面语言，启动时按系统语言确定（`AppLanguage.systemDefault`）。
     static var language: AppLanguage = .chinese
 
     /// 取 key 对应的本地化文案。
