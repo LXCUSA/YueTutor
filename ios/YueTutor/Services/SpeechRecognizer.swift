@@ -63,15 +63,13 @@ final class SpeechRecognizer: ObservableObject {
         }
         guard !isRecording else { return }
 
-        // 先清理上一轮的残留状态
-        recognitionTask?.cancel()
-        recognitionTask = nil
-        stopEngine()
-
+        // 1. 先配好录音会话 —— 必须在首次触碰 inputNode 之前！
+        //    inputNode 是懒创建的，创建那一刻的会话决定了它的声道数，
+        //    若先触碰（如下面的 stopEngine）再配会话，格式会永久定格为 0 声道。
         do {
             let audioSession = AVAudioSession.sharedInstance()
-            // 先失活再切 category：会话可能停在 TTS 的 .playback 上（激活状态直接切
-            // category 切不彻底），会导致 inputNode 读到 0 声道格式
+            // 先失活再切 category：会话可能停在 TTS 的 .playback 上，
+            // 激活状态直接切 category 切不彻底
             try audioSession.setActive(false, options: .notifyOthersOnDeactivation)
             try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
@@ -79,6 +77,11 @@ final class SpeechRecognizer: ObservableObject {
             errorMessage = "无法启动麦克风：\(error.localizedDescription)"
             return
         }
+
+        // 2. 再清理上一轮的残留状态（这里才会首次触碰 inputNode，此时会话已就绪）
+        recognitionTask?.cancel()
+        recognitionTask = nil
+        stopEngine()
 
         let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = true
