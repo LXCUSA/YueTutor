@@ -10,6 +10,13 @@ targets:
     platform: iOS
     sources:
       - YueTutor        # 源码目录（含 Models/Services/Views/ViewModels/Resources）
+    # 注意：INFOPLIST_KEY_UIFileSharingEnabled 经 Xcode 生成管线会被吞掉（实测 built plist 缺失，
+    # 而 LSSupportsOpeningDocumentsInPlace 正常），故在此用 post-build 脚本直接注入。
+    postBuildScripts:
+      - name: Inject UIFileSharingEnabled into Info.plist
+        script: |
+          PLIST="${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
+          /usr/libexec/PlistBuddy -c "Add :UIFileSharingEnabled bool true" "$PLIST" 2>/dev/null || /usr/libexec/PlistBuddy -c "Set :UIFileSharingEnabled true" "$PLIST"
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: one.lxc.yuetutor
