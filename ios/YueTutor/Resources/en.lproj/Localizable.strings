@@ -99,3 +99,14 @@
 "settings.reload_curriculum" = "Reload course";
 "settings.export_done" = "Template exported: %@. Copy it as curriculum.json in the Files app, then edit.";
 "settings.export_failed" = "Export failed, please try again";
+
+// Daily check-in
+"checkin.today" = "Today's check-in";
+"checkin.words" = "5 words today";
+"checkin.sentence" = "1 sentence today";
+"checkin.tip" = "Pronunciation tip";
+"checkin.complete" = "Finish check-in";
+"checkin.reported" = "Reported — tomorrow's check-in will adapt to today";
+"checkin.report_failed" = "Report failed, please try again later";
+"checkin.empty" = "No check-in yet — it'll appear when online";
+"checkin.progress" = "%d/%d";

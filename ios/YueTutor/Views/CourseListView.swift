@@ -4,6 +4,7 @@ import SwiftUI
 struct CourseListView: View {
     @EnvironmentObject private var settings: AppSettings
     @EnvironmentObject private var synthesizer: SpeechSynthesizer
+    @EnvironmentObject private var checkinService: DailyCheckinService
 
     private var themes: [CourseTheme] {
         LocalTutorService.curriculum
@@ -12,6 +13,10 @@ struct CourseListView: View {
     var body: some View {
         NavigationStack {
             List {
+                // 今日打卡卡片
+                Section {
+                    DailyCheckinCard()
+                }
                 Section {
                     ForEach(themes, id: \.id) { theme in
                         NavigationLink {
@@ -38,6 +43,9 @@ struct CourseListView: View {
                 }
             }
             .navigationTitle(L10n.t("course.title"))
+            .onAppear {
+                checkinService.refresh()
+            }
         }
     }
 

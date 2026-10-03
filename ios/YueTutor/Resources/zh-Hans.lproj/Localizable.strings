@@ -99,3 +99,14 @@
 "settings.reload_curriculum" = "重新载入课程";
 "settings.export_done" = "模板已导出：%@，去“文件”App 里复制为 curriculum.json 后编辑";
 "settings.export_failed" = "导出失败，请重试";
+
+// 每日打卡
+"checkin.today" = "今日打卡";
+"checkin.words" = "今日 5 词";
+"checkin.sentence" = "今日 1 句";
+"checkin.tip" = "发音小贴士";
+"checkin.complete" = "完成打卡";
+"checkin.reported" = "已上报，明天的打卡会参考今天的情况";
+"checkin.report_failed" = "上报失败，请稍后重试";
+"checkin.empty" = "暂无打卡内容，联网后自动获取";
+"checkin.progress" = "%d/%d";

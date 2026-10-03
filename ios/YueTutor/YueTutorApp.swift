@@ -6,6 +6,7 @@ struct YueTutorApp: App {
     @StateObject private var settings: AppSettings
     @StateObject private var profileStore = ProfileStore()
     @StateObject private var synthesizer = SpeechSynthesizer()
+    @StateObject private var checkinService = DailyCheckinService()
 
     init() {
         _settings = StateObject(wrappedValue: AppSettings())
@@ -18,6 +19,7 @@ struct YueTutorApp: App {
                 .environmentObject(settings)
                 .environmentObject(profileStore)
                 .environmentObject(synthesizer)
+                .environmentObject(checkinService)
         }
     }
 }
