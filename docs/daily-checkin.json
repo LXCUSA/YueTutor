@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-03",
+  "weekday": "周六",
+  "theme": "家庭·日常",
+  "words": [
+    {
+      "cantonese": "爸爸",
+      "jyutping": "baa4 baa1",
+      "hakka": "爸爸(pa pa)",
+      "mandarin": "爸爸"
+    },
+    {
+      "cantonese": "媽媽",
+      "jyutping": "maa4 maa1",
+      "hakka": "妈妈(ma ma)",
+      "mandarin": "妈妈"
+    },
+    {
+      "cantonese": "食飯",
+      "jyutping": "sik6 faan6",
+      "hakka": "食饭(sit fan)",
+      "mandarin": "吃饭"
+    },
+    {
+      "cantonese": "瞓覺",
+      "jyutping": "fan3 gaau3",
+      "hakka": "瞓觉(fun kau)",
+      "mandarin": "睡觉"
+    },
+    {
+      "cantonese": "返工",
+      "jyutping": "faan1 gung1",
+      "hakka": "返工(fan kung)",
+      "mandarin": "上班"
+    }
+  ],
+  "sentence": {
+    "cantonese": "阿爸今晚唔返嚟食飯？",
+    "jyutping": "aa3 baa4 gam1 maan5 m4 faan1 lai4 sik6 faan6?",
+    "mandarin": "爸爸今晚不回来吃饭吗？"
+  },
+  "tip": "返 faan1、飯 faan6 的 aa 拉长；瞓 fan3 先圆唇再收 -n 鼻音，别读松了。"
+}
