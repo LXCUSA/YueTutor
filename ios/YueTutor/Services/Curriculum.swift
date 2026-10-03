@@ -17,12 +17,12 @@ struct CourseSentence: Codable, Hashable {
 }
 
 // MARK: - 课程主题
-/// 一个主题 = 5 个词 + 1 个场景句 + 1 条发音 tip
+/// 一个主题 = 8 个词 + 3 个场景句 + 1 条发音 tip
 struct CourseTheme: Codable, Hashable, Identifiable {
     let id: String          // "greeting" / "number" / "food" / "direction" / "shopping" / "family"
     let titleZh: String
     let titleEn: String
-    let words: [CourseWord]      // 5 个
-    let sentence: CourseSentence
+    let words: [CourseWord]      // 8 个
+    let sentences: [CourseSentence]  // 3 个场景句（第 0 句为代表句）
     let tip: String              // 发音 tip（简体中文）
 }

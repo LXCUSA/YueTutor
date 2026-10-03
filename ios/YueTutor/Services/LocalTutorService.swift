@@ -21,11 +21,23 @@ CourseWord(cantonese: "初次見面", jyutping: "co1 ci3 gin3 min6", hakka: "初
 CourseWord(cantonese: "麻煩你", jyutping: "maa4 faan4 nei5", hakka: "麻烦你(ma fan ngi)", mandarin: "麻烦你"),
 CourseWord(cantonese: "拜拜", jyutping: "baai1 baai3", hakka: "拜拜(pai pai)", mandarin: "拜拜"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "好耐冇见，你最近点呀？",
 jyutping: "hou2 noi6 mou5 gin3, nei5 zeoi3 gan6 dim2 aa3?",
 mandarin: "好久不见，你最近怎么样？"
 ),
+CourseSentence(
+cantonese: "早晨！今日過得好嗎？",
+jyutping: "zou2 san4! gam1 jat6 gwo3 dak1 hou2 maa3?",
+mandarin: "早上好！今天过得好吗？"
+),
+CourseSentence(
+cantonese: "多謝你嘅幫忙，真係唔該晒！",
+jyutping: "do1 ze6 nei5 ge3 bong1 mong4, zan1 hai6 m4 goi1 saai3!",
+mandarin: "谢谢你的帮忙，真是太感谢了！"
+),
+],
 tip: "阳上5声（你 nei5、好 hou2）可以套客家话阳平的升调感觉；hou2 的 ou 是双元音，圆唇收住，别念成单音 hau。"
 ),
 CourseTheme(
@@ -41,11 +53,23 @@ CourseWord(cantonese: "鐘頭", jyutping: "zung1 tau4", hakka: "钟头(zung thiu
 CourseWord(cantonese: "今日", jyutping: "gam1 jat6", hakka: "今日(kim ngit)", mandarin: "今天"),
 CourseWord(cantonese: "尋日", jyutping: "cam4 jat6", hakka: "寻日(chhim ngit)", mandarin: "昨天"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "呢個幾多錢？",
 jyutping: "ni1 go3 gei2 do1 cin4?",
 mandarin: "这个多少钱？"
 ),
+CourseSentence(
+cantonese: "而家幾點鐘呀？",
+jyutping: "ji4 gaa1 gei2 dim2 zung1 aa3?",
+mandarin: "现在几点钟？"
+),
+CourseSentence(
+cantonese: "呢個一百蚊，唔該。",
+jyutping: "ni1 go3 jat1 baak3 man1, m4 goi1.",
+mandarin: "这个一百块，谢谢。"
+),
+],
 tip: "粤语阴上调（2声，gei2/dim2）是高升调，客家话上声偏低；读 gei2 时尾音往上挑，像普通话“急”但不要那么促，别读成 gei4（记）。"
 ),
 CourseTheme(
@@ -62,11 +86,23 @@ CourseWord(cantonese: "好味", jyutping: "hou2 mei6", hakka: "好味(ho mi)", m
 CourseWord(cantonese: "埋單", jyutping: "maai4 daan1", hakka: "埋单(mai tan)", mandarin: "买单"),
 CourseWord(cantonese: "外賣", jyutping: "ngoi6 maai6", hakka: "外卖(ngoi mai)", mandarin: "外卖"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "我要一杯凍檸茶，唔該。",
 jyutping: "ngo5 jiu3 jat1 bui1 dung3 ning4 caa4, m4 goi1.",
 mandarin: "我要一杯冻柠茶，谢谢。"
 ),
+CourseSentence(
+cantonese: "呢度嘅叉燒飯好出名。",
+jyutping: "ni1 dou6 ge3 caa1 siu1 faan6 hou2 ceot1 ming4.",
+mandarin: "这里的叉烧饭很有名。"
+),
+CourseSentence(
+cantonese: "埋單唔該，我哋食飽啦。",
+jyutping: "maai4 daan1 m4 goi1, ngo5 dei6 sik6 baau2 laa1.",
+mandarin: "买单谢谢，我们吃饱了。"
+),
+],
 tip: "aa 是长元音（茶 caa4、飯 faan6），嘴张大、音拖长；客家 a 偏短，读短了会变味。对着镜子夸张读「caa——」找拉长感。"
 ),
 CourseTheme(
@@ -83,11 +119,23 @@ CourseWord(cantonese: "轉車", jyutping: "zyun3 ce1", hakka: "转车(chon chha)
 CourseWord(cantonese: "落車", jyutping: "lok6 ce1", hakka: "落车(lok chha)", mandarin: "下车"),
 CourseWord(cantonese: "上車", jyutping: "soeng5 ce1", hakka: "上车(shong chha)", mandarin: "上车"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "唔該，去地鐵站點行呀？",
 jyutping: "m4 goi1, heoi3 dei6 tit3 zaam6 dim2 haang4 aa3?",
 mandarin: "请问，去地铁站怎么走？"
 ),
+CourseSentence(
+cantonese: "直行轉左就到喇。",
+jyutping: "zik6 hang4 zyun3 zo2 zau6 dou3 laa3.",
+mandarin: "直走左转就到了。"
+),
+CourseSentence(
+cantonese: "搭地鐵邊個站落車呀？",
+jyutping: "daap3 dei6 tit3 bin1 go3 zaam6 lok6 ce1 aa3?",
+mandarin: "坐地铁哪个站下车？"
+),
+],
 tip: "轉 zyun2 的 yu 是撮口元音，客家话里没有；先摆出说“淤”时的口型（嘴唇撮圆收小）定住再发音，多练「轉車 zyun2 ce1」「遠 jyun5」。"
 ),
 CourseTheme(
@@ -104,11 +152,23 @@ CourseWord(cantonese: "找錢", jyutping: "zaau2 cin2", hakka: "找钱(chau chhi
 CourseWord(cantonese: "收銀", jyutping: "sau1 ngan2", hakka: "收银(shu ngiun)", mandarin: "收银"),
 CourseWord(cantonese: "特價", jyutping: "dak6 gaa3", hakka: "特价(thit ka)", mandarin: "特价"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "老闆，平啲得唔得呀？",
 jyutping: "lou5 ban2, ping4 di1 dak1 m4 dak1 aa3?",
 mandarin: "老板，便宜一点行不行？"
 ),
+CourseSentence(
+cantonese: "有冇得再平啲呀？",
+jyutping: "jau5 mou5 dak1 zoi3 ping4 di1 aa3?",
+mandarin: "能不能再便宜点？"
+),
+CourseSentence(
+cantonese: "我要呢件，幫我包起佢。",
+jyutping: "ngo5 jiu3 ni1 gin6, bong1 ngo5 baau1 hei2 keoi5.",
+mandarin: "我要这件，帮我包起来。"
+),
+],
 tip: "減價、價錢的 aa 要拉长（嘴张大、拖半拍）才有粤语味；折 zit3 是入声 -t 收尾，客家话有入声，直接借力、短促收住别拖出元音。"
 ),
 CourseTheme(
@@ -125,11 +185,23 @@ CourseWord(cantonese: "細佬", jyutping: "sai3 lou2", hakka: "细佬(se lau)", 
 CourseWord(cantonese: "家姐", jyutping: "gaa1 ze1", hakka: "家姐(ka chia)", mandarin: "姐姐"),
 CourseWord(cantonese: "哥哥", jyutping: "go4 go1", hakka: "哥哥(ko ko)", mandarin: "哥哥"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "阿爸今晚唔返嚟食飯？",
 jyutping: "aa3 baa4 gam1 maan5 m4 faan1 lai4 sik6 faan6?",
 mandarin: "爸爸今晚不回来吃饭吗？"
 ),
+CourseSentence(
+cantonese: "阿媽叫你早啲返屋企。",
+jyutping: "aa3 maa1 giu3 nei5 zou2 di1 faan1 uk1 kei2.",
+mandarin: "妈妈叫你早点回家。"
+),
+CourseSentence(
+cantonese: "細佬今日生日，我哋食蛋糕。",
+jyutping: "sai3 lou2 gam1 jat6 saang1 jat6, ngo5 dei6 sik6 daan6 gou1.",
+mandarin: "弟弟今天生日，我们吃蛋糕。"
+),
+],
 tip: "返 faan1、飯 faan6 的 aa 拉长；瞓 fan3 先圆唇再收 -n 鼻音，别读松了。"
 ),CourseTheme(
 id: "weather",
@@ -145,11 +217,23 @@ CourseWord(cantonese: "出太陽", jyutping: "ceot1 taai3 joeng4", hakka: "出�
 CourseWord(cantonese: "涼快", jyutping: "loeng4 faai3", hakka: "凉快(liong khuai)", mandarin: "凉快"),
 CourseWord(cantonese: "乾燥", jyutping: "gon1 cou3", hakka: "干燥(kon chau)", mandarin: "干燥"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "聽日會落雨，記得帶遮。",
 jyutping: "ting1 jat6 wui5 lok6 jyu5, gei3 dak1 daai3 ze1.",
 mandarin: "明天会下雨，记得带伞。"
 ),
+CourseSentence(
+cantonese: "今日好熱，記得多飲水。",
+jyutping: "gam1 jat6 hou2 jit6, gei3 dak1 do1 jam2 seoi2.",
+mandarin: "今天很热，记得多喝水。"
+),
+CourseSentence(
+cantonese: "出面落緊雨，記得帶遮。",
+jyutping: "ceot1 min6 lok6 gan2 jyu5, gei3 dak1 daai3 ze1.",
+mandarin: "外面在下雨，记得带伞。"
+),
+],
 tip: "入聲 -k 尾（熱 jit6、落 lok6）要短促收住，別拖長；遮 ze1 是陰平高平調。"
 ),
 CourseTheme(
@@ -166,11 +250,23 @@ CourseWord(cantonese: "感冒", jyutping: "gam2 mou6", hakka: "感冒(kam mau)",
 CourseWord(cantonese: "休息", jyutping: "jau1 sik1", hakka: "休息(hiu sit)", mandarin: "休息"),
 CourseWord(cantonese: "睇醫生", jyutping: "tai2 ji1 sang1", hakka: "睇医生(thai yi sen)", mandarin: "看医生"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "我有啲發燒，聽日去睇醫生。",
 jyutping: "ngo5 jau5 di1 faat3 siu1, ting1 jat6 heoi3 tai2 ji1 sang1.",
 mandarin: "我有点发烧，明天去看医生。"
 ),
+CourseSentence(
+cantonese: "我喉嚨痛，食唔落嘢。",
+jyutping: "ngo5 hau4 lung4 tung3, sik6 m4 lok6 je5.",
+mandarin: "我喉咙痛，吃不下东西。"
+),
+CourseSentence(
+cantonese: "醫生叫我食藥同休息。",
+jyutping: "ji1 sang1 giu3 ngo5 sik6 joek6 tung4 jau1 sik1.",
+mandarin: "医生叫我吃药和休息。"
+),
+],
 tip: "醫 ji1 陰平起音要高；燒 siu1 的 iu 係雙元音，別讀成單音素。"
 ),
 CourseTheme(
@@ -187,11 +283,23 @@ CourseWord(cantonese: "接電話", jyutping: "zip3 din6 waa2", hakka: "接电话
 CourseWord(cantonese: "收線", jyutping: "sau1 sin3", hakka: "收线(shu sien)", mandarin: "挂电话"),
 CourseWord(cantonese: "打錯", jyutping: "daa2 co3", hakka: "打错(ta chho)", mandarin: "打错（电话）"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "你聽日得唔得閒，我打畀你？",
 jyutping: "nei5 ting1 jat6 dak1 m4 dak1 haan4, ngo5 daa2 bei2 nei5?",
 mandarin: "你明天有空吗，我打给你？"
 ),
+CourseSentence(
+cantonese: "你而家方便聽電話嗎？",
+jyutping: "nei5 ji4 gaa1 fong1 bin6 teng1 din6 waa2 maa3?",
+mandarin: "你现在方便接电话吗？"
+),
+CourseSentence(
+cantonese: "收唔到你訊息，我再打過。",
+jyutping: "sau1 m4 dou3 nei5 seon3 sik1, ngo5 zoi3 daa2 gwo3.",
+mandarin: "没收到你消息，我再打过去。"
+),
+],
 tip: "電 din6 陽去低降調，別讀成高音；畀 bei2 係「給」嘅意思，口語常用。"
 ),
 CourseTheme(
@@ -208,11 +316,23 @@ CourseWord(cantonese: "戶口", jyutping: "wu6 hau2", hakka: "户口(fu heu)", m
 CourseWord(cantonese: "㩒錢", jyutping: "gam6 cin2", hakka: "㩒钱(khem chhien)", mandarin: "取钱（按钱）"),
 CourseWord(cantonese: "櫃員機", jyutping: "gwai6 jyun4 gei1", hakka: "柜员机(khui ien ki)", mandarin: "ATM"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "附近有冇櫃員機，我想㩒錢。",
 jyutping: "fu6 gan6 jau5 mou5 gwai6 jyun4 gei1, ngo5 soeng2 gam6 cin2.",
 mandarin: "附近有ATM吗，我想取钱。"
 ),
+CourseSentence(
+cantonese: "我想開個戶口，點申請呀？",
+jyutping: "ngo5 soeng2 hoi1 go3 wu6 hau2, dim2 san1 cing2 aa3?",
+mandarin: "我想开个户，怎么申请？"
+),
+CourseSentence(
+cantonese: "呢張卡喺內地用唔用得？",
+jyutping: "ni1 zoeng1 kaat1 hai2 noi6 dei6 jung6 m4 jung6 dak1?",
+mandarin: "这张卡在内地能不能用？"
+),
+],
 tip: "銀 ngan4 嘅 ng 聲母係鼻音起頭，普通話冇呢個聲母，多練；㩒 gem6 係地道口語「按」嘅意思。"
 ),
 CourseTheme(
@@ -229,11 +349,23 @@ CourseWord(cantonese: "行李", jyutping: "hang4 lei5", hakka: "行李(hang li)"
 CourseWord(cantonese: "導遊", jyutping: "dou6 jau4", hakka: "导游(tho iu)", mandarin: "导游"),
 CourseWord(cantonese: "出發", jyutping: "ceot1 faat3", hakka: "出发(chut fat)", mandarin: "出发"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "我哋下個月去旅行，你去唔去？",
 jyutping: "ngo5 dei6 haa6 go3 jyut6 heoi3 leoi5 hang4, nei5 heoi3 m4 heoi3?",
 mandarin: "我们下个月去旅行，你去不去？"
 ),
+CourseSentence(
+cantonese: "我哋搭飛機去日本玩。",
+jyutping: "ngo5 dei6 daap3 fei1 gei1 heoi3 jat6 bun2 waan2.",
+mandarin: "我们坐飞机去日本玩。"
+),
+CourseSentence(
+cantonese: "酒店包唔包早餐㗎？",
+jyutping: "zau2 dim3 baau1 m4 baau1 zou2 caan1 gaa3?",
+mandarin: "酒店包早餐吗？"
+),
+],
 tip: "旅 leoi5 嘅 eo 係圓唇元音，先圓唇再展唇，陽上調上揚。"
 ),
 CourseTheme(
@@ -249,11 +381,23 @@ CourseWord(cantonese: "朋友", jyutping: "pang4 jau5", hakka: "朋友(phang iu)
 CourseWord(cantonese: "食嘢", jyutping: "sik6 je5", hakka: "食嘢(sit ie)", mandarin: "吃东西"),
 CourseWord(cantonese: "假期", jyutping: "gaa3 kei4", hakka: "假期(ka khi)", mandarin: "假期"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "週末一齊去睇戲，好唔好？",
 jyutping: "zau1 mut6 jat1 cai4 heoi3 tai2 hei3, hou2 m4 hou2?",
 mandarin: "周末一起去看电影，好不好？"
 ),
+CourseSentence(
+cantonese: "今晚有演唱會，你去唔去？",
+jyutping: "gam1 maan5 jau5 jin2 coeng3 wui2, nei5 heoi3 m4 heoi3?",
+mandarin: "今晚有演唱会，你去不去？"
+),
+CourseSentence(
+cantonese: "呢套戲好睇，我睇咗兩次。",
+jyutping: "ni1 tou3 hei3 hou2 tai2, ngo5 tai2 zo2 loeng5 ci3.",
+mandarin: "这部电影好看，我看了两次。"
+),
+],
 tip: "戲 hei3 嘅 ei 係雙元音，嘴型由半開到閉，陰去調下降。"
 ),
 CourseTheme(
@@ -269,11 +413,23 @@ CourseWord(cantonese: "加班", jyutping: "gaa1 baan1", hakka: "加班(ka pan)",
 CourseWord(cantonese: "人工", jyutping: "jan4 gung1", hakka: "人工(ngin kung)", mandarin: "工资"),
 CourseWord(cantonese: "請假", jyutping: "ceng2 gaa3", hakka: "请假(chhiang ka)", mandarin: "请假"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "我今日要加班，唔嚟食飯啦。",
 jyutping: "ngo5 gam1 jat6 jiu3 gaa1 baan1, m4 lai4 sik6 faan6 laa1.",
 mandarin: "我今天要加班，不来吃饭了。"
 ),
+CourseSentence(
+cantonese: "聽日九點開會，唔好遲到。",
+jyutping: "ting1 jat6 gau2 dim2 hoi1 wui2, m4 hou2 ci4 dou3.",
+mandarin: "明天九点开会，不要迟到。"
+),
+CourseSentence(
+cantonese: "呢份文件你簽咗未呀？",
+jyutping: "ni1 fan6 man4 gin2 nei5 cim1 zo2 mei6 aa3?",
+mandarin: "这份文件你签了没有？"
+),
+],
 tip: "闆 baan2 嘅 aa 長元音拉長，陽上調上揚，別讀短。"
 ),
 CourseTheme(
@@ -290,11 +446,23 @@ CourseWord(cantonese: "大排檔", jyutping: "daai6 paai4 dong3", hakka: "大排
 CourseWord(cantonese: "港式", jyutping: "gong2 sik1", hakka: "港式(kong shit)", mandarin: "港式"),
 CourseWord(cantonese: "地道", jyutping: "dei6 dou6", hakka: "地道(thi tho)", mandarin: "地道"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "嚟香港一定要去茶餐廳飲茶！",
 jyutping: "lai4 hoeng1 gong2 jat1 ding6 jiu3 heoi3 caa4 caan1 teng1 jam2 caa4!",
 mandarin: "来香港一定要去茶餐厅饮茶！"
 ),
+CourseSentence(
+cantonese: "搭叮叮遊港島，好寫意。",
+jyutping: "daap3 ding1 ding1 jau4 gong2 dou2, hou2 se2 ji3.",
+mandarin: "坐叮叮游港岛，好惬意。"
+),
+CourseSentence(
+cantonese: "利是係新年派畀細路嘅。",
+jyutping: "lai6 si6 hai6 san1 nin4 paai3 bei2 sai3 lou6 ge3.",
+mandarin: "利是是新年派给小孩的。"
+),
+],
 tip: "餐 caan1 嘅 aan 鼻韻尾，陰平高平調，一字一頓讀清楚。"
 ),
 CourseTheme(
@@ -311,11 +479,23 @@ CourseWord(cantonese: "遲到", jyutping: "ci4 dou3", hakka: "迟到(chhi to)", 
 CourseWord(cantonese: "等陣", jyutping: "dang2 zan6", hakka: "等阵(ten chhin)", mandarin: "等一下"),
 CourseWord(cantonese: "見面", jyutping: "gin3 min6", hakka: "见面(kien mien)", mandarin: "见面"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "聽日晏晝三點見，得唔得？",
 jyutping: "ting1 jat6 aan3 zau3 saam1 dim2 gin3, dak1 m4 dak1?",
 mandarin: "明天下午三点见，行不行？"
 ),
+CourseSentence(
+cantonese: "今晚一齊食飯，好嗎？",
+jyutping: "gam1 maan5 jat1 cai4 sik6 faan6, hou2 maa3?",
+mandarin: "今晚一起吃饭，好吗？"
+),
+CourseSentence(
+cantonese: "星期六得閒出嚟飲嘢嗎？",
+jyutping: "sing1 kei4 luk6 dak1 haan4 ceot1 lai4 jam2 je5 maa3?",
+mandarin: "星期六有空出来喝东西吗？"
+),
+],
 tip: "約 joek3 入聲 -k 尾短促；晝 zau3 嘅 au 雙元音，陰去調下降。"
 ),
 CourseTheme(
@@ -332,11 +512,23 @@ CourseWord(cantonese: "驚", jyutping: "geng1", hakka: "惊(kiang)", mandarin: "
 CourseWord(cantonese: "冇嘢", jyutping: "mou5 je5", hakka: "冇嘢(mau ie)", mandarin: "没事"),
 CourseWord(cantonese: "加油", jyutping: "gaa1 jau2", hakka: "加油(ka iu)", mandarin: "加油"),
 ],
-sentence: CourseSentence(
+sentences: [
+CourseSentence(
 cantonese: "唔使擔心，一切都會好返嘅。",
 jyutping: "m4 sai2 daam1 sam1, jat1 cai3 dou1 wui5 hou2 faan1 ge3.",
 mandarin: "不用担心，一切都会好起来的。"
 ),
+CourseSentence(
+cantonese: "今日好開心，多謝你陪我。",
+jyutping: "gam1 jat6 hou2 hoi1 sam1, do1 ze6 nei5 pui4 ngo5.",
+mandarin: "今天很开心，谢谢你陪我。"
+),
+CourseSentence(
+cantonese: "唔開心就講出嚟，唔好收收埋埋。",
+jyutping: "m4 hoi1 sam1 zau6 gong2 ceot1 lai4, m4 hou2 sau1 sau1 maai4 maai4.",
+mandarin: "不开心就说出来，不要藏着掖着。"
+),
+],
 tip: "嬲 nau1 陰平高平調，au 雙元音飽滿；驚 geng1 嘅 eng 鼻韻別讀成 en。"
 ),
 ]
@@ -360,6 +552,8 @@ var readAlongFails: [String: Int] = [:]
 var deferredThemes: [String] = []
 /// 上一次测验是否从兴趣主题出题（"再考一个"沿用该范围）
 var lastQuizFromInterests = false
+/// 跟读当前句子序号：themeId -> sentences 下标（默认 0）；每主题逐句过关
+var readAlongSentenceIndex: [String: Int] = [:]
 /// 跟读连错几次后智能跳过
 static let readAlongMaxFails = 3
 /// 判定"用户在尝试跟读"的字符重合度阈值（0~1）
@@ -369,6 +563,13 @@ static let readAlongAttemptThreshold = 0.4
 /// 按主题 id 取主题
 func theme(id: String) -> CourseTheme? {
 Self.curriculum.first { $0.id == id}
+}
+
+/// 取主题当前跟读的句子（序号越界时回退第 0 句）
+func readAlongSentence(of theme: CourseTheme) -> CourseSentence {
+let i = readAlongSentenceIndex[theme.id] ?? 0
+guard theme.sentences.indices.contains(i) else { return theme.sentences[0] }
+return theme.sentences[i]
 }
 
 /// 下一个练习主题：兴趣优先——若用户在设置页勾了感兴趣的主题，
@@ -469,26 +670,50 @@ if text.isEmpty {
 return greetingLesson()
 }
 
-// 2. 跟读正确：输入与场景句去标点/空白后一致即算跟读（用户常省略标点），
+// 2. 跟读正确：输入与任一场景句去标点/空白后一致即算跟读（用户常省略标点），
 //    先于主题关键词匹配，保证快捷按钮和手动输入都能进跟读。
-//    每句读对 readAlongPassCount 遍即过关，自动进入下一主题的场景句，避免无限重复。
+//    每句读对 readAlongPassCount 遍即过关：本主题还有下一句则进下一句，
+//    否则自动进入下一主题的场景句，避免无限重复。
 let plainInput = Self.plainText(text)
-if let theme = Self.curriculum.first(where: { Self.plainText($0.sentence.cantonese) == plainInput }) {
+var hitTheme: CourseTheme?
+var hitIndex = 0
+for theme in Self.curriculum {
+if let i = theme.sentences.firstIndex(where: { Self.plainText($0.cantonese) == plainInput }) {
+hitTheme = theme
+hitIndex = i
+break
+}
+}
+if let theme = hitTheme {
 currentThemeId = theme.id
 pendingQuiz = nil
 readAlongFails[theme.id] = 0
 deferredThemes.removeAll { $0 == theme.id }
+// 换了句子则遍数重计
+if (readAlongSentenceIndex[theme.id] ?? 0) != hitIndex {
+readAlongCount[theme.id] = 0
+}
+readAlongSentenceIndex[theme.id] = hitIndex
+let sentence = theme.sentences[hitIndex]
 let count = (readAlongCount[theme.id] ?? 0) + 1
 if count >= Self.readAlongPassCount {
 readAlongCount[theme.id] = 0
+// 本主题还有下一句 → 下一句；否则 → 下一主题
+if hitIndex + 1 < theme.sentences.count {
+readAlongSentenceIndex[theme.id] = hitIndex + 1
+pendingReadAlong = theme.id
+return readAlongNextSentenceLesson(theme: theme, passedSentence: sentence, nextSentence: theme.sentences[hitIndex + 1])
+}
+readAlongSentenceIndex[theme.id] = 0
 let next = nextPracticeTheme(after: theme.id, interests: profile.interests)
 currentThemeId = next.id
 pendingReadAlong = next.id
-return readAlongPassedLesson(passed: theme, next: next)
+readAlongSentenceIndex[next.id] = 0
+return readAlongPassedLesson(passed: theme, passedSentence: sentence, next: next)
 }
 readAlongCount[theme.id] = count
 pendingReadAlong = theme.id
-return readAlongLesson(theme, round: count)
+return readAlongLesson(theme, sentence: sentence, round: count)
 }
 
 // 2b. 换个主题：兴趣优先（设置页勾选的主题先轮），否则按课程顺序切到下一个（跳过已暂存的难句）
@@ -505,6 +730,7 @@ next = Self.curriculum[0]
 currentThemeId = next.id
 pendingQuiz = nil
 pendingReadAlong = next.id
+readAlongSentenceIndex[next.id] = 0
 return themeLesson(next, switched: !stayed, stayed: stayed)
 }
 
@@ -535,10 +761,11 @@ return quizAnswerLesson(word: quiz, userText: text)
 
 // 5. 跟读失败：正等用户跟读某句，输入与该句有明显重合却对不上，
 //    视为一次跟读尝试（纯闲聊不计）。连错 readAlongMaxFails 次则智能跳过，
-//    记下该句，绕完其他主题一圈后重新出现（以后重试）。
+//    记下该主题，绕完其他主题一圈后重新出现（以后重试）。
 if let pendingId = pendingReadAlong,
-let pendingTheme = theme(id: pendingId),
-Self.similarity(text, pendingTheme.sentence.cantonese) >= Self.readAlongAttemptThreshold {
+let pendingTheme = theme(id: pendingId) {
+let sentence = readAlongSentence(of: pendingTheme)
+if Self.similarity(text, sentence.cantonese) >= Self.readAlongAttemptThreshold {
 let fails = (readAlongFails[pendingId] ?? 0) + 1
 if fails >= Self.readAlongMaxFails {
 readAlongFails[pendingId] = 0
@@ -547,17 +774,20 @@ if !deferredThemes.contains(pendingId) { deferredThemes.append(pendingId) }
 let next = nextPracticeTheme(after: pendingId, interests: profile.interests)
 currentThemeId = next.id
 pendingReadAlong = next.id
-return readAlongSkippedLesson(skipped: pendingTheme, next: next)
+readAlongSentenceIndex[next.id] = 0
+return readAlongSkippedLesson(skipped: pendingTheme, skippedSentence: sentence, next: next)
 }
 readAlongFails[pendingId] = fails
-return readAlongRetryLesson(pendingTheme)
+return readAlongRetryLesson(pendingTheme, sentence: sentence)
+}
 }
 
-// 6. 主题匹配：进入主题学习
+// 6. 主题匹配：进入主题学习（跟读序号归零，从第 0 句开始）
 if let theme = theme(matching: text) {
 currentThemeId = theme.id
 pendingQuiz = nil
 pendingReadAlong = theme.id
+readAlongSentenceIndex[theme.id] = 0
 return themeLesson(theme)
 }
 
@@ -592,7 +822,7 @@ private func switchThemeReply(current theme: CourseTheme?) -> SuggestedReply {
     )
 }
 
-/// 主题 Lesson：主题导语 + 场景句，breakdown 放 5 个词，tip 放主题 tip
+/// 主题 Lesson：主题导语 + 全部场景句，breakdown 放 8 个词，tip 放主题 tip
 private func themeLesson(_ theme: CourseTheme, switched: Bool = false, stayed: Bool = false) -> Lesson {
 let lead: String
 if stayed {
@@ -602,19 +832,26 @@ lead = "好，换到「\(theme.titleZh)」主题！"
 } else {
 lead = "好，我哋嚟学「\(theme.titleZh)」！"
 }
+let sentenceList = theme.sentences.map { "「\($0.cantonese)」" }.joined(separator: "\n")
+let jyutpingList = theme.sentences.map(\.jyutping).joined(separator: "\n")
+let mandarinList = theme.sentences.map { "「\($0.mandarin)」" }.joined(separator: "\n")
+// 试读按钮：每句一个，点即跟读该句
+var replies: [SuggestedReply] = [
+SuggestedReply(cantonese: "考考我（当前主题）", jyutping: "haau2 haau2 ngo5 (dong1 cin4 zyu2 tai4)", english: "只考当前主题"),
+]
+replies += theme.sentences.map {
+SuggestedReply(cantonese: $0.cantonese, jyutping: $0.jyutping, english: $0.mandarin)
+}
+replies.append(switchThemeReply(current: theme))
 return Lesson(
-replyCantonese: "\(lead)先嚟一句最实用嘅场景句：「\(theme.sentence.cantonese)」",
-replyJyutping: theme.sentence.jyutping,
+replyCantonese: "\(lead)先嚟 \(theme.sentences.count) 句最实用嘅场景句，逐句跟住读：\n\(sentenceList)",
+replyJyutping: jyutpingList,
 replyEnglish: stayed
 ? "「\(theme.titleZh)」是目前可选的兴趣主题，我们留在这里继续。"
-: "今天我们学「\(theme.titleZh)」。先来一句最实用的场景句：「\(theme.sentence.mandarin)」",
+: "今天我们学「\(theme.titleZh)」。先来 \(theme.sentences.count) 句最实用的场景句：\n\(mandarinList)",
 breakdown: theme.words.map { BreakdownItem(cantonese: $0.cantonese, jyutping: $0.jyutping, english: $0.mandarin)},
 tip: theme.tip,
-suggestedReplies: [
-SuggestedReply(cantonese: "考考我（当前主题）", jyutping: "haau2 haau2 ngo5 (dong1 cin4 zyu2 tai4)", english: "只考当前主题"),
-SuggestedReply(cantonese: theme.sentence.cantonese, jyutping: theme.sentence.jyutping, english: theme.sentence.mandarin),
-switchThemeReply(current: theme),
-],
+suggestedReplies: replies,
 difficulty: "beginner"
 )
 }
@@ -681,15 +918,15 @@ difficulty: "beginner"
 }
 
 /// 跟读 Lesson：第 round 遍读对，鼓励再跟读（附场景句快捷按钮，点一下就能再跟）
-private func readAlongLesson(_ theme: CourseTheme, round: Int) -> Lesson {
+private func readAlongLesson(_ theme: CourseTheme, sentence: CourseSentence, round: Int) -> Lesson {
 Lesson(
-replyCantonese: "读得唔错！呢句系第 \(round) 遍，跟住我一齐再读多次：「\(theme.sentence.cantonese)」",
-replyJyutping: theme.sentence.jyutping,
-replyEnglish: "跟读得很好！这是第 \(round) 遍，再跟着粤拼读一遍：「\(theme.sentence.mandarin)」",
-breakdown: sentenceKeywords(in: theme),
+replyCantonese: "读得唔错！呢句系第 \(round) 遍，跟住我一齐再读多次：「\(sentence.cantonese)」",
+replyJyutping: sentence.jyutping,
+replyEnglish: "跟读得很好！这是第 \(round) 遍，再跟着粤拼读一遍：「\(sentence.mandarin)」",
+breakdown: sentenceKeywords(in: theme, sentence: sentence),
 tip: "跟读建议：先慢速跟准每个字嘅声调，再加速连成一句，一句读够 \(Self.readAlongPassCount) 遍就过关。",
 suggestedReplies: [
-SuggestedReply(cantonese: theme.sentence.cantonese, jyutping: theme.sentence.jyutping, english: theme.sentence.mandarin),
+SuggestedReply(cantonese: sentence.cantonese, jyutping: sentence.jyutping, english: sentence.mandarin),
 SuggestedReply(cantonese: "考考我（当前主题）", jyutping: "haau2 haau2 ngo5 (dong1 cin4 zyu2 tai4)", english: "只考当前主题"),
 switchThemeReply(current: theme),
 ],
@@ -698,31 +935,49 @@ difficulty: "beginner"
 }
 
 /// 跟读没对：温和纠正，再示范一次（不报次数，不给压力）
-private func readAlongRetryLesson(_ theme: CourseTheme) -> Lesson {
+private func readAlongRetryLesson(_ theme: CourseTheme, sentence: CourseSentence) -> Lesson {
 Lesson(
-replyCantonese: "唔紧要，慢慢嚟。听我读一次，你跟住读：「\(theme.sentence.cantonese)」",
-replyJyutping: theme.sentence.jyutping,
-replyEnglish: "没关系，慢慢来。听我读一遍，你跟着读：「\(theme.sentence.mandarin)」",
-breakdown: sentenceKeywords(in: theme),
+replyCantonese: "唔紧要，慢慢嚟。听我读一次，你跟住读：「\(sentence.cantonese)」",
+replyJyutping: sentence.jyutping,
+replyEnglish: "没关系，慢慢来。听我读一遍，你跟着读：「\(sentence.mandarin)」",
+breakdown: sentenceKeywords(in: theme, sentence: sentence),
 tip: "跟读建议：先慢速跟准每个字嘅声调，再加速连成一句。",
 suggestedReplies: [
-SuggestedReply(cantonese: theme.sentence.cantonese, jyutping: theme.sentence.jyutping, english: theme.sentence.mandarin),
+SuggestedReply(cantonese: sentence.cantonese, jyutping: sentence.jyutping, english: sentence.mandarin),
 switchThemeReply(current: theme),
 ],
 difficulty: "beginner"
 )
 }
 
-/// 智能跳过：多次读不对，先跳过（绕完一圈后会回来重试），切到下一句
-private func readAlongSkippedLesson(skipped: CourseTheme, next: CourseTheme) -> Lesson {
+/// 本主题下一句：某句过关后，同主题继续下一句
+private func readAlongNextSentenceLesson(theme: CourseTheme, passedSentence: CourseSentence, nextSentence: CourseSentence) -> Lesson {
 Lesson(
-replyCantonese: "呢句有啲拗口，我哋跳过先，迟啲再返嚟试过，你已经好叻啦！下一句嚟啦，跟住读：「\(next.sentence.cantonese)」",
-replyJyutping: next.sentence.jyutping,
-replyEnglish: "这句有点难，我们先跳过，之后再回来试。你已经很棒了！下一句：「\(next.sentence.mandarin)」",
+replyCantonese: "两遍都读啱，好嘢！「\(passedSentence.cantonese)」过关喇。同一个主题，下一句嚟啦，跟住读：「\(nextSentence.cantonese)」",
+replyJyutping: nextSentence.jyutping,
+replyEnglish: "两遍都读对了，太棒了！「\(passedSentence.mandarin)」过关。同一个主题，下一句：「\(nextSentence.mandarin)」",
+breakdown: sentenceKeywords(in: theme, sentence: nextSentence),
+tip: theme.tip,
+suggestedReplies: [
+SuggestedReply(cantonese: nextSentence.cantonese, jyutping: nextSentence.jyutping, english: nextSentence.mandarin),
+SuggestedReply(cantonese: "考考我（当前主题）", jyutping: "haau2 haau2 ngo5 (dong1 cin4 zyu2 tai4)", english: "只考当前主题"),
+switchThemeReply(current: theme),
+],
+difficulty: "beginner"
+)
+}
+
+/// 智能跳过：多次读不对，先跳过（绕完一圈后会回来重试），切到下一主题的第 0 句
+private func readAlongSkippedLesson(skipped: CourseTheme, skippedSentence: CourseSentence, next: CourseTheme) -> Lesson {
+let nextSentence = next.sentences[0]
+return Lesson(
+replyCantonese: "呢句有啲拗口，我哋跳过先，迟啲再返嚟试过，你已经好叻啦！下一句嚟啦，跟住读：「\(nextSentence.cantonese)」",
+replyJyutping: nextSentence.jyutping,
+replyEnglish: "这句有点难，我们先跳过，之后再回来试。你已经很棒了！下一句：「\(nextSentence.mandarin)」",
 breakdown: next.words.map { BreakdownItem(cantonese: $0.cantonese, jyutping: $0.jyutping, english: $0.mandarin) },
 tip: next.tip,
 suggestedReplies: [
-SuggestedReply(cantonese: next.sentence.cantonese, jyutping: next.sentence.jyutping, english: next.sentence.mandarin),
+SuggestedReply(cantonese: nextSentence.cantonese, jyutping: nextSentence.jyutping, english: nextSentence.mandarin),
 SuggestedReply(cantonese: "考考我（当前主题）", jyutping: "haau2 haau2 ngo5 (dong1 cin4 zyu2 tai4)", english: "只考当前主题"),
 switchThemeReply(current: next),
 ],
@@ -730,16 +985,17 @@ difficulty: "beginner"
 )
 }
 
-/// 跟读过关 Lesson：肯定 + 自动进入下一主题的场景句
-private func readAlongPassedLesson(passed: CourseTheme, next: CourseTheme) -> Lesson {
-Lesson(
-replyCantonese: "两遍都读啱，好嘢！「\(passed.sentence.cantonese)」过关喇。下一句嚟啦，跟住读：「\(next.sentence.cantonese)」",
-replyJyutping: next.sentence.jyutping,
-replyEnglish: "两遍都读对了，太棒了！「\(passed.sentence.mandarin)」过关。下一句：「\(next.sentence.mandarin)」",
+/// 跟读过关 Lesson：肯定 + 自动进入下一主题的第 0 句
+private func readAlongPassedLesson(passed: CourseTheme, passedSentence: CourseSentence, next: CourseTheme) -> Lesson {
+let nextSentence = next.sentences[0]
+return Lesson(
+replyCantonese: "两遍都读啱，好嘢！「\(passedSentence.cantonese)」过关喇。下一句嚟啦，跟住读：「\(nextSentence.cantonese)」",
+replyJyutping: nextSentence.jyutping,
+replyEnglish: "两遍都读对了，太棒了！「\(passedSentence.mandarin)」过关。下一句：「\(nextSentence.mandarin)」",
 breakdown: next.words.map { BreakdownItem(cantonese: $0.cantonese, jyutping: $0.jyutping, english: $0.mandarin) },
 tip: next.tip,
 suggestedReplies: [
-SuggestedReply(cantonese: next.sentence.cantonese, jyutping: next.sentence.jyutping, english: next.sentence.mandarin),
+SuggestedReply(cantonese: nextSentence.cantonese, jyutping: nextSentence.jyutping, english: nextSentence.mandarin),
 SuggestedReply(cantonese: "考考我（当前主题）", jyutping: "haau2 haau2 ngo5 (dong1 cin4 zyu2 tai4)", english: "只考当前主题"),
 switchThemeReply(current: next),
 ],
@@ -872,13 +1128,13 @@ return "把每个字嘅声调读准"
 
 /// 场景句关键词拆解：先找全部主题词里出现在句中的词（长词优先、去包含），
 /// 不足 2 个时用标点分段补齐，最多 3 个
-private func sentenceKeywords(in theme: CourseTheme) -> [BreakdownItem] {
-let sentence = theme.sentence.cantonese
+private func sentenceKeywords(in theme: CourseTheme, sentence: CourseSentence) -> [BreakdownItem] {
+let sentenceText = sentence.cantonese
 let allWords = Self.curriculum.flatMap { $0.words}
 .sorted { $0.cantonese.count > $1.cantonese.count}
 var matched: [CourseWord] = []
 for word in allWords {
-guard sentence.contains(word.cantonese) else { continue}
+guard sentenceText.contains(word.cantonese) else { continue}
 // 跳过已被更长词覆盖的短词（如已选"食飯"就不再选"食"），也去重
 if matched.contains(where: { $0.cantonese.contains(word.cantonese)}) { continue}
 matched.append(word)
@@ -886,13 +1142,13 @@ if matched.count >= 3 { break}
 }
 // 按在句中出现的先后顺序排列
 matched.sort {
-let a = sentence.range(of: $0.cantonese)?.lowerBound ?? sentence.startIndex
-let b = sentence.range(of: $1.cantonese)?.lowerBound ?? sentence.startIndex
+let a = sentenceText.range(of: $0.cantonese)?.lowerBound ?? sentenceText.startIndex
+let b = sentenceText.range(of: $1.cantonese)?.lowerBound ?? sentenceText.startIndex
 return a < b
 }
 var items = matched.map { BreakdownItem(cantonese: $0.cantonese, jyutping: $0.jyutping, english: $0.mandarin)}
 if items.count < 2 {
-for segment in alignedSegments(of: theme.sentence) where items.count < 3 {
+for segment in alignedSegments(of: sentence) where items.count < 3 {
 if !items.contains(where: { $0.cantonese == segment.cantonese}) {
 items.append(segment)
 }

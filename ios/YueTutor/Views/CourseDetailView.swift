@@ -75,30 +75,33 @@ struct CourseDetailView: View {
         VStack(alignment: .leading, spacing: 10) {
             Text(L10n.t("course.sentence_section"))
                 .font(.headline)
-            HStack(alignment: .top, spacing: 8) {
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(theme.sentence.cantonese)
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                    Text(theme.sentence.jyutping)
-                        .font(Theme.jyutpingFont(size: 14))
-                        .foregroundColor(.secondary)
-                    Text(theme.sentence.mandarin)
-                        .font(.body)
+            ForEach(theme.sentences.indices, id: \.self) { i in
+                let s = theme.sentences[i]
+                HStack(alignment: .top, spacing: 8) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(s.cantonese)
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                        Text(s.jyutping)
+                            .font(Theme.jyutpingFont(size: 14))
+                            .foregroundColor(.secondary)
+                        Text(s.mandarin)
+                            .font(.body)
+                    }
+                    Spacer(minLength: 4)
+                    Button {
+                        onSpeak(s.cantonese)
+                    } label: {
+                        Image(systemName: "speaker.wave.2.fill")
+                            .font(.title3)
+                            .foregroundColor(Theme.accent)
+                    }
+                    .accessibilityLabel(L10n.t("course.speak_hint"))
                 }
-                Spacer(minLength: 4)
-                Button {
-                    onSpeak(theme.sentence.cantonese)
-                } label: {
-                    Image(systemName: "speaker.wave.2.fill")
-                        .font(.title3)
-                        .foregroundColor(Theme.accent)
-                }
-                .accessibilityLabel(L10n.t("course.speak_hint"))
+                .padding()
+                .background(Theme.accent.opacity(0.08))
+                .clipShape(RoundedRectangle(cornerRadius: Theme.smallRadius, style: .continuous))
             }
-            .padding()
-            .background(Theme.accent.opacity(0.08))
-            .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadius, style: .continuous))
         }
     }
 
