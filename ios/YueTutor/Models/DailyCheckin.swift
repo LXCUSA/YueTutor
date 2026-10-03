@@ -30,6 +30,23 @@ struct CheckinSentence: Codable, Hashable {
     let mandarin: String
 }
 
+// MARK: - 打卡特别主题
+extension DailyCheckin {
+    /// 转为课程特别主题（id 固定 "daily-checkin"，插在课程最前，供聊天闭环直接使用）
+    var asTheme: CourseTheme {
+        CourseTheme(
+            id: "daily-checkin",
+            titleZh: "今日打卡",
+            titleEn: "Daily Check-in",
+            words: words.map {
+                CourseWord(cantonese: $0.cantonese, jyutping: $0.jyutping, hakka: $0.hakka, mandarin: $0.mandarin)
+            },
+            sentences: [CourseSentence(cantonese: sentence.cantonese, jyutping: sentence.jyutping, mandarin: sentence.mandarin)],
+            tip: tip
+        )
+    }
+}
+
 // MARK: - 打卡结果（App → Worker → KV，供下一次打卡自适应出题）
 struct CheckinResult: Codable {
     let date: String

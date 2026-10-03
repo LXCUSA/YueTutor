@@ -535,18 +535,28 @@ tip: "嬲 nau1 陰平高平調，au 雙元音飽滿；驚 geng1 嘅 eng 鼻韻�
 ),
 ]
 
-// MARK: - 当前生效课程（内置 + 外部 curriculum.json）
+// MARK: - 当前生效课程（内置 + 外部 curriculum.json + 特别主题）
 /// 启动时从"文件"App 的 curriculum.json 加载，失败回退内置课程。
 /// 设置页"重新载入课程"会刷新它并广播通知，聊天页据此刷新主题 chips。
 private static let initialCurriculumLoad = CurriculumLoader.load(fallback: builtInCurriculum)
-static var curriculum: [CourseTheme] = initialCurriculumLoad.curriculum
+/// 课程主体（不含特别主题）
+private static var baseCurriculum: [CourseTheme] = initialCurriculumLoad.curriculum
 /// 当前课程来源（设置页展示用）
 static var curriculumSource: CurriculumSource = initialCurriculumLoad.source
+/// 特别主题：今日打卡（由 DailyCheckinService 注入，排在课程最前；nil 时不显示）
+static var dailyCheckinTheme: CourseTheme?
+/// 当前生效课程 = 特别主题（若有）+ 主体课程
+static var curriculum: [CourseTheme] {
+    if let special = dailyCheckinTheme {
+        return [special] + baseCurriculum
+    }
+    return baseCurriculum
+}
 
 /// 从 curriculum.json 重新载入课程（设置页按钮调用，主线程）。
 static func reloadCurriculum() {
     let loaded = CurriculumLoader.load(fallback: builtInCurriculum)
-    curriculum = loaded.curriculum
+    baseCurriculum = loaded.curriculum
     curriculumSource = loaded.source
     NotificationCenter.default.post(name: .curriculumDidReload, object: nil)
 }
@@ -558,6 +568,27 @@ var currentThemeId: String?
 var currentTopicId: String? { currentThemeId }
 /// 待公布答案的测验词
 var pendingQuiz: CourseWord?
+/// 待公布答案的测验词所属主题 id（与 pendingQuiz 同步清空，用于错题池 key）
+var pendingQuizThemeId: String?
+/// 测验历史：词 key（"themeId/cantonese"）-> 出题时间戳（秒）；7 天内不重复出题
+var quizHistory: [String: Double] = {
+    let raw = UserDefaults.standard.dictionary(forKey: "quiz-history") ?? [:]
+    var out: [String: Double] = [:]
+    for (k, v) in raw {
+        if let d = v as? Double {
+            out[k] = d
+        } else if let n = v as? NSNumber {
+            out[k] = n.doubleValue
+        }
+    }
+    return out
+}()
+/// 错题池：答错的词 key（按答错顺序）；出题时优先抽
+var quizWrongKeys: [String] = UserDefaults.standard.stringArray(forKey: "quiz-wrong") ?? []
+/// 错题去重窗口：7 天
+static let quizHistoryWindow: Double = 7 * 86400
+/// 历史清理窗口：30 天
+static let quizHistoryRetention: Double = 30 * 86400
 /// 跟读计数：themeId -> 该主题场景句已读对的遍数（过关后清零）
 var readAlongCount: [String: Int] = [:]
 /// 跟读过关所需的正确遍数
@@ -705,6 +736,7 @@ break
 if let theme = hitTheme {
 currentThemeId = theme.id
 pendingQuiz = nil
+pendingQuizThemeId = nil
 readAlongFails[theme.id] = 0
 deferredThemes.removeAll { $0 == theme.id }
 // 换了句子则遍数重计
@@ -747,6 +779,7 @@ next = Self.curriculum[0]
 }
 currentThemeId = next.id
 pendingQuiz = nil
+pendingQuizThemeId = nil
 pendingReadAlong = next.id
 readAlongSentenceIndex[next.id] = 0
 return themeLesson(next, switched: !stayed, stayed: stayed)
@@ -773,8 +806,10 @@ return quizLesson(interests: profile.interests)
 
 // 4. 有未公布的测验：用户的下一轮输入即公布答案
 if let quiz = pendingQuiz {
+let quizThemeId = pendingQuizThemeId
 pendingQuiz = nil
-return quizAnswerLesson(word: quiz, userText: text)
+pendingQuizThemeId = nil
+return quizAnswerLesson(word: quiz, themeId: quizThemeId, userText: text)
 }
 
 // 5. 跟读失败：正等用户跟读某句，输入与该句有明显重合却对不上，
@@ -804,6 +839,7 @@ return readAlongRetryLesson(pendingTheme, sentence: sentence)
 if let theme = theme(matching: text) {
 currentThemeId = theme.id
 pendingQuiz = nil
+pendingQuizThemeId = nil
 pendingReadAlong = theme.id
 readAlongSentenceIndex[theme.id] = 0
 return themeLesson(theme)
@@ -874,23 +910,61 @@ difficulty: "beginner"
 )
 }
 
-/// 测验出题：兴趣优先——勾了兴趣主题就从中随机抽一个主题出题；
-/// 没勾则沿用老逻辑（当前主题，无则随机）。先不给答案，记到 pendingQuiz
+/// 测验词 key（跨主题同字用主题区分）
+private static func quizKey(themeId: String, word: CourseWord) -> String {
+    "\(themeId)/\(word.cantonese)"
+}
+
+/// 持久化测验历史与错题池
+private func saveQuizState() {
+    UserDefaults.standard.set(quizHistory, forKey: "quiz-history")
+    UserDefaults.standard.set(quizWrongKeys, forKey: "quiz-wrong")
+}
+
+/// 测验出题：兴趣优先——勾了兴趣主题就从中出题；没勾则沿用老逻辑（当前主题，无则随机）。
+/// 去重 + 错题优先：范围内的错题先抽完 → 7 天未考过的随机 → 全考过则全池随机。先不给答案，记到 pendingQuiz。
 private func quizLesson(interests: [String] = []) -> Lesson {
 let interested = Self.curriculum.filter { interests.contains($0.titleZh) }
-let theme: CourseTheme
-if let pick = interested.randomElement() {
-theme = pick
+let scope: [CourseTheme]
+if !interested.isEmpty {
+scope = interested
+} else if let current = currentThemeId.flatMap({ self.theme(id: $0) }) {
+scope = [current]
 } else {
-theme = currentThemeId.flatMap { self.theme(id: $0)}
-?? Self.curriculum.randomElement()
-?? Self.curriculum[0]
+scope = Self.curriculum
 }
-guard let word = theme.words.randomElement() else {
+// 候选词（主题， 词）
+let candidates: [(CourseTheme, CourseWord)] = scope.flatMap { theme in
+theme.words.map { (theme, $0) }
+}
+guard !candidates.isEmpty else {
 return fallbackLesson()
 }
+let now = Date().timeIntervalSince1970
+// 顺手清理 30 天前的历史，以及已不存在主题的错题 key（如换了课程文件）
+quizHistory = quizHistory.filter { $0.value > now - Self.quizHistoryRetention }
+let validThemeIds = Set(Self.curriculum.map(\.id))
+quizWrongKeys.removeAll { key in
+    guard let slash = key.firstIndex(of: "/") else { return true }
+    return !validThemeIds.contains(String(key[..<slash]))
+}
+let wrongSet = Set(quizWrongKeys)
+let wrongCandidates = candidates.filter { wrongSet.contains(Self.quizKey(themeId: $0.0.id, word: $0.1)) }
+let freshCandidates = candidates.filter { (quizHistory[Self.quizKey(themeId: $0.0.id, word: $0.1)] ?? 0) < now - Self.quizHistoryWindow }
+let pick: (CourseTheme, CourseWord)
+if let w = wrongCandidates.randomElement() {
+pick = w
+} else if let f = freshCandidates.randomElement() {
+pick = f
+} else {
+pick = candidates.randomElement()!
+}
+let (theme, word) = pick
+quizHistory[Self.quizKey(themeId: theme.id, word: word)] = now
+saveQuizState()
 currentThemeId = theme.id
 pendingQuiz = word
+pendingQuizThemeId = theme.id
 return Lesson(
 replyCantonese: "「\(word.cantonese)」點讀？試下讀出聲或者打粤拼。",
 replyJyutping: "",
@@ -905,11 +979,21 @@ difficulty: "beginner"
 }
 
 /// 测验答案：公布正确粤拼，温和中文反馈（先肯定再给一个调整点），清空 pendingQuiz
-private func quizAnswerLesson(word: CourseWord, userText: String) -> Lesson {
+private func quizAnswerLesson(word: CourseWord, themeId: String?, userText: String) -> Lesson {
 let quizTheme = Self.curriculum.first { $0.words.contains(word)}
 let hint = adjustmentHint(for: word)
 let correction: String
-switch Self.judgeQuiz(userText: userText, word: word) {
+// 错题池 key：优先用出题时记录的主题 id（打卡主题的词与原主题同字，避免串池）
+let quizKey = Self.quizKey(themeId: themeId ?? quizTheme?.id ?? "?", word: word)
+let verdict = Self.judgeQuiz(userText: userText, word: word)
+// 答错入错题池；答对（字对/同音/粤拼对）则从错题池移除
+if verdict == .wrong {
+if !quizWrongKeys.contains(quizKey) { quizWrongKeys.append(quizKey) }
+} else {
+quizWrongKeys.removeAll { $0 == quizKey }
+}
+saveQuizState()
+switch verdict {
 case .exactChar:
 correction = "写对了，「\(word.cantonese)」就系咁写！读嘅时候注意\(hint)，多读两遍就顺口啦。"
 case .homophone:

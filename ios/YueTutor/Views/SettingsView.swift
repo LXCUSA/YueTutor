@@ -29,7 +29,9 @@ struct SettingsView: View {
                 Section(header: Text(L10n.t("settings.interests_section"))) {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 80), spacing: 8)], spacing: 8) {
                         ForEach(LocalTutorService.curriculum, id: \.id) { theme in
-                            let selected = profileStore.profile.interests.contains(theme.titleZh)
+                            // 没勾选=全选：此时全部（含今日打卡特别主题）都显示为选中态
+                            let selected = profileStore.profile.interests.isEmpty
+                                || profileStore.profile.interests.contains(theme.titleZh)
                             Button {
                                 toggleInterest(theme.titleZh)
                             } label: {

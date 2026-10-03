@@ -8,7 +8,13 @@ final class DailyCheckinService: ObservableObject {
     static let remoteURL = URL(string: "https://raw.githubusercontent.com/lxc-usa/YueTutor/main/docs/daily-checkin.json")!
     private static let cacheFileName = "daily-checkin.json"
 
-    @Published private(set) var checkin: DailyCheckin?
+    @Published private(set) var checkin: DailyCheckin? {
+        didSet {
+            // 同步为课程特别主题，聊天闭环（chips/考考我/跟读/关键词）直接可用
+            LocalTutorService.dailyCheckinTheme = checkin?.asTheme
+            NotificationCenter.default.post(name: .curriculumDidReload, object: nil)
+        }
+    }
     @Published private(set) var doneItems: Set<String> = []
     /// 今日是否已上报结果（避免重复 POST）
     @Published private(set) var reportedDate: String?
