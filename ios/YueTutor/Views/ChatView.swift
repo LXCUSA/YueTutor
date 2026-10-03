@@ -13,6 +13,8 @@ struct ChatView: View {
     @State private var showJumpToBottom = false
     /// 点悬浮按钮时 +1，消息列表内响应并瞬间滚到底部
     @State private var jumpToBottomNonce = 0
+    /// 外部课程重载后 +1，触发 topics 重算（实际从 LocalTutorService.curriculum 实时读取）
+    @State private var curriculumReloadTick = 0
 
     /// 顶部话题 chips：设置页勾了兴趣主题就只显示勾选的；没勾则显示全部。
     /// 当前主题始终显示（即使不在勾选的兴趣里），插到最前面。
@@ -52,6 +54,10 @@ struct ChatView: View {
         .onAppear {
             viewModel.configure(settings: settings, profileStore: profileStore, synthesizer: synthesizer)
             viewModel.startIfNeeded()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .curriculumDidReload)) { _ in
+            // 外部课程重载后刷新顶部主题 chips（topics 从 LocalTutorService.curriculum 实时读取）
+            curriculumReloadTick += 1
         }
         .onChange(of: recognizer.transcript) { _, transcript in
             // 录音过程中把识别结果实时填入输入框

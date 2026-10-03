@@ -88,3 +88,14 @@
 
 // 错误
 "error.chat_failed" = "发送失败，请轻触重试";
+
+// 课程文件（外部 curriculum.json）
+"settings.curriculum_section" = "课程文件";
+"settings.curriculum_status_builtin" = "当前：内置课程（%d 个主题）";
+"settings.curriculum_status_custom" = "当前：已加载自定义课程（%d 个主题）";
+"settings.curriculum_status_invalid" = "课程文件有问题，已回退内置课程";
+"settings.curriculum_hint" = "在 iPhone“文件”App 的“粤语陪练”文件夹里放入 curriculum.json，可离线定制课程，无需更新 App。先导出模板照着改，主题 id 不要改。";
+"settings.export_template" = "导出课程模板";
+"settings.reload_curriculum" = "重新载入课程";
+"settings.export_done" = "模板已导出：%@，去“文件”App 里复制为 curriculum.json 后编辑";
+"settings.export_failed" = "导出失败，请重试";

@@ -88,3 +88,14 @@
 
 // Errors
 "error.chat_failed" = "Couldn't send — tap to retry";
+
+// Course file (external curriculum.json)
+"settings.curriculum_section" = "Course file";
+"settings.curriculum_status_builtin" = "Current: built-in course (%d topics)";
+"settings.curriculum_status_custom" = "Current: custom course loaded (%d topics)";
+"settings.curriculum_status_invalid" = "Course file has issues, fell back to built-in";
+"settings.curriculum_hint" = "Drop a curriculum.json into the YueTutor folder in the iPhone Files app to customize lessons offline — no app update needed. Export the template first and keep theme ids unchanged.";
+"settings.export_template" = "Export course template";
+"settings.reload_curriculum" = "Reload course";
+"settings.export_done" = "Template exported: %@. Copy it as curriculum.json in the Files app, then edit.";
+"settings.export_failed" = "Export failed, please try again";

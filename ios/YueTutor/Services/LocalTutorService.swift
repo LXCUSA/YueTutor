@@ -6,7 +6,9 @@ import Foundation
 final class LocalTutorService: TutorService {
 
 // MARK: - 课程数据（粤拼已核对，勿改）
-static let curriculum: [CourseTheme] = [
+/// 内置课程：Documents 里没有可用的 curriculum.json 时的回退。
+/// 导出模板、外部文件校验都以它为基准。
+static let builtInCurriculum: [CourseTheme] = [
 CourseTheme(
 id: "greeting",
 titleZh: "问候与礼貌",
@@ -532,6 +534,22 @@ mandarin: "不开心就说出来，不要藏着掖着。"
 tip: "嬲 nau1 陰平高平調，au 雙元音飽滿；驚 geng1 嘅 eng 鼻韻別讀成 en。"
 ),
 ]
+
+// MARK: - 当前生效课程（内置 + 外部 curriculum.json）
+/// 启动时从"文件"App 的 curriculum.json 加载，失败回退内置课程。
+/// 设置页"重新载入课程"会刷新它并广播通知，聊天页据此刷新主题 chips。
+private static let initialCurriculumLoad = CurriculumLoader.load(fallback: builtInCurriculum)
+static var curriculum: [CourseTheme] = initialCurriculumLoad.curriculum
+/// 当前课程来源（设置页展示用）
+static var curriculumSource: CurriculumSource = initialCurriculumLoad.source
+
+/// 从 curriculum.json 重新载入课程（设置页按钮调用，主线程）。
+static func reloadCurriculum() {
+    let loaded = CurriculumLoader.load(fallback: builtInCurriculum)
+    curriculum = loaded.curriculum
+    curriculumSource = loaded.source
+    NotificationCenter.default.post(name: .curriculumDidReload, object: nil)
+}
 
 // MARK: - 会话状态
 /// 当前主题 id（用户最近一次进入的主题）

@@ -5,6 +5,22 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject private var settings: AppSettings
     @EnvironmentObject private var profileStore: ProfileStore
+    /// 课程重载后 +1，触发本页刷新（状态文案从 LocalTutorService.curriculumSource 实时读取）
+    @State private var curriculumTick = 0
+    /// 导出模板后的提示文案
+    @State private var curriculumMessage: String?
+
+    /// 当前课程状态文案
+    private var curriculumStatusText: String {
+        switch LocalTutorService.curriculumSource {
+        case .builtIn:
+            return String(format: L10n.t("settings.curriculum_status_builtin"), LocalTutorService.curriculum.count)
+        case .customFile:
+            return String(format: L10n.t("settings.curriculum_status_custom"), LocalTutorService.curriculum.count)
+        case .invalidFile(_, let reason):
+            return L10n.t("settings.curriculum_status_invalid") + "：" + reason
+        }
+    }
 
     var body: some View {
         NavigationStack {
@@ -28,6 +44,37 @@ struct SettingsView: View {
                             }
                             .buttonStyle(.plain)
                         }
+                    }
+                }
+
+                // 课程文件：外部 curriculum.json（"文件"App 的粤语陪练文件夹）
+                Section(header: Text(L10n.t("settings.curriculum_section"))) {
+                    Text(curriculumStatusText)
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                    Text(L10n.t("settings.curriculum_hint"))
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                    Button(L10n.t("settings.export_template")) {
+                        do {
+                            try CurriculumLoader.exportTemplate(LocalTutorService.builtInCurriculum)
+                            curriculumMessage = String(
+                                format: L10n.t("settings.export_done"),
+                                CurriculumLoader.templateFileName
+                            )
+                        } catch {
+                            curriculumMessage = L10n.t("settings.export_failed")
+                        }
+                    }
+                    Button(L10n.t("settings.reload_curriculum")) {
+                        LocalTutorService.reloadCurriculum()
+                        curriculumMessage = nil
+                        curriculumTick += 1
+                    }
+                    if let msg = curriculumMessage {
+                        Text(msg)
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
                     }
                 }
 
