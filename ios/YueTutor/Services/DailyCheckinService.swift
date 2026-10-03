@@ -20,6 +20,13 @@ final class DailyCheckinService: ObservableObject {
 
     init() {
         loadCache()
+        // 还没有缓存（比如首次安装且无网络）就用内置的默认打卡内容
+        if checkin == nil, let url = Bundle.main.url(forResource: "daily-checkin", withExtension: "json"),
+           let data = try? Data(contentsOf: url),
+           let bundled = try? JSONDecoder().decode(DailyCheckin.self, from: data) {
+            checkin = bundled
+            loadProgress()
+        }
         reportedDate = UserDefaults.standard.string(forKey: "checkin-reported-date")
     }
 
