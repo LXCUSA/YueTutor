@@ -24,21 +24,21 @@ struct InputBar: View {
 
     var body: some View {
         HStack(spacing: 10) {
-            // 麦克风：最高频按钮，做成主按钮样式——52 大圆、实心底、白色图标；
-            // 录音中加呼吸光环提示"正在听"，红色与发送按钮同色（Theme.accent）。
+            // 麦克风：52 大圆；录音中实心红底白图标+呼吸光环，
+            // 闲置时淡红底红图标。
             Button(action: {
                 playHaptic(settings)
                 onMic()
             }) {
                 ZStack {
                     Circle()
-                        .fill(Theme.accent)
+                        .fill(isRecording ? Theme.accent : Theme.accent.opacity(0.15))
                         .frame(width: 52, height: 52)
                     Image(systemName: isRecording ? "mic.fill" : "mic")
                         .font(.system(size: 24, weight: .semibold))
-                        .foregroundColor(.white)
+                        .foregroundColor(isRecording ? .white : Theme.accent)
                 }
-                .shadow(color: Theme.accent.opacity(0.35), radius: 6, y: 2)
+                .shadow(color: Theme.accent.opacity(isRecording ? 0.35 : 0.12), radius: 6, y: 2)
                 .overlay {
                     if isRecording {
                         Circle()
