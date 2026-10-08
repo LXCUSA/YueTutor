@@ -5,7 +5,7 @@ import Combine
 /// 拉取仓库的 docs/daily-checkin.json（Muse 每天 08:00 生成并推送），
 /// 成功则缓存到 Documents，失败/没网就用缓存。打卡进度按日期存 UserDefaults。
 final class DailyCheckinService: ObservableObject {
-    static let remoteURL = URL(string: "https://raw.githubusercontent.com/LXCUSA/YueTutor/main/docs/daily-checkin.json")!
+    static let remoteURL = URL(string: "https://raw.githubusercontent.com/mravgo/YueTutor/main/docs/daily-checkin.json")!
     private static let cacheFileName = "daily-checkin.json"
 
     @Published private(set) var checkin: DailyCheckin? {
