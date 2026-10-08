@@ -3,6 +3,9 @@ name: Build YueTutor unsigned IPA
 on:
   push:
     branches: [main]
+    # docs/ 只有每日打卡 JSON（cron 每天推），不触发编译，省一次全量构建
+    paths-ignore:
+      - 'docs/**'
   workflow_dispatch:
 
 jobs:
